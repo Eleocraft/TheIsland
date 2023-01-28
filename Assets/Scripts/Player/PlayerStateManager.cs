@@ -14,7 +14,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public static event Action<bool> GamemodeChange;
 
-    private Animator animator;
+    [SerializeField] private Animator playermodelAnimator;
     [SerializeField] private Renderer[] thirdPersonModelRenderers;
     private float weight;
     private int TPLayer;
@@ -24,9 +24,8 @@ public class PlayerStateManager : MonoBehaviour
 
     void Start()
     {
-        animator = transform.GetChild(0).GetComponent<Animator>();
-        TPLayer = animator.GetLayerIndex("ThirdPerson");
-        FPLayer = animator.GetLayerIndex("FirstPerson");
+        TPLayer = playermodelAnimator.GetLayerIndex("ThirdPerson");
+        FPLayer = playermodelAnimator.GetLayerIndex("FirstPerson");
         controls = GlobalData.controls;
         controls.Player.ChangeMode.performed += ManualSwitch;
     }
@@ -40,9 +39,9 @@ public class PlayerStateManager : MonoBehaviour
         if (weight > 0)
         {
             weight -= Time.deltaTime;
-            animator.SetLayerWeight(fightMode? TPLayer : FPLayer, 1f - weight);
+            playermodelAnimator.SetLayerWeight(fightMode? TPLayer : FPLayer, 1f - weight);
             if (weight <= 0)
-                animator.SetLayerWeight(fightMode? FPLayer : TPLayer, 0);
+                playermodelAnimator.SetLayerWeight(fightMode? FPLayer : TPLayer, 0);
         }
     }
     void ManualSwitch(UnityEngine.InputSystem.InputAction.CallbackContext ctx) => ChangeGamemode(fightMode? PlayerState.FirstPerson : PlayerState.ThirdPerson);
@@ -65,7 +64,7 @@ public class PlayerStateManager : MonoBehaviour
             TPHUD.SetActive(true);
             controls.PlayerFP.Disable();
             controls.PlayerTP.Enable();
-            animator.SetLayerWeight(FPLayer, 1);
+            playermodelAnimator.SetLayerWeight(FPLayer, 1);
         }
         else // Switch to First Person
         {
@@ -75,7 +74,7 @@ public class PlayerStateManager : MonoBehaviour
             TPHUD.SetActive(false);
             controls.PlayerFP.Enable();
             controls.PlayerTP.Disable();
-            animator.SetLayerWeight(TPLayer, 1);
+            playermodelAnimator.SetLayerWeight(TPLayer, 1);
         }
     }
 }

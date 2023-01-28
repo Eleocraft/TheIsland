@@ -1,11 +1,13 @@
 using UnityEngine;
 using Unity.Netcode;
 
-public class PlayerModelMover : NetworkBehaviour
+public class PlayerModel : NetworkBehaviour
 {
-    void Start()
+    public static PlayerModel LocalPlayer;
+    public override void OnNetworkSpawn()
     {
         if (!IsOwner) return;
+        LocalPlayer = this;
     }
     void Update()
     {

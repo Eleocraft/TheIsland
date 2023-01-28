@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 316846903892781850}
   - component: {fileID: 7225617587986939094}
   - component: {fileID: 7225617587986939095}
-  - component: {fileID: 7225617587986939096}
+  - component: {fileID: 8150365961712945379}
   m_Layer: 6
   m_Name: PlayerModel
   m_TagString: Untagged
@@ -102,13 +102,13 @@ MonoBehaviour:
   SyncRotAngleZ: 0
   SyncScaleX: 0
   SyncScaleY: 0
-  SyncScaleZ: 1
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &7225617587986939096
+--- !u!114 &8150365961712945379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
