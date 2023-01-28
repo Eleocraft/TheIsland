@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6947068762c594e9b81b4c47997ebd, type: 3}
+  m_Name: DefaultTreeDamage
+  m_EditorClassIdentifier: 
+  toolDamages:
+  - Name: IronAxe
+    item: {fileID: 11400000, guid: 9ebae6e95f6136f498fc293783421618, type: 2}
+    damage: 2
+  - Name: StoneAxe
+    item: {fileID: 11400000, guid: 0d5d12bc449c4e9408f3a193e123e823, type: 2}
+    damage: 1

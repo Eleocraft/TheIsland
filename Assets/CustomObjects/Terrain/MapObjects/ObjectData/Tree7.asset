@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb23a2876fa9138448fdcd9cc2d39278, type: 3}
+  m_Name: Tree7
+  m_EditorClassIdentifier: 
+  Object: {fileID: 6128058435506414327, guid: f3ff4c53560d0ad4099da8e60be3c9a3, type: 3}
+  treeName: Tree 7
+  trunkPrefab: {fileID: 5170911519184777421, guid: 5bc67656cd5178649830acf16f7a463b, type: 3}
+  stumpPrefab: {fileID: 1151313308953432298, guid: e011e7361b60ad6489a2176694594182, type: 3}
+  Life: 5
+  toolDamageInfo: {fileID: 11400000, guid: 23252a6d8c19d5a4b8d27595f024e2d1, type: 2}
+  trunkData:
+    harvestingInfo: {fileID: 11400000, guid: fbd635a26711ec14881c166bfca8147d, type: 2}
+    recourceName: Trunk 7
+    Life: 4
+    MovingTime: 20

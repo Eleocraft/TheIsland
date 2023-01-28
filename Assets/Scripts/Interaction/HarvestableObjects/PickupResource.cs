@@ -1,0 +1,17 @@
+public class PickupResource : MapObject, IInteractable
+{
+    public PickupResourceData objectData;
+    public string InteractionInfo => objectData.recourceName + $"\nPress {GlobalData.controls.PlayerFP.Interaction.bindings[0].ToDisplayString()} to pick up {objectData.Item.name}";
+    public override float GetBaseLife => 1f;
+    public override void UpdateLocalState(float life)
+    {
+        if (life == 0)
+            Destroy(gameObject);
+    }
+    public void Interact()
+    {
+        PlayerInventory.AddItem(objectData.Item.CreateItem(), objectData.Amount);
+        UpdateState(Id, 0f);
+        Destroy(gameObject);
+    }
+}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb23a2876fa9138448fdcd9cc2d39278, type: 3}
+  m_Name: Palm
+  m_EditorClassIdentifier: 
+  Object: {fileID: 996576107424237655, guid: 91cb53cb015ead94abead44b5ad39889, type: 3}
+  treeName: Palm
+  trunkPrefab: {fileID: 5992462279988054747, guid: 004dddbe282e3fc43b348c29e817e1a7, type: 3}
+  stumpPrefab: {fileID: 6559727954519921964, guid: 028f003b72d987e4e8be0d61ce3965d3, type: 3}
+  Life: 5
+  toolDamageInfo: {fileID: 11400000, guid: 23252a6d8c19d5a4b8d27595f024e2d1, type: 2}
+  trunkData:
+    harvestingInfo: {fileID: 11400000, guid: fbd635a26711ec14881c166bfca8147d, type: 2}
+    recourceName: PalmTrunk
+    Life: 3
+    MovingTime: 20

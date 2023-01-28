@@ -1,0 +1,16 @@
+{
+    "name": "Const",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6e45d5acb84e18a4e85aaf4c5aab8a29"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

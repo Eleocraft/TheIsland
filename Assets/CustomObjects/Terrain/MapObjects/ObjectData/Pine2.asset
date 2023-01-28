@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb23a2876fa9138448fdcd9cc2d39278, type: 3}
+  m_Name: Pine2
+  m_EditorClassIdentifier: 
+  Object: {fileID: 8075185961386613096, guid: 9f84a851c2f977b4ca13926bac19587a, type: 3}
+  treeName: Pine2
+  trunkPrefab: {fileID: 2809052405300135613, guid: 4fca25103cf6ae64da82e0ec3bc1cea5, type: 3}
+  stumpPrefab: {fileID: 2187728409733852379, guid: a1cf6d269f73dbb419fb0921ce1162f3, type: 3}
+  Life: 4
+  toolDamageInfo: {fileID: 11400000, guid: 23252a6d8c19d5a4b8d27595f024e2d1, type: 2}
+  trunkData:
+    harvestingInfo: {fileID: 11400000, guid: fbd635a26711ec14881c166bfca8147d, type: 2}
+    recourceName: Pine2Trunk
+    Life: 4
+    MovingTime: 20

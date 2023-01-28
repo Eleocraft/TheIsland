@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7172dc17d9d44284ab0a24cac3a11d49, type: 3}
+  m_Name: Meadow
+  m_EditorClassIdentifier: 
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.22309616, g: 0.4811321, b: 0.09259521, a: 1}
+    key1: {r: 0.24243504, g: 0.5660378, b: 0.35030258, a: 1}
+    key2: {r: 1, g: 1, b: 1, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  height: 41
+  persistance: 0.478
+  lacunarity: 2.33
+  noiseScale: 100
+  HeightMultiplier: 4
+  frequency: 50
+  placementHeight:
+    startValue: 0.099999994
+    endValue: 0.34
+    sliderMin: 0
+    sliderMax: 1
+  distanceFromSpawn:
+    startValue: 0
+    endValue: 0.7
+    sliderMin: 0
+    sliderMax: 1
+  Objects:
+  - {fileID: 11400000, guid: 52b063fbe087d1e4ca7abaea4c802987, type: 2}
+  - {fileID: 11400000, guid: 376fd4a947e865245a43afdf1d55f729, type: 2}
+  - {fileID: 11400000, guid: 814af50b7415d2848a3220b0b1e2b3f9, type: 2}
+  - {fileID: 11400000, guid: ca7cf6edb7028d84aa7de20c66e91185, type: 2}
+  - {fileID: 11400000, guid: 18cb294da2fb342438f166b542a568e3, type: 2}
+  - {fileID: 11400000, guid: 9a51405d722dd024c87a6afbe112238a, type: 2}
+  - {fileID: 11400000, guid: c990bc561ad9b21418a7b5b97e0aafda, type: 2}
+  GlobalObjects: []
+  GenerateGrass: 1

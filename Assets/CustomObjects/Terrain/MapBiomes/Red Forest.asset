@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7172dc17d9d44284ab0a24cac3a11d49, type: 3}
+  m_Name: Red Forest
+  m_EditorClassIdentifier: 
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.47058824, g: 0.1764706, b: 0.1764706, a: 1}
+    key1: {r: 0.38679248, g: 0, b: 0.12252447, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  height: 71
+  persistance: 0.75
+  lacunarity: 1.53
+  noiseScale: 50
+  HeightMultiplier: 7
+  frequency: 50
+  placementHeight:
+    startValue: 0.38
+    endValue: 0.82
+    sliderMin: 0
+    sliderMax: 1
+  distanceFromSpawn:
+    startValue: 0.34
+    endValue: 1
+    sliderMin: 0
+    sliderMax: 1
+  Objects:
+  - {fileID: 11400000, guid: 376fd4a947e865245a43afdf1d55f729, type: 2}
+  - {fileID: 11400000, guid: 814af50b7415d2848a3220b0b1e2b3f9, type: 2}
+  - {fileID: 11400000, guid: 6cbf3516b528a5545bc7f50f6a8da43b, type: 2}
+  - {fileID: 11400000, guid: 52b063fbe087d1e4ca7abaea4c802987, type: 2}
+  - {fileID: 11400000, guid: c990bc561ad9b21418a7b5b97e0aafda, type: 2}
+  GlobalObjects: []
+  GenerateGrass: 1

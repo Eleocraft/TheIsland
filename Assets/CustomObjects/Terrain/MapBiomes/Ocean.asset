@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7172dc17d9d44284ab0a24cac3a11d49, type: 3}
+  m_Name: Ocean
+  m_EditorClassIdentifier: 
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.7264151, g: 0.68370706, b: 0.41574696, a: 1}
+    key1: {r: 0.5849056, g: 0.55314815, b: 0.3568292, a: 1}
+    key2: {r: 0.6415094, g: 0.5813528, b: 0.38369524, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  height: 6
+  persistance: 0.43
+  lacunarity: 1.92
+  noiseScale: 200
+  HeightMultiplier: 2
+  frequency: 50
+  placementHeight:
+    startValue: 0
+    endValue: 0.32999998
+    sliderMin: 0
+    sliderMax: 1
+  distanceFromSpawn:
+    startValue: 0.099999994
+    endValue: 1
+    sliderMin: 0
+    sliderMax: 1
+  Objects:
+  - {fileID: 11400000, guid: 6cbf3516b528a5545bc7f50f6a8da43b, type: 2}
+  - {fileID: 11400000, guid: daf9f4cdf14b14d4dbf613f7d8542d53, type: 2}
+  - {fileID: 11400000, guid: c990bc561ad9b21418a7b5b97e0aafda, type: 2}
+  GlobalObjects: []
+  GenerateGrass: 0
