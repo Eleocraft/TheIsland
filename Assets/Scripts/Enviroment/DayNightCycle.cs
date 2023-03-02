@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 [CommandGroup("dayNightCycle")]
 public class DayNightCycle : MonoSingleton<DayNightCycle>

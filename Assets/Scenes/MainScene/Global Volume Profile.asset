@@ -31,8 +31,8 @@ MonoBehaviour:
   components:
   - {fileID: 8833843329972787706}
   - {fileID: -8064462125619691238}
-  - {fileID: 4065454053871364301}
---- !u!114 &4065454053871364301
+  - {fileID: 2971507029689084169}
+--- !u!114 &2971507029689084169
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,38 +46,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   mode:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0
   gaussianStart:
-    m_OverrideState: 1
-    m_Value: 70
+    m_OverrideState: 0
+    m_Value: 10
   gaussianEnd:
-    m_OverrideState: 1
-    m_Value: 100
+    m_OverrideState: 0
+    m_Value: 30
   gaussianMaxRadius:
-    m_OverrideState: 1
-    m_Value: 0.5
-  highQualitySampling:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
+  highQualitySampling:
+    m_OverrideState: 0
+    m_Value: 0
   focusDistance:
-    m_OverrideState: 1
-    m_Value: 2
+    m_OverrideState: 0
+    m_Value: 10
   aperture:
-    m_OverrideState: 1
-    m_Value: 21.2
+    m_OverrideState: 0
+    m_Value: 5.6
   focalLength:
-    m_OverrideState: 1
-    m_Value: 95
+    m_OverrideState: 0
+    m_Value: 50
   bladeCount:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 5
   bladeCurvature:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   bladeRotation:
-    m_OverrideState: 1
-    m_Value: 17
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &8833843329972787706
 MonoBehaviour:
   m_ObjectHideFlags: 3
