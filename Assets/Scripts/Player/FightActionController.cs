@@ -54,9 +54,9 @@ public class FightActionController : MonoBehaviour
         if (ComboTimer > 0)
             ComboTimer -= Time.deltaTime;
     }
-    private void ChangeGamemode(bool fightMode)
+    private void ChangeGamemode(PlayerState newState)
     {
-        WeaponHolder.SetActive(fightMode);
+        WeaponHolder.SetActive(newState == PlayerState.ThirdPerson);
     }
     private void StartDraw(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {

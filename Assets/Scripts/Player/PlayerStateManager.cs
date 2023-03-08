@@ -8,14 +8,10 @@ public class PlayerStateManager : MonoBehaviour
     private InputMaster controls;
     private static PlayerState state = PlayerState.FirstPerson;
     public static PlayerState State => state;
-    // temp
-    private static bool fightMode => state == PlayerState.ThirdPerson;
-    public static bool FightMode => fightMode;
-
-    public static event Action<bool> GamemodeChange;
+    public static event Action<PlayerState> GamemodeChange;
 
     [SerializeField] private Animator playermodelAnimator;
-    [SerializeField] private Renderer[] thirdPersonModelRenderers;
+    [SerializeField] private SkinnedMeshRenderer[] thirdPersonModelRenderers;
     private float weight;
     private int TPLayer;
     private int FPLayer;
@@ -39,12 +35,12 @@ public class PlayerStateManager : MonoBehaviour
         if (weight > 0)
         {
             weight -= Time.deltaTime;
-            playermodelAnimator.SetLayerWeight(fightMode? TPLayer : FPLayer, 1f - weight);
+            playermodelAnimator.SetLayerWeight((state == PlayerState.FirstPerson)? TPLayer : FPLayer, 1f - weight);
             if (weight <= 0)
-                playermodelAnimator.SetLayerWeight(fightMode? FPLayer : TPLayer, 0);
+                playermodelAnimator.SetLayerWeight((state == PlayerState.ThirdPerson)? FPLayer : TPLayer, 0);
         }
     }
-    void ManualSwitch(UnityEngine.InputSystem.InputAction.CallbackContext ctx) => ChangeGamemode(fightMode? PlayerState.FirstPerson : PlayerState.ThirdPerson);
+    void ManualSwitch(UnityEngine.InputSystem.InputAction.CallbackContext ctx) => ChangeGamemode((state == PlayerState.ThirdPerson) ? PlayerState.FirstPerson : PlayerState.ThirdPerson);
 
     void ChangeGamemode(PlayerState newState)
     {
@@ -53,10 +49,10 @@ public class PlayerStateManager : MonoBehaviour
             return;
 
         state = newState;
-        GamemodeChange(fightMode);
+        GamemodeChange(state);
         weight = 1f;
 
-        if (fightMode) // Switch to Third Person
+        if (state == PlayerState.ThirdPerson) // Switch to Third Person
         {
             foreach (SkinnedMeshRenderer modelRenderer in thirdPersonModelRenderers)
                 modelRenderer.shadowCastingMode = ShadowCastingMode.On;
@@ -66,7 +62,7 @@ public class PlayerStateManager : MonoBehaviour
             controls.PlayerTP.Enable();
             playermodelAnimator.SetLayerWeight(FPLayer, 1);
         }
-        else // Switch to First Person
+        else if (state == PlayerState.FirstPerson) // Switch to First Person
         {
             foreach (SkinnedMeshRenderer modelRenderer in thirdPersonModelRenderers)
                 modelRenderer.shadowCastingMode = ShadowCastingMode.ShadowsOnly;

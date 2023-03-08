@@ -5315,7 +5315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1da37bed7ae384c97aa588f1d4e1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectionMode: 1
+  connectionMode: 0
 --- !u!114 &488743314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6737,6 +6737,7 @@ GameObject:
   - component: {fileID: 639821032}
   - component: {fileID: 639821036}
   - component: {fileID: 639821037}
+  - component: {fileID: 639821038}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -6814,7 +6815,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 3713
-  animator: {fileID: 1136619758}
   AnimationLerp: 0.2
   FlyingSpeedMultiplier: 20
   VerticalSpeed: 30
@@ -7008,6 +7008,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Force: 70
   FloaterDepth: 0.5
+--- !u!114 &639821038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639821018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0456c578c31b8b4bb184cca7a9cdd0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullBodyAnimator: {fileID: 1136619758}
 --- !u!1 &642007560
 GameObject:
   m_ObjectHideFlags: 0

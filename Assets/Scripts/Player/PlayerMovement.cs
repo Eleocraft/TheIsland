@@ -29,7 +29,6 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     [SerializeField] private LayerMask groundMask;
 
     [Header("--Animation")]
-    [SerializeField] private Animator animator;
     [Range(0.1f, 0.5f)] [SerializeField] private float AnimationLerp;
 
     [Header("--flyMode")]
@@ -80,7 +79,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         if ((onSolidGround || transform.position.y < waterHeight) && moveMode == MoveMode.Walk)
         {
             mainRB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-            animator.SetTrigger("Jump");
+            PlayerAnimationManager.SetTrigger("Jump");
         }
         // Fly Up
         else if (moveMode == MoveMode.Fly)
@@ -114,8 +113,8 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
 
         Direction = Vector2.MoveTowards(Direction, Input, AnimationLerp);
 
-        animator.SetFloat("vertical", Direction.x);
-        animator.SetFloat("horizontal", Direction.y);
+        PlayerAnimationManager.SetFloat("vertical", Direction.x);
+        PlayerAnimationManager.SetFloat("horizontal", Direction.y);
     }
     void FixedUpdate()
     {

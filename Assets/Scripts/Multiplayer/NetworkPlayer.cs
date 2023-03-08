@@ -9,6 +9,7 @@ public class NetworkPlayer : NetworkBehaviour
             return;
         
         transform.GetChild(0).gameObject.SetActive(false);
+        PlayerAnimationManager.SetPlayerNetworkAnimator(GetComponent<Animator>());
     }
     private void Update()
     {

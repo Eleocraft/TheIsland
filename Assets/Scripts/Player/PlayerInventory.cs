@@ -49,7 +49,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
 
     public static Item activeItem => Instance.hotbar.Slots[Instance.activeSlot].item;
 
-    private bool PortableItem => PlayerStateManager.FightMode ? false : activeItem?.ItemObject as PortableItem;
+    private bool PortableItem => (PlayerStateManager.State == PlayerState.ThirdPerson) ? false : activeItem?.ItemObject as PortableItem;
 
     public static Item mainWeapon => Instance.fightingHotbar.Slots[0].item;
 
@@ -162,11 +162,11 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
             foreach (Delegate d in closeCallback.GetInvocationList())
                 closeCallback -= d as Action;
     }
-    void ThirdPersonToggle(bool ThirdPersonView)
+    void ThirdPersonToggle(PlayerState newState)
     {
-        hotbarInterface.gameObject.SetActive(!ThirdPersonView);
-        fightingHotbarInterface.gameObject.SetActive(ThirdPersonView);
-        if (ThirdPersonView)
+        hotbarInterface.gameObject.SetActive(newState == PlayerState.FirstPerson);
+        fightingHotbarInterface.gameObject.SetActive(newState == PlayerState.ThirdPerson);
+        if (newState == PlayerState.ThirdPerson)
         {
             ActivateThirdPersonArms();
             Destroy(ItemInHand);
@@ -239,7 +239,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         {
             EscQueue.Enqueue(toggleInventory);
             CursorStateMachine.ChangeCursorState(false, this);
-            if (PlayerStateManager.FightMode)
+            if (PlayerStateManager.State == PlayerState.ThirdPerson)
                 hotbarInterface.gameObject.SetActive(true);
             else
                 fightingHotbarInterface.gameObject.SetActive(true);
@@ -248,7 +248,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         {
             EscQueue.Remove(toggleInventory);
             CursorStateMachine.ChangeCursorState(true, this);
-            if (PlayerStateManager.FightMode)
+            if (PlayerStateManager.State == PlayerState.ThirdPerson)
                 hotbarInterface.gameObject.SetActive(false);
             else
                 fightingHotbarInterface.gameObject.SetActive(false);

@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 8150365961712945379}
   - component: {fileID: -970350051769277796}
   - component: {fileID: -4188784173661157811}
+  - component: {fileID: 6946071730499768277}
+  - component: {fileID: 1502364067653764924}
+  - component: {fileID: 8325641004804930325}
   m_Layer: 6
   m_Name: NetworkPlayer
   m_TagString: Untagged
@@ -119,6 +122,71 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!95 &6946071730499768277
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108998895483437020}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d5957038362568541a11864460ff21c8, type: 3}
+  m_Controller: {fileID: 9100000, guid: c6cd2281a5e4a8845a4f572fdc6cc289, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1502364067653764924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108998895483437020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2941f6f39c8a9ea459627b84c44a76b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - Layer: 2
+    OriginatingState: 1656188186
+    DestinationState: 1904009494
+    TransitionDuration: 0.25
+    TriggerNameHash: -972068619
+    TransitionIndex: 0
+  - Layer: 2
+    OriginatingState: 1904009494
+    DestinationState: -1040923274
+    TransitionDuration: 0.25
+    TriggerNameHash: 1895636814
+    TransitionIndex: 0
+  m_Animator: {fileID: 6946071730499768277}
+--- !u!114 &8325641004804930325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9108998895483437020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 323bb73cf8328b9428e2e2e1a6c7ed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToGround: 0.023
+  additionalRaycastRange: 0.5
+  checkheightAboveFoot: 0.6
+  ikWeightDistance: 30
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1665
 --- !u!1001 &7225617588440279084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,11 +264,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 491b2036aed64714c8b85f768d61b106, type: 2}
     - target: {fileID: -7691597983605223648, guid: d5957038362568541a11864460ff21c8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.035442185
+      value: 0.03544219
       objectReference: {fileID: 0}
     - target: {fileID: -7691597983605223648, guid: d5957038362568541a11864460ff21c8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.1024764
+      value: -0.10247641
       objectReference: {fileID: 0}
     - target: {fileID: -7312423863453844442, guid: d5957038362568541a11864460ff21c8, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -410,7 +478,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 92afadab2bc0da64eae20489a5528276, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: d5957038362568541a11864460ff21c8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d5957038362568541a11864460ff21c8, type: 3}
 --- !u!4 &7191181617316057031 stripped
 Transform:
@@ -436,22 +505,3 @@ CapsuleCollider:
   m_Height: 1.9755058
   m_Direction: 1
   m_Center: {x: 0, y: -0.27909744, z: 0}
---- !u!114 &7225617586766312836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7532240930712130941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323bb73cf8328b9428e2e2e1a6c7ed7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceToGround: 0.023
-  additionalRaycastRange: 0.5
-  checkheightAboveFoot: 0.6
-  ikWeightDistance: 30
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1665

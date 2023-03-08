@@ -26,7 +26,7 @@ public class InputStateMachine : MonoBehaviour
             controls.Player.Enable();
             if (!CursorStateMachine.Locked)
                 controls.Player.View.Disable();
-            if (PlayerStateManager.FightMode)
+            if (PlayerStateManager.State == PlayerState.ThirdPerson)
                 controls.PlayerTP.Enable();
             else
                 controls.PlayerFP.Enable();

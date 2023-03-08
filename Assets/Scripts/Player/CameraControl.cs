@@ -29,7 +29,7 @@ public class CameraControl : MonoSingleton<CameraControl>
     private float YRotOffset;
 
     // For player movement (Kinda Temp)
-    public static bool LockedForward => !FightActionController.Drawing && PlayerStateManager.FightMode;
+    public static bool LockedForward => !FightActionController.Drawing && PlayerStateManager.State == PlayerState.ThirdPerson;
 
     [Save(SaveType.player)]
     public static object PlayerRotation
@@ -97,9 +97,9 @@ public class CameraControl : MonoSingleton<CameraControl>
                 ThirdPersonCameraTransform.position = transform.position + LookRotation * ThirdPersonCameraDist;
         }
 	}
-    void ChangeCameraState(bool newState)
+    void ChangeCameraState(PlayerState newState)
     {
-        ThirdPersonView = newState;
+        ThirdPersonView = newState == PlayerState.ThirdPerson;
         if (ThirdPersonView)
             CameraStateController.Play("TPCam");
         else
