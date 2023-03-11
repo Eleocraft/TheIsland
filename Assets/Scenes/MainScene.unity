@@ -6807,9 +6807,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveMode: 0
   mainRB: {fileID: 0}
-  jumpForce: 15
-  sprintSpeedMultiplier: 2.78
-  normalSpeed: 6.38
+  jumpForce: 12
+  sprintSpeedMultiplier: 2
+  normalSpeed: 3
   defaultGroundCheck: {fileID: 1327681859}
   groundDistance: 0.2
   groundMask:

@@ -12,7 +12,7 @@ public class EnumDictionary<KeyEnum, Value> where KeyEnum : System.Enum
     [SerializeField] private List<PanelObject> values;
     public EnumDictionary()
     {
-        dict = new Dictionary<KeyEnum, Value>();
+        dict = new();
         values = new();
     }
     public int Count => dict.Count;

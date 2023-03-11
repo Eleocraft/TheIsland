@@ -23,6 +23,10 @@ public class BiomeDependentList : MusicStateObject
             music.RemoveDublicates();
         }
     }
+    private void OnEnable()
+    {
+        music.Update();
+    }
     public override AudioClip GetClip()
     {
         biome = MapRuntimeHandler.GetViewerBiome().name;

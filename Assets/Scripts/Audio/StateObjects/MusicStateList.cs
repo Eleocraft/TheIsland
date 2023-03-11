@@ -56,6 +56,7 @@ public class MusicStateList : MusicStateObject
     private void OnEnable()
     {
         // Populating activations dict
+        states.Update();
         activations = new();
         foreach (MusicState state in Utility.GetEnumValues<MusicState>())
             activations.Add(state, new());

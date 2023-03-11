@@ -9668,7 +9668,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: DisplaySettings
+          m_StringArgument: Display
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1698946834
@@ -11732,7 +11732,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: InputSettings
+          m_StringArgument: Input
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2051953234

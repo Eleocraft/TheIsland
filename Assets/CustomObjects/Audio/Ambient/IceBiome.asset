@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: IceBiome
   m_EditorClassIdentifier: 
   clipTimer:
-    startValue: 0
-    endValue: 0
+    startValue: 74.61
+    endValue: 126.259995
     sliderMin: 0
     sliderMax: 500
   music:

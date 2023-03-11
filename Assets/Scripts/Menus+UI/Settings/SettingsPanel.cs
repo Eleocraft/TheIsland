@@ -32,6 +32,7 @@ public class SettingsPanel : MonoBehaviour
     void Awake()
     {
         panels.Update();
+        panelObjectPrefabs.Update();
         panelScrollRectContents = new();
         for (int i = 0; i < panels.Count; i++)
             panelScrollRectContents.Add(panels.ElementAt(i).Key, panels.ElementAt(i).Value.transform.GetChild(0).GetChild(0) as RectTransform);
