@@ -147,13 +147,3 @@ public static class HeightMapGenerator
         return combinedValue;
     }
 }
-public struct HeightMap
-{
-    public readonly float[,] heightMap;
-    public readonly float[] savableHeightMap;
-    public HeightMap(float[,] heightMap, float[] savableHeightMap)
-    {
-        this.heightMap = heightMap;
-        this.savableHeightMap = savableHeightMap;
-    }
-}

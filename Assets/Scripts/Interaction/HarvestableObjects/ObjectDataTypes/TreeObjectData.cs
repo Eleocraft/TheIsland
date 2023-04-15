@@ -18,5 +18,4 @@ public class TrunkObjectData
     public HarvestingData harvestingInfo;
     public string recourceName = "Trunk";
     public float Life = 4;
-    public float MovingTime = 20f;
 }

@@ -44,7 +44,6 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     private static List<GameObject> clientConnections = new List<GameObject>();
     private static bool multiplayer;
 
-    private const string connectionClosedErrorMessage = "The server closed the connection";
     private const string connectionErrorMessage = "The client could not connect to the server.\nThis could be due to a wrong IP-adress, or to the username already being taken up on the server.";
 
     private enum PanelType { None, Settings, LoadMenu, NewGameMenu }
