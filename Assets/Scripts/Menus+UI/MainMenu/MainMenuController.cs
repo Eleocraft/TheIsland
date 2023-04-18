@@ -2,16 +2,10 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoSingleton<MainMenuController>
 {
-    [Header("--Menus")]
-    [SerializeField] private GameObject TopLVLMenu;
-    [SerializeField] private GameObject HostClientSelect;
-    [SerializeField] private GameObject MultiplayerHUB;
-    [SerializeField] private GameObject ConnectingPanel;
-    [Header("--Buttons")]
-    [SerializeField] private GameObject MultiplayerStartButton;
     [Header("--Panels")]
     [SerializeField] private GameObject LoadMenu;
     [SerializeField] private GameObject NewGameMenu;
@@ -19,9 +13,7 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     [Header("--NewGame")]
     [SerializeField] private TMP_InputField WorldNameInputField;
     [SerializeField] private TMP_InputField SeedInputField;
-    [Header("--Multiplayer")]
-    [SerializeField] private TMP_InputField IPInputField;
-    [SerializeField] private TMP_InputField UsernameInputField;
+
     [Header("--SaveFileButtons")]
     [SerializeField] private int SaveFileButtonsStartPos;
     [SerializeField] private int SaveFileButtonsDisplacement;
@@ -29,22 +21,15 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     [SerializeField] private RectTransform ScrollRectContent;
     [SerializeField] private int additionalScrollLegth = 10;
     [SerializeField] private int maxSaveFiles = 10;
-    [Header("--PlayerList")]
-    [SerializeField] private GameObject PlayerListPanel;
-    [SerializeField] private TMP_Text ConnectionPrefabs;
-    [SerializeField] private int ConnectionListStartPos;
-    [SerializeField] private int ConnectionListDisplacement;
     
     [Header("--General")]
     [SerializeField] [Range(30, 144)] private int TargetFrameRate;
+    [SerializeField] private Button ContinueButton;
 
     private static List<Savegame> savegames;
     private static List<string> savenames;
     private static List<GameObject> saveFileButtons;
-    private static List<GameObject> clientConnections = new List<GameObject>();
-    private static bool multiplayer;
 
-    private const string connectionErrorMessage = "The client could not connect to the server.\nThis could be due to a wrong IP-adress, or to the username already being taken up on the server.";
 
     private enum PanelType { None, Settings, LoadMenu, NewGameMenu }
     private PanelType currentPanel
@@ -73,49 +58,9 @@ public class MainMenuController : MonoSingleton<MainMenuController>
                     NewGameMenu.SetActive(false);
                     break;
             }
-            if (value == PanelType.None)
-                PlayerListPanel.SetActive(true);
-            else
-                PlayerListPanel.SetActive(false);
         }
     }
-    private enum MenuType { TopLVL, HostClientSelect, MultiplayerHUB, ConnectingPanel }
-    private MenuType currentMenu
-    {
-        set {
-            switch (value)
-            {
-                case MenuType.TopLVL:
-                    TopLVLMenu.SetActive(true);
-                    HostClientSelect.SetActive(false);
-                    MultiplayerHUB.SetActive(false);
-                    ConnectingPanel.SetActive(false);
-                    break;
-                case MenuType.HostClientSelect:
-                    TopLVLMenu.SetActive(false);
-                    HostClientSelect.SetActive(true);
-                    MultiplayerHUB.SetActive(false);
-                    ConnectingPanel.SetActive(false);
-                    break;
-                case MenuType.MultiplayerHUB:
-                    TopLVLMenu.SetActive(false);
-                    HostClientSelect.SetActive(false);
-                    MultiplayerHUB.SetActive(true);
-                    ConnectingPanel.SetActive(false);
-                    break;
-                case MenuType.ConnectingPanel:
-                    TopLVLMenu.SetActive(false);
-                    HostClientSelect.SetActive(false);
-                    MultiplayerHUB.SetActive(false);
-                    ConnectingPanel.SetActive(true);
-                    break;
-            }
-            // if (value == MenuType.TopLVL && NetworkManager.Connected)
-            //     NetworkManager.Disconnect();
-            currentPanel = PanelType.None;
-        }
-    }
-
+    
     protected override void SingletonAwake()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -123,11 +68,6 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     }
     void Start()
     {
-        try { UsernameInputField.text = SaveAndLoad.Load<string>("Username", LoadCategory.Settings); }
-        catch (noSaveFileFoundExeption) { }
-        try { IPInputField.text = SaveAndLoad.Load<string>("IP", LoadCategory.Settings); }
-        catch (noSaveFileFoundExeption) { }
-
         savegames = new List<Savegame>();
         savenames = new List<string>();
         string[] dirs = SaveAndLoad.Savefiles;
@@ -146,38 +86,11 @@ public class MainMenuController : MonoSingleton<MainMenuController>
                 i = -1; //reset i
             }
         }
-        // NetworkManager.ConnectionEstablished += ConfirmConnection;
-        // NetworkManager.ConnectionAborted += ConnectionAborted;
-        // NetworkManager.ConnectionsAmountChanged += UpdateClientList;
-
-        // if (NetworkManager.ConnectionError)
-        //     Popup.Create(PopupType.OK, connectionClosedErrorMessage, () => {});
+        if (dirs.Length <= 0)
+            ContinueButton.interactable = false;
 
         CreateSaveFileButtons();
     }
-    void OnDestroy()
-    {
-        // NetworkManager.ConnectionEstablished -= ConfirmConnection;
-        // NetworkManager.ConnectionAborted -= ConnectionAborted;
-        // NetworkManager.ConnectionsAmountChanged -= UpdateClientList;
-    }
-    // private void UpdateClientList()
-    // {
-    //     foreach (GameObject con in clientConnections)
-    //         Destroy(con);
-    //     clientConnections = new List<GameObject>();
-    //     int position = ConnectionListStartPos;
-    //     List<string> Usernames = NetworkManager.Usernames.Values.ToList();
-    //     Usernames.Insert(0, NetworkManager.Username);
-    //     for (int i = 0; i < Usernames.Count; i++)
-    //     {
-    //         TMP_Text connection = Instantiate(ConnectionPrefabs, PlayerListPanel.transform);
-    //         connection.text = Usernames[i];
-    //         connection.transform.localPosition = new Vector2(0, position);
-    //         position -= ConnectionListDisplacement;
-    //         clientConnections.Add(connection.gameObject);
-    //     }
-    // }
     private void CreateSaveFileButtons()
     {
         saveFileButtons = new List<GameObject>();
@@ -207,50 +120,7 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     public void Settings() => currentPanel = PanelType.Settings;
     public void ClosePanel() => currentPanel = PanelType.None;
     public void OpenLoadMenu() => currentPanel = PanelType.LoadMenu;
-    public void Back() => currentMenu = MenuType.TopLVL;
-    public void ConfirmConnection() => currentMenu = MenuType.MultiplayerHUB;
-    private void ConnectionAborted()
-    {
-        Popup.Create(PopupType.OK, connectionErrorMessage, Back);
-    }
-    public void ConnectHost()
-    {
-        if (string.IsNullOrEmpty(UsernameInputField.text))
-        {
-            Popup.Create(PopupType.OK, "you need to input a username", () => {});
-            return;
-        }
-        currentMenu = MenuType.MultiplayerHUB;
-        MultiplayerStartButton.SetActive(true);
-        SaveAndLoad.Save(UsernameInputField.text, "Username", LoadCategory.Settings, SerialisationType.Json);
-        SaveAndLoad.Save(IPInputField.text, "IP", LoadCategory.Settings, SerialisationType.Json);
-        // NetworkManager.Connect(NetworkMode.Host, IPInputField.text, UsernameInputField.text);
-        // UpdateClientList();
-    }
-    public void ConnectClient()
-    {
-        if (string.IsNullOrEmpty(UsernameInputField.text))
-        {
-            Popup.Create(PopupType.OK, "you need to input a username", () => {});
-            return;
-        }
-        currentMenu = MenuType.ConnectingPanel;
-        MultiplayerStartButton.SetActive(false);
-        SaveAndLoad.Save(UsernameInputField.text, "Username", LoadCategory.Settings, SerialisationType.Json);
-        SaveAndLoad.Save(IPInputField.text, "IP", LoadCategory.Settings, SerialisationType.Json);
-        // NetworkManager.Connect(NetworkMode.Client, IPInputField.text, UsernameInputField.text);
-        // UpdateClientList();
-    }
-    public void SingleplayerInit()
-    {
-        currentPanel = PanelType.LoadMenu;
-        multiplayer = false;
-    }
-    public void MultiplayerInit()
-    {
-        currentMenu = MenuType.HostClientSelect;
-        multiplayer = true;
-    }
+    public void Continue() => Load(0);
     public void OpenNewGameMenu()
     {
         if (savegames.Count >= maxSaveFiles)
@@ -264,7 +134,7 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     }
     public static void Load(int slot)
     {
-        savegames[slot].UpdateData(DateTime.Now, multiplayer);
+        savegames[slot].UpdateData();
 
         SaveAndLoad.SlotName = savenames[slot];
         GlobalData.Seed = SaveAndLoad.Load<int>("MapSeed", LoadCategory.Slot);
@@ -277,7 +147,7 @@ public class MainMenuController : MonoSingleton<MainMenuController>
         if (string.IsNullOrEmpty(WorldNameInputField.text))
             return;
         
-        Savegame game = new Savegame(DateTime.Now, multiplayer);
+        Savegame game = new Savegame();
         savegames.Add(game);
 
         SaveAndLoad.SlotName = WorldNameInputField.text;
@@ -294,15 +164,12 @@ public class MainMenuController : MonoSingleton<MainMenuController>
 public class Savegame
 {
     public DateTime date { get; private set; }
-    public bool multiplayer { get; private set; }
-    public Savegame(DateTime date, bool multiplayer)
+    public Savegame()
     {
-        this.date = date;
-        this.multiplayer = multiplayer;
+        this.date = DateTime.Now;
     }
-    public void UpdateData(DateTime date, bool multiplayer)
+    public void UpdateData()
     {
-        this.date = date;
-        this.multiplayer = multiplayer;
+        this.date = DateTime.Now;
     }
 }

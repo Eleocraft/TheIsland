@@ -33,7 +33,7 @@ public class SavingGame : MonoSingleton<SavingGame>
 
             GlobalData.loadMode = loadMode;
             
-            SaveAndLoad.Save(new Savegame(DateTime.Now, false), "Savegamedata", LoadCategory.Slot, SerialisationType.Binary);
+            SaveAndLoad.Save(new Savegame(), "Savegamedata", LoadCategory.Slot, SerialisationType.Binary);
             if (loadMode == LoadMode.Load)
                 GlobalData.Seed = SaveAndLoad.Load<int>("MapSeed", LoadCategory.Slot);
             else

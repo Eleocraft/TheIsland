@@ -4,13 +4,9 @@ using TMPro;
 
 public class SaveButton : MonoBehaviour
 {
-    [Header("--Sprites")]
-    [SerializeField] private Sprite SingleplayerIcon;
-    [SerializeField] private Sprite MultiplayerIcon;
     [Header("--Objects")]
     [SerializeField] private TMP_Text NameObj;
     [SerializeField] private TMP_Text DateObj;
-    [SerializeField] private Image Single_Multi_Icon;
     [SerializeField] private Image Screenshot;
 
     private int slot;
@@ -20,8 +16,7 @@ public class SaveButton : MonoBehaviour
     {
         this.slot = slot;
         NameObj.text = name;
-        DateObj.text = savegame.date.ToString();
-        Single_Multi_Icon.sprite = savegame.multiplayer ? MultiplayerIcon : SingleplayerIcon;
+        DateObj.text = savegame.date.ToString("d");
         Screenshot.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
     }
 
