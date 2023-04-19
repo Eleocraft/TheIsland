@@ -90,6 +90,7 @@ public class SavingGame : MonoSingleton<SavingGame>
         ScreenshotTaker.TakeScreenshot((bytes) => SaveAndLoad.SaveBytes(bytes, "saveImage", LoadCategory.Slot));
         SaveAndLoad.Save(new SaveData(SaveType.player), "localPlayer", LoadCategory.Slot, SerialisationType.Binary);
         SaveAndLoad.Save(new SaveData(SaveType.world), "worldData", LoadCategory.Slot, SerialisationType.Binary);
+        SaveAndLoad.CreateBackup();
     }
 
     [Serializable]

@@ -22,4 +22,5 @@ public class SaveButton : MonoBehaviour
 
     public void Load() => MainMenuController.Load(slot);
     public void Delete() => Popup.Create(PopupType.YesNo, deleteMessage, () => MainMenuController.DeleteSaveFile(slot));
+    public void OpenBackups() => MainMenuController.OpenBackups(slot);
 }

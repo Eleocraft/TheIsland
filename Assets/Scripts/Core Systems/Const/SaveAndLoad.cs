@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -26,6 +27,11 @@ public static class SaveAndLoad
     private const string JsonSaveExtension = ".Rsavegame";
     private const string BinarySaveExtension = ".savegame";
 
+    private const string BackupFolderName = "Backups";
+    private const string BackupFileStart = "Backup";
+
+    private const int numberOfBackups = 5;
+
     public static string[] Savefiles
     {
         get {
@@ -36,16 +42,57 @@ public static class SaveAndLoad
             return dirs;
         }
     }
+    public static string[] Backups
+    {
+        get {
+            string[] dirs = Directory.GetDirectories($"{pathRoot}/Savegames/{SlotName}/{BackupFolderName}");
+            for (int i = 0; i < dirs.Length; i++)
+                dirs[i] = new DirectoryInfo(dirs[i]).Name;
+            
+            return dirs;
+        }
+    }
+    public static void CreateBackup(string overrideSlotName = "")
+    {
+        // Get paths
+        string path = GetDirectory(LoadCategory.Slot, overrideSlotName);
+        string backupPath = $"{path}/{BackupFolderName}/{BackupFileStart} {DateTime.Now:m}";
+
+        // Create new directory
+        Directory.CreateDirectory(backupPath);
+
+        // move files for backup
+        foreach(string file in Directory.GetFiles(path))
+            File.Copy(file, Path.Combine(backupPath, Path.GetFileName(file)));
+
+        // if there are too many backup files delete oldest Backup
+        if (Backups.Length > numberOfBackups)
+        {
+            List<DateTime> dateTimes = new();
+            foreach (string backup in Backups)
+                dateTimes.Add(DateTime.Parse(backup.Replace($"{BackupFileStart} ", "")));
+
+            Directory.Delete($"{path}/{BackupFolderName}/{Backups[dateTimes.IndexOf(dateTimes.Min())]}");
+        }
+    }
+    public static void LoadBackup(string BackupName, string overrideSlotName = "")
+    {
+        // Get paths
+        string path = GetDirectory(LoadCategory.Slot, overrideSlotName);
+        string backupPath = $"{path}/{BackupFolderName}/{BackupName}";
+
+        // delete the files from the savegame
+        foreach(string file in Directory.GetFiles(path))
+            File.Delete(file);
+
+        // move files from backup
+        foreach(string file in Directory.GetFiles(backupPath))
+            File.Copy(file, Path.Combine(path, Path.GetFileName(file)));
+    }
 
     public static void DeleteDirectory(LoadCategory category, string overrideSlotName = "")
     {
-        string path = "";
-        if (category == LoadCategory.Slot)
-            path = $"{pathRoot}/Savegames/{(string.IsNullOrEmpty(overrideSlotName) ? SlotName : overrideSlotName)}/";
-        else if (category == LoadCategory.Map)
-            path = $"{pathRoot}/Maps/{GlobalData.Seed}/";
-        else if (category == LoadCategory.Settings)
-            path = $"{pathRoot}/Settings/";
+        string path = GetDirectory(category, overrideSlotName);
         
         if (Directory.Exists(Path.GetDirectoryName(path)))
             Directory.Delete(Path.GetDirectoryName(path), true);
@@ -57,15 +104,7 @@ public static class SaveAndLoad
 
     public static bool DirectoryExists(LoadCategory category, string overrideSlotName = "")
     {
-        string path = "";
-        if (category == LoadCategory.Slot)
-            path = $"{pathRoot}/Savegames/{(string.IsNullOrEmpty(overrideSlotName) ? SlotName : overrideSlotName)}/";
-        else if (category == LoadCategory.Map)
-            path = $"{pathRoot}/Maps/{GlobalData.Seed}/";
-        else if (category == LoadCategory.Settings)
-            path = $"{pathRoot}/Settings/";
-        
-        return Directory.Exists(Path.GetDirectoryName(path));
+        return Directory.Exists(Path.GetDirectoryName(GetDirectory(category, overrideSlotName)));
     }
     public static bool FileExists(string SaveName, LoadCategory category, string overrideSlotName="")
     {
@@ -104,7 +143,7 @@ public static class SaveAndLoad
         if (category == LoadCategory.Slot)
         {
             if (File.Exists($"{pathRoot}/Savegames/{(string.IsNullOrEmpty(overrideSlotName) ? SlotName : overrideSlotName)}/{SaveName}{JsonSaveExtension}")) // Check for a Json File
-                path = String.Concat($"{pathRoot}/Savegames/{(string.IsNullOrEmpty(overrideSlotName) ? SlotName : overrideSlotName)}/{SaveName}{JsonSaveExtension}");
+                path = string.Concat($"{pathRoot}/Savegames/{(string.IsNullOrEmpty(overrideSlotName) ? SlotName : overrideSlotName)}/{SaveName}{JsonSaveExtension}");
             
             else if (File.Exists($"{pathRoot}/Savegames/{(string.IsNullOrEmpty(overrideSlotName) ? SlotName : overrideSlotName)}/{SaveName}{BinarySaveExtension}")) // Check for a Binary File
                 path = $"{pathRoot}/Savegames/{(string.IsNullOrEmpty(overrideSlotName) ? SlotName : overrideSlotName)}/{SaveName}{BinarySaveExtension}";
@@ -118,6 +157,15 @@ public static class SaveAndLoad
             throw new noSaveFileFoundExeption();
 
         return path;
+    }
+    static string GetDirectory(LoadCategory category, string overrideSlotName = "")
+    {
+        if (category == LoadCategory.Slot)
+            return $"{pathRoot}/Savegames/{(string.IsNullOrEmpty(overrideSlotName) ? SlotName : overrideSlotName)}/";
+        else if (category == LoadCategory.Map)
+            return $"{pathRoot}/Maps/{GlobalData.Seed}/";
+        else // Settings
+            return $"{pathRoot}/Settings/";
     }
     static string CreatePath(string SaveName, LoadCategory category, SerialisationType serialisationType, string overrideSlotName = "")
     {

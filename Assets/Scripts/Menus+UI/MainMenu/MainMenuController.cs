@@ -10,6 +10,7 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     [SerializeField] private GameObject LoadMenu;
     [SerializeField] private GameObject NewGameMenu;
     [SerializeField] private GameObject SettingsMenu;
+    [SerializeField] private GameObject BackupMenu;
     [Header("--NewGame")]
     [SerializeField] private TMP_InputField WorldNameInputField;
     [SerializeField] private TMP_InputField SeedInputField;
@@ -21,17 +22,25 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     [SerializeField] private RectTransform ScrollRectContent;
     [SerializeField] private int additionalScrollLegth = 10;
     [SerializeField] private int maxSaveFiles = 10;
+
+    [Header("--Backups")]
     
+    [SerializeField] private int BackupButtonsStartPos;
+    [SerializeField] private int BackupButtonsDisplacement;
+    [SerializeField] private BackupButton BackupButton;
+    [SerializeField] private RectTransform BackupPanelScrollRectContent;
+
     [Header("--General")]
     [SerializeField] [Range(30, 144)] private int TargetFrameRate;
-    [SerializeField] private Button ContinueButton;
+    [SerializeField] private GameObject ContinueButton;
+    [SerializeField] private GameObject NewGameButton;
 
     private static List<Savegame> savegames;
     private static List<string> savenames;
     private static List<GameObject> saveFileButtons;
+    private static List<GameObject> backupButtons;
 
-
-    private enum PanelType { None, Settings, LoadMenu, NewGameMenu }
+    private enum PanelType { None, Settings, LoadMenu, NewGameMenu, BackupMenu }
     private PanelType currentPanel
     {
         set {
@@ -41,21 +50,31 @@ public class MainMenuController : MonoSingleton<MainMenuController>
                     SettingsMenu.SetActive(true);
                     LoadMenu.SetActive(false);
                     NewGameMenu.SetActive(false);
+                    BackupMenu.SetActive(false);
                     break;
                 case PanelType.LoadMenu:
                     SettingsMenu.SetActive(false);
                     LoadMenu.SetActive(true);
                     NewGameMenu.SetActive(false);
+                    BackupMenu.SetActive(false);
                     break;
                 case PanelType.NewGameMenu:
                     SettingsMenu.SetActive(false);
                     LoadMenu.SetActive(false);
                     NewGameMenu.SetActive(true);
+                    BackupMenu.SetActive(false);
+                    break;
+                case PanelType.BackupMenu:
+                    SettingsMenu.SetActive(false);
+                    LoadMenu.SetActive(false);
+                    NewGameMenu.SetActive(false);
+                    BackupMenu.SetActive(true);
                     break;
                 case PanelType.None:
                     SettingsMenu.SetActive(false);
                     LoadMenu.SetActive(false);
                     NewGameMenu.SetActive(false);
+                    BackupMenu.SetActive(false);
                     break;
             }
         }
@@ -87,9 +106,14 @@ public class MainMenuController : MonoSingleton<MainMenuController>
             }
         }
         if (dirs.Length <= 0)
-            ContinueButton.interactable = false;
+        {
+            ContinueButton.SetActive(false);
+            NewGameButton.SetActive(true);
+        }
 
         CreateSaveFileButtons();
+
+        backupButtons = new List<GameObject>();
     }
     private void CreateSaveFileButtons()
     {
@@ -107,6 +131,28 @@ public class MainMenuController : MonoSingleton<MainMenuController>
             saveFileButtons.Add(button.gameObject);
         }
         ScrollRectContent.sizeDelta = new Vector2(100, additionalScrollLegth + SaveFileButtonsStartPos * -1f + savegames.Count * SaveFileButtonsDisplacement);
+    }
+    public static void OpenBackups(int slot)
+    {
+        foreach (GameObject backupButton in backupButtons)
+            Destroy(backupButton);
+        int position = Instance.BackupButtonsStartPos;
+        SaveAndLoad.SlotName = savenames[slot];
+        string[] backups = SaveAndLoad.Backups;
+        for (int i = 0; i < backups.Length; i++)
+        {
+            BackupButton button = Instantiate(Instance.BackupButton, Instance.BackupPanelScrollRectContent);
+            button.transform.localPosition = new Vector2(0, position);
+            button.OnInitialisation(backups[i], i);
+            position -= Instance.BackupButtonsDisplacement;
+            backupButtons.Add(button.gameObject);
+        }
+        Instance.BackupPanelScrollRectContent.sizeDelta = new Vector2(100, Instance.additionalScrollLegth + Instance.BackupButtonsStartPos * -1f + backups.Length * Instance.BackupButtonsDisplacement);
+    }
+    public static void LoadBackup(int backupID)
+    {
+        SaveAndLoad.LoadBackup(SaveAndLoad.Backups[backupID]);
+        Instance.currentPanel = PanelType.LoadMenu;
     }
     public static void DeleteSaveFile(int slot)
     {
