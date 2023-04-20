@@ -134,25 +134,26 @@ public class MainMenuController : MonoSingleton<MainMenuController>
     }
     public static void OpenBackups(int slot)
     {
+        Instance.currentPanel = PanelType.BackupMenu;
         foreach (GameObject backupButton in backupButtons)
             Destroy(backupButton);
         int position = Instance.BackupButtonsStartPos;
         SaveAndLoad.SlotName = savenames[slot];
-        string[] backups = SaveAndLoad.Backups;
+        DateTime[] backups = SaveAndLoad.Backups;
         for (int i = 0; i < backups.Length; i++)
         {
             BackupButton button = Instantiate(Instance.BackupButton, Instance.BackupPanelScrollRectContent);
             button.transform.localPosition = new Vector2(0, position);
-            button.OnInitialisation(backups[i], i);
+            button.OnInitialisation(backups[i], i, slot);
             position -= Instance.BackupButtonsDisplacement;
             backupButtons.Add(button.gameObject);
         }
         Instance.BackupPanelScrollRectContent.sizeDelta = new Vector2(100, Instance.additionalScrollLegth + Instance.BackupButtonsStartPos * -1f + backups.Length * Instance.BackupButtonsDisplacement);
     }
-    public static void LoadBackup(int backupID)
+    public static void LoadBackup(int backupID, int slot)
     {
-        SaveAndLoad.LoadBackup(SaveAndLoad.Backups[backupID]);
-        Instance.currentPanel = PanelType.LoadMenu;
+        SaveAndLoad.LoadBackup(backupID);
+        Load(slot);
     }
     public static void DeleteSaveFile(int slot)
     {

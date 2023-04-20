@@ -27,36 +27,41 @@ public static class SaveAndLoad
     private const string JsonSaveExtension = ".Rsavegame";
     private const string BinarySaveExtension = ".savegame";
 
-    private const string BackupFolderName = "Backups";
-    private const string BackupFileStart = "Backup";
+    private const string BackupsFolderName = "Backups";
+    private const string BackupFolderStart = "Backup";
 
     private const int numberOfBackups = 5;
 
     public static string[] Savefiles
     {
-        get {
-            string[] dirs = Directory.GetDirectories($"{pathRoot}/Savegames/");
-            for (int i = 0; i < dirs.Length; i++)
-                dirs[i] = new DirectoryInfo(dirs[i]).Name;
-            
-            return dirs;
-        }
+        get => Directory.GetDirectories($"{pathRoot}/Savegames/").Select(dir => new DirectoryInfo(dir).Name).ToArray();
     }
-    public static string[] Backups
+    public static DateTime[] Backups
     {
-        get {
-            string[] dirs = Directory.GetDirectories($"{pathRoot}/Savegames/{SlotName}/{BackupFolderName}");
-            for (int i = 0; i < dirs.Length; i++)
-                dirs[i] = new DirectoryInfo(dirs[i]).Name;
-            
-            return dirs;
-        }
+        get => Directory.GetDirectories($"{pathRoot}/Savegames/{SlotName}/{BackupsFolderName}")
+                    .Select(dir => Directory.GetCreationTime(dir)).ToArray();
     }
     public static void CreateBackup(string overrideSlotName = "")
     {
         // Get paths
         string path = GetDirectory(LoadCategory.Slot, overrideSlotName);
-        string backupPath = $"{path}/{BackupFolderName}/{BackupFileStart} {DateTime.Now:m}";
+        string backupPath = $"{path}/{BackupsFolderName}/{BackupFolderStart} 0";
+
+        // Push down old backups
+        for (int i = numberOfBackups - 1; i >= 0; i--)
+        {
+            string folderPath = $"{path}/{BackupsFolderName}/{BackupFolderStart} {i}";
+            if (!Directory.Exists(folderPath))
+                continue;
+            
+            if (i == numberOfBackups - 1) // Delete oldest backup
+            {
+                Directory.Delete(folderPath, true);
+                continue;
+            }
+            string secondFolderPath = $"{path}/{BackupsFolderName}/{BackupFolderStart} {i + 1}";
+            Directory.Move(folderPath, secondFolderPath);
+        }
 
         // Create new directory
         Directory.CreateDirectory(backupPath);
@@ -64,22 +69,12 @@ public static class SaveAndLoad
         // move files for backup
         foreach(string file in Directory.GetFiles(path))
             File.Copy(file, Path.Combine(backupPath, Path.GetFileName(file)));
-
-        // if there are too many backup files delete oldest Backup
-        if (Backups.Length > numberOfBackups)
-        {
-            List<DateTime> dateTimes = new();
-            foreach (string backup in Backups)
-                dateTimes.Add(DateTime.Parse(backup.Replace($"{BackupFileStart} ", "")));
-
-            Directory.Delete($"{path}/{BackupFolderName}/{Backups[dateTimes.IndexOf(dateTimes.Min())]}");
-        }
     }
-    public static void LoadBackup(string BackupName, string overrideSlotName = "")
+    public static void LoadBackup(int BackupID, string overrideSlotName = "")
     {
         // Get paths
         string path = GetDirectory(LoadCategory.Slot, overrideSlotName);
-        string backupPath = $"{path}/{BackupFolderName}/{BackupName}";
+        string backupPath = $"{path}/{BackupsFolderName}/{BackupFolderStart} {BackupID}";
 
         // delete the files from the savegame
         foreach(string file in Directory.GetFiles(path))

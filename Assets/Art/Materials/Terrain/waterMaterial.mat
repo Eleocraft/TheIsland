@@ -120,7 +120,7 @@ Material:
     - _RippleScale: 9.4
     - _RippleSpeed: 0.01
     - _RippoleTurningSpeed: 2.07
-    - _Smoothness: 0.82
+    - _Smoothness: 0.861
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -139,10 +139,10 @@ Material:
     - _FoamColor: {r: 0.93773586, g: 1, b: 0.99470085, a: 0.9098039}
     - _FoamSpeed: {r: 2, g: 0.5, b: 0, a: 0}
     - _RefractionScale: {r: 15, g: 15, b: 0, a: 0}
-    - _RippleColor: {r: 0.4227661, g: 0.5943396, b: 0.5943396, a: 1}
+    - _RippleColor: {r: 0.49466005, g: 0.6603774, b: 0.6603774, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SurfaceColor: {r: 0.4627451, g: 0.8666667, b: 0.75894743, a: 0.5529412}
-    - _WaveDir: {r: 0, g: 1, b: 0, a: 0}
+    - _WaveDir: {r: 0.02801511, g: 0.9996075, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8154865120874861751
 MonoBehaviour:
