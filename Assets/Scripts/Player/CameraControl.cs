@@ -60,7 +60,7 @@ public class CameraControl : MonoSingleton<CameraControl>
     void Update()
     {
         // View
-        Vector2 View = controls.Player.View.ReadValue<Vector2>() * mouseSensitivity * 0.01f;
+        Vector2 View = controls.Mouse.View.ReadValue<Vector2>() * mouseSensitivity * 0.01f;
         Rotation.x -= View.y;
         Rotation.y += View.x;
         Rotation.x = Mathf.Clamp(Rotation.x, -lookUpAngle, lookDownAngle);

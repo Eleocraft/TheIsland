@@ -2,6 +2,78 @@
     "name": "InputMaster",
     "maps": [
         {
+            "name": "Mouse",
+            "id": "40e61be7-0382-4acb-96f0-6202e4ce939c",
+            "actions": [
+                {
+                    "name": "View",
+                    "type": "Value",
+                    "id": "dc44a54b-c127-454a-bcca-95760957ed04",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a5eb59bc-4d15-4cf1-827b-0ebb718f985d",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "View",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9712a8db-9edb-4c3c-8f16-748565f5a378",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "View",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "MouseLook",
+                    "id": "f71676df-d5fd-494c-93e5-2076d90711a3",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "View",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Mouse",
+                    "id": "2a2b5f3f-ba2a-4fbe-ad23-2d38f070478e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "View",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "9d32985b-56a5-4d9f-ba55-06f6f5321cb5",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "View",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Player",
             "id": "bb2bf03d-b09a-49e6-9747-296afdd0b3c4",
             "actions": [
@@ -9,15 +81,6 @@
                     "name": "Movement",
                     "type": "Value",
                     "id": "85188bcb-0616-4af6-bec2-ef74f295090e",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "View",
-                    "type": "Value",
-                    "id": "819faee0-56cc-4e28-993a-447bd39e23f1",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -120,61 +183,6 @@
                 },
                 {
                     "name": "",
-                    "id": "6e7bf5e2-0acc-49bf-83ba-629c4e590b70",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "View",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "MouseLook",
-                    "id": "d341bb6a-1297-4db9-89ad-a8a1fe4aa0ee",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "View",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Mouse",
-                    "id": "c0a7f013-b9e4-48da-87ef-1ff7bc41e43d",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "View",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "2D Vector",
-                    "id": "ac73f092-a037-4bc3-82dc-c44af1aa86f3",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "View",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "211ecb4a-1582-4b0b-8506-7be70bbe84f9",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "View",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3b4e4824-4ead-4ba0-89d6-53cf97a103d5",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -242,6 +250,85 @@
             ]
         },
         {
+            "name": "MouseFP",
+            "id": "cdb2c323-00bb-4fa3-8420-1ffa04fab95a",
+            "actions": [
+                {
+                    "name": "MainAction",
+                    "type": "Button",
+                    "id": "3a875af5-db99-49f4-97f2-f6090ddfabf4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondaryAction",
+                    "type": "Button",
+                    "id": "496a9f16-d308-4be6-970d-840cd8f1894c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HotbarslotChange",
+                    "type": "Value",
+                    "id": "5eda4c56-ab40-4048-818a-df3bb23e043d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a9db6708-9585-41e7-b474-b46c536e71d9",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "MainAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6228d37d-a5b7-4928-a9f5-0e5b11ca4035",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MainAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7163de2a-0738-47d0-843a-22c4b50f6043",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "SecondaryAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d6599ca-26c7-4ba7-b15d-3473ef2a8eae",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "Keyboard/Mouse",
+                    "action": "HotbarslotChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "PlayerFP",
             "id": "57e3b50d-6e7b-4663-abb9-41c809ff1610",
             "actions": [
@@ -262,24 +349,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "MainAction",
-                    "type": "Button",
-                    "id": "2ebdba9b-bfd8-486b-b011-2bc4e5236ea9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "HotbarslotChange",
-                    "type": "Value",
-                    "id": "c0ce6498-4158-440f-ad7c-a7e3a5329850",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
                 {
                     "name": "Hotbarslot1",
@@ -392,28 +461,6 @@
                 },
                 {
                     "name": "",
-                    "id": "b4f93b6d-b737-4791-9ba9-ca66804ac9a7",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "MainAction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b8378fb3-b580-41b5-8ec3-18b8d59075ab",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "MainAction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1f159ce7-7b6a-4f3e-bca1-f7cc419eab2d",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -488,15 +535,52 @@
                     "action": "Hotbarslot7",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MouseTP",
+            "id": "10f92a2d-9909-45e2-ba6a-1f297db6da8b",
+            "actions": [
+                {
+                    "name": "DrawBow",
+                    "type": "Button",
+                    "id": "29def72c-4ec6-4baa-ad6c-77a5c75f781d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "7fe3099a-033b-4665-a680-1196e49fe93d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a502de2e-0bc6-4849-8f61-f2d60ca00b56",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "DrawBow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "3edc7710-5626-4064-a7c4-5a2da8ba47e3",
-                    "path": "<Mouse>/scroll",
+                    "id": "54f3af0b-53bb-403e-abd3-33bab251ec26",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
-                    "processors": "NormalizeVector2",
+                    "processors": "",
                     "groups": "Keyboard/Mouse",
-                    "action": "HotbarslotChange",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -506,24 +590,6 @@
             "name": "PlayerTP",
             "id": "8f337fa3-9ac2-465b-b47a-d18e6c54c496",
             "actions": [
-                {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "49d44142-3c97-463b-aba1-686a8201af81",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DrawBow",
-                    "type": "Button",
-                    "id": "7bc63e02-c0a3-480b-9b5e-82e60bde876f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
                 {
                     "name": "HeavyAttack",
                     "type": "Button",
@@ -535,28 +601,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "e474157d-520e-4fea-bf6e-03407f2102c0",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "88beaec0-3b92-41f5-8e49-83a6e04661e3",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "DrawBow",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "59b4a79e-5757-43d0-88c1-c8caf35007d4",

@@ -25,9 +25,9 @@ public class FightActionController : MonoBehaviour
         controls = GlobalData.controls;
         animator = transform.GetChild(0).GetComponent<Animator>();
 
-        controls.PlayerTP.Attack.performed += Attack;
-        controls.PlayerTP.DrawBow.started += StartDraw;
-        controls.PlayerTP.DrawBow.canceled += StopDraw;
+        controls.MouseTP.Attack.performed += Attack;
+        controls.MouseTP.DrawBow.started += StartDraw;
+        controls.MouseTP.DrawBow.canceled += StopDraw;
         controls.PlayerTP.HeavyAttack.started += StartHeavyAttack;
         controls.PlayerTP.HeavyAttack.canceled += ExecuteHeavyAttack;
 
@@ -37,9 +37,9 @@ public class FightActionController : MonoBehaviour
     }
     void OnDestroy()
     {
-        controls.PlayerTP.Attack.performed -= Attack;
-        controls.PlayerTP.DrawBow.started -= StartDraw;
-        controls.PlayerTP.DrawBow.canceled -= StopDraw;
+        controls.MouseTP.Attack.performed -= Attack;
+        controls.MouseTP.DrawBow.started -= StartDraw;
+        controls.MouseTP.DrawBow.canceled -= StopDraw;
         controls.PlayerTP.HeavyAttack.started -= StartHeavyAttack;
         controls.PlayerTP.HeavyAttack.canceled -= ExecuteHeavyAttack;
 

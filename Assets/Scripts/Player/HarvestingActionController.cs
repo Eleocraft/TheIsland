@@ -17,7 +17,7 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
     void Start()
     {
         controls = GlobalData.controls;
-        controls.PlayerFP.MainAction.started += StartAction;
+        controls.MouseFP.MainAction.started += StartAction;
         // If Hotbarslot is changed the current action should be stopped
         PlayerInventory.HotbarSlotChange += AbortAction;
         armAnimationEventHandler.Events["HitObject"] += HitObject;
@@ -25,43 +25,41 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
     }
     void OnDestroy()
     {
-        controls.PlayerFP.MainAction.started -= StartAction;
+        controls.MouseFP.MainAction.started -= StartAction;
         PlayerInventory.HotbarSlotChange -= AbortAction;
         armAnimationEventHandler.Events["HitObject"] -= HitObject;
         armAnimationEventHandler.Events["CritChance"] -= CritChance;
     }
     void StartAction(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
-        if (!PlayerInventory.TryGetActiveItem(out Item equippedItem))
+        if (!PlayerInventory.TryGetActiveItem(out Item equippedItem) || equippedItem.ItemObject.Type != ItemType.Tool)
             return;
-        if (equippedItem.ItemObject.Type == ItemType.Tool)
+
+        if (InteractionController.TryGetInteraction(out InteractionData interaction) && interaction.interactableObject.TryGetComponent(out IHarvestable harvestableObject))
         {
-            if (InteractionController.TryGetInteraction(out InteractionData interaction) && interaction.interactableObject.TryGetComponent(out IHarvestable harvestableObject))
+            // check if an animation is already playing
+            if (hitting)
             {
-                // check if an animation is already playing
-                if (hitting)
+                if (!locked && critTimer > 0)
                 {
-                    if (!locked && critTimer > 0)
-                    {
-                        armAnimator.SetTrigger("CritHit");
-                        critTimer = 0;
-                    }
-                    else
-                        locked = true;
-                    return;
+                    armAnimator.SetTrigger("CritHit");
+                    critTimer = 0;
                 }
-                // no animation playing
-                harvestableType = harvestableObject.HarvestableType;
-                armAnimator.Play("Hit");
+                else
+                    locked = true;
+                return;
             }
-            else
-                armAnimator.Play("NoHit");
-            
-            armAnimator.speed = ((ToolItem)equippedItem.ItemObject).Speed;
-            hitting = true;
-            locked = false;
-            critTimer = 0;
+            // no animation playing
+            harvestableType = harvestableObject.HarvestableType;
+            armAnimator.Play("Hit");
         }
+        else
+            armAnimator.Play("NoHit");
+        
+        armAnimator.speed = ((ToolItem)equippedItem.ItemObject).Speed;
+        hitting = true;
+        locked = false;
+        critTimer = 0;
     }
     void Update()
     {

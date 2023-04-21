@@ -13,7 +13,7 @@ public class InputStateMachine : MonoBehaviour
     {
         locker = new();
     }
-    public static bool ExeptionLocked(Object lockObj) => locker.ExeptionLocked(lockObj);
+    public static bool AlreadyLocked(Object lockObj) => locker.AlreadyLocked(lockObj);
     public static void ChangeInputState(bool active, Object lockObj)
     {
         if (!active)
@@ -24,8 +24,6 @@ public class InputStateMachine : MonoBehaviour
         if (Active)
         {
             controls.Player.Enable();
-            if (!CursorStateMachine.Locked)
-                controls.Player.View.Disable();
             if (PlayerStateManager.State == PlayerState.ThirdPerson)
                 controls.PlayerTP.Enable();
             else

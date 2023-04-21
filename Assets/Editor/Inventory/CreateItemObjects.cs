@@ -9,13 +9,16 @@ public class CreateItemObjects : EditorWindow
     const string SOpath = "Assets/CustomObjects/Inventory/Items";
     const string Prefabpath = "Assets/Prefabs/Inventory/GroundItemPrefabs";
     const string Materialpath = "Assets/Art/Materials/GroundItems";
+    const string FirstPersonLayerName = "FirstPerson";
     private ItemType itemType;
     private ItemObjectEditor itemObjectEditor;
+
+    static EditorWindow window;
 
     [MenuItem("TheIsland/Create/ItemObject")]
     public static void OpenWindow()
     {
-        GetWindow<CreateItemObjects>("CreateItemObjects");
+        window = GetWindow<CreateItemObjects>("CreateItemObjects");
     }
 
     private void OnGUI()
@@ -32,6 +35,7 @@ public class CreateItemObjects : EditorWindow
         {
             itemObjectEditor?.CreateAsset();
             Debug.Log("Asset Created");
+            window.Close();
         }
     }
 
@@ -116,12 +120,16 @@ public class CreateItemObjects : EditorWindow
         private Mesh portableObjectMesh;
         private Material[] portableObjectMaterials;
         private MaterialAssigner materialAssigner;
+        private bool reuseGroundItem;
 
         private void SetMaterials(Material[] portableObjectMaterials) => this.portableObjectMaterials = portableObjectMaterials;
         public override void CreateUI()
         {
             base.CreateUI();
-
+            reuseGroundItem = EditorGUILayout.Toggle("reuse ground item:", reuseGroundItem);
+            if (reuseGroundItem)
+                return;
+            
             EditorGUILayout.LabelField("Portable item object:", EditorStyles.boldLabel);
             EditorGUI.BeginChangeCheck();
             portableObjectMesh = (Mesh)EditorGUILayout.ObjectField(portableObjectMesh, typeof(Mesh), false);
@@ -135,11 +143,17 @@ public class CreateItemObjects : EditorWindow
         {
             base.AddAssetInfo(itemObject);
             PortableItem portableItem = itemObject as PortableItem;
-            // Portable Item Prefab creation
-            GameObject Obj = new(portableItem.Id + "_PortableItem");
-            Obj.AddComponent<MeshFilter>().mesh = portableObjectMesh;
-            Obj.AddComponent<MeshRenderer>().materials = portableObjectMaterials;
 
+            GameObject Obj = new(portableItem.Id + "_PortableItem");
+            if (reuseGroundItem)
+                Obj = Instantiate(itemObject.GroundPrefab);
+            else
+            {
+                // Portable Item Prefab creation
+                Obj.AddComponent<MeshFilter>().mesh = portableObjectMesh;
+                Obj.AddComponent<MeshRenderer>().materials = portableObjectMaterials;
+            }
+            Obj.layer = LayerMask.NameToLayer(FirstPersonLayerName);
             GameObject ObjPrefab = PrefabUtility.SaveAsPrefabAsset(Obj, $"{PortablePrefabpath}/{portableItem.Id}_PortableItem.prefab");
             DestroyImmediate(Obj);
 
@@ -152,33 +166,42 @@ public class CreateItemObjects : EditorWindow
         private Mesh weaponObjectMesh;
         private Material[] weaponObjectMaterials;
         private MaterialAssigner materialAssigner;
-
         private float damage;
+        private bool reuseGroundItem;
 
         private void SetMaterials(Material[] weaponObjectMaterials) => this.weaponObjectMaterials = weaponObjectMaterials;
         public override void CreateUI()
         {
             base.CreateUI();
 
-            EditorGUILayout.LabelField("Weapon object:", EditorStyles.boldLabel);
-            EditorGUI.BeginChangeCheck();
-            weaponObjectMesh = (Mesh)EditorGUILayout.ObjectField(weaponObjectMesh, typeof(Mesh), false);
-            if (EditorGUI.EndChangeCheck() && materialAssigner != null)
-                materialAssigner.Destroy();
+            reuseGroundItem = EditorGUILayout.Toggle("reuse ground item:", reuseGroundItem);
+            if (!reuseGroundItem)
+            { 
+                EditorGUILayout.LabelField("Weapon object:", EditorStyles.boldLabel);
+                EditorGUI.BeginChangeCheck();
+                weaponObjectMesh = (Mesh)EditorGUILayout.ObjectField(weaponObjectMesh, typeof(Mesh), false);
+                if (EditorGUI.EndChangeCheck() && materialAssigner != null)
+                    materialAssigner.Destroy();
 
-            if (materialAssigner == null && weaponObjectMesh != null && GUILayout.Button("Assign Materials"))
-                materialAssigner = MaterialAssigner.OpenWindow(weaponObjectMesh, Materialpath, SetMaterials);
-            
+                if (materialAssigner == null && weaponObjectMesh != null && GUILayout.Button("Assign Materials"))
+                    materialAssigner = MaterialAssigner.OpenWindow(weaponObjectMesh, Materialpath, SetMaterials);
+            }
             damage = EditorGUILayout.FloatField("Damage:", damage);
         }
         protected override void AddAssetInfo(ItemObject itemObject)
         {
             base.AddAssetInfo(itemObject);
             MeleeWeaponItem weaponItem = itemObject as MeleeWeaponItem;
-            // Weapon Item Prefab creation
+            
             GameObject Obj = new(weaponItem.Id + "_WeaponItem");
-            Obj.AddComponent<MeshFilter>().mesh = weaponObjectMesh;
-            Obj.AddComponent<MeshRenderer>().materials = weaponObjectMaterials;
+            if (reuseGroundItem)
+                Obj = Instantiate(itemObject.GroundPrefab);
+            else
+            {
+                // Weapon Item Prefab creation
+                Obj.AddComponent<MeshFilter>().mesh = weaponObjectMesh;
+                Obj.AddComponent<MeshRenderer>().materials = weaponObjectMaterials;
+            }
 
             GameObject ObjPrefab = PrefabUtility.SaveAsPrefabAsset(Obj, $"{WeaponPrefabpath}/{weaponItem.Id}_WeaponItem.prefab");
             DestroyImmediate(Obj);

@@ -130,7 +130,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
 
         fightingHotbar.Slots[0].OnAfterUpdate += slot => UpdatePortableWeapon();
         //fightingHotbar.Slots[1].OnAfterUpdate += slot => UpdatePortableWeapon();
-        controls.PlayerFP.HotbarslotChange.performed += Scroll;
+        controls.MouseFP.HotbarslotChange.performed += Scroll;
         armAnimator = Arms.GetComponent<Animator>();
     }
     void ChangeToHotbarSlot1(UnityEngine.InputSystem.InputAction.CallbackContext ctx) => ChangeHotbarSlot(0);
@@ -230,7 +230,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     private void toggleInventoryKey(UnityEngine.InputSystem.InputAction.CallbackContext ctx = default(UnityEngine.InputSystem.InputAction.CallbackContext)) => toggleInventory();
     private void toggleInventory()
     {
-        if (CursorStateMachine.ExeptionLocked(this))
+        if (CursorStateMachine.AlreadyLocked(this))
             return;
         active = !active;
         inventoryInterface.gameObject.SetActive(active);

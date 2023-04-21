@@ -4,15 +4,17 @@ public class CursorStateMachine : MonoBehaviour
 {
     public static InstanceLocker locker = new();
     public static bool Locked => !locker.Locked;
+    private static InputMaster controls;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        controls = GlobalData.controls;
     }
     void OnDestroy()
     {
         locker = new();
     }
-    public static bool ExeptionLocked(Object lockObj) => locker.ExeptionLocked(lockObj);
+    public static bool AlreadyLocked(Object lockObj) => locker.AlreadyLocked(lockObj);
     public static void ChangeCursorState(bool locking, Object lockObj)
     {
         if (!locking)
@@ -23,12 +25,20 @@ public class CursorStateMachine : MonoBehaviour
         if (Locked)
         {
             Cursor.lockState = CursorLockMode.Locked;
-            GlobalData.controls.Player.View.Enable();
+
+            controls.Mouse.Enable();
+            if (PlayerStateManager.State == PlayerState.ThirdPerson)
+                controls.MouseTP.Enable();
+            else
+                controls.MouseFP.Enable();
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
-            GlobalData.controls.Player.View.Disable();
+
+            controls.Mouse.Disable();
+            controls.MouseFP.Disable();
+            controls.MouseTP.Disable();
         }
     }
 }

@@ -156,7 +156,7 @@ public class Console : MonoSingleton<Console>
     }
     void Activate(InputAction.CallbackContext ctx)
     {
-        if (!AllowConsole || InputStateMachine.ExeptionLocked(this))
+        if (!AllowConsole || InputStateMachine.AlreadyLocked(this))
             return;
         
         if (!InputFieldObject.activeSelf)

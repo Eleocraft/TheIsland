@@ -7,7 +7,7 @@ public class InstanceLocker
     public bool Locked => lockIDs.Count != 0;
 
     // function that returns true if Locked but not by given Object
-    public bool ExeptionLocked(Object lockObj)
+    public bool AlreadyLocked(Object lockObj)
     {
         if (!Locked)
             return false;
