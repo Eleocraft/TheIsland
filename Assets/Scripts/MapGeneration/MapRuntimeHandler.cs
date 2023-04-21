@@ -30,7 +30,6 @@ public class MapRuntimeHandler : MonoSingleton<MapRuntimeHandler>
     [HideInInspector] public bool Load;
     private bool hasWaterMesh = false;
     private bool isStarted = false;
-    private bool viewerChunkLoaded = false;
     public static float waterHeight => Instance.settings.waterHeight;
 
     void Start()
@@ -102,8 +101,7 @@ public class MapRuntimeHandler : MonoSingleton<MapRuntimeHandler>
                         TerrainChunk newChunk = new(viewedChunkCoord, transform, settings, this);
                         if (xOffset == 0 && yOffset == 0)
                         {
-                            viewerChunkLoaded = false;
-                            viewer.GetComponent<PlayerMovement>().mainRB.isKinematic = true;
+                            MapLoadingScreen.Lock();
                             newChunk.GeneratedCollider += ViewerChunkLoaded;
                         }
                         terrainChunkDictionary.Add(viewedChunkCoord, newChunk);
@@ -119,9 +117,8 @@ public class MapRuntimeHandler : MonoSingleton<MapRuntimeHandler>
     }
     void ViewerChunkLoaded(TerrainChunk chunk)
     {
+        MapLoadingScreen.Unlock();
         UpdateVisibleChunks();
-        viewerChunkLoaded = true;
-        viewer.GetComponent<PlayerMovement>().mainRB.isKinematic = false;
         chunk.GeneratedCollider -= ViewerChunkLoaded;
     }
 
@@ -140,7 +137,7 @@ public class MapRuntimeHandler : MonoSingleton<MapRuntimeHandler>
     }
     public static BiomeData GetViewerBiome()
     {
-        if (!Instance.viewerChunkLoaded)
+        if (MapLoadingScreen.Loading)
             return Instance.settings.Biomes[0];
         
         Vector2 viewerPosition = Instance.viewer.transform.position.XZ();

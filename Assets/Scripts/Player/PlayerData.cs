@@ -7,7 +7,7 @@ public class PlayerData : MonoSingleton<PlayerData>
         get => Instance.transform.position;
         set => Instance.transform.position = value;
     }
-    public static Quaternion Roatation
+    public static Quaternion Rotation
     {
         get => Instance.transform.rotation;
         set => Instance.transform.rotation = value;
