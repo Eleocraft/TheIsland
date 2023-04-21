@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81fc95d5f1d802c4eb11b0baf1e830a2, type: 3}
+  m_Name: Stone Hammer
+  m_EditorClassIdentifier: 
+  Name: 
+  Id: stone_hammer
+  Image: {fileID: 21300000, guid: 04b3e0822c3efa84f99e6ada5b5a4ca7, type: 3}
+  GroundPrefab: {fileID: 8698860055626949913, guid: 80f64ddd27cfa734c99c7bba9649c426, type: 3}
+  stackable: 0
+  manualPickUp: 1
+  description: 
+  portableItemPrefab: {fileID: 4186742188342971140, guid: 6928ffd8fd36dd1488f425a1d5497657, type: 3}
+  HammerLevel: 1
+  Speed: 1

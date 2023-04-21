@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Iron Axe
   Id: iron_axe
-  Image: {fileID: 21300000, guid: b9e1e4abf9e9e614fb80dcc27d6485b1, type: 3}
+  Image: {fileID: 21300000, guid: cd2267759f8d4444e8c45325344961c6, type: 3}
   GroundPrefab: {fileID: 4520336617350870194, guid: a7adb752cde4a55459d3b98dbbc60233, type: 3}
   stackable: 0
   manualPickUp: 1

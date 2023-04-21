@@ -220,17 +220,43 @@ public class CreateItemObjects : EditorWindow
     {
         public override ItemType Type => ItemType.Tool;
         private ToolType toolType;
+        private float critTime = 0.2f;
+        private float speed = 1;
         public override void CreateUI()
         {
             base.CreateUI();
             toolType = (ToolType)EditorGUILayout.EnumPopup("Tool type:", toolType);
+            critTime = EditorGUILayout.FloatField("Crit Time:", critTime);
+            speed = EditorGUILayout.FloatField("speed:", speed);
         }
         public override void CreateAsset()
         {
             ToolItem itemObject = CreateInstance<ToolItem>();
             AddAssetInfo(itemObject);
             itemObject.toolType = toolType;
-            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/{itemObject.name}.asset");
+            itemObject.CritTime = critTime;
+            itemObject.Speed = speed;
+            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Tools/{itemObject.name}.asset");
+        }
+    }
+    private class HammerItemEditor : PortableItemEditor
+    {
+        public override ItemType Type => ItemType.Hammer;
+        private int hammerLevel = 1;
+        private float speed = 1;
+        public override void CreateUI()
+        {
+            base.CreateUI();
+            hammerLevel = EditorGUILayout.IntField("Hammer Level:", hammerLevel);
+            speed = EditorGUILayout.FloatField("speed:", speed);
+        }
+        public override void CreateAsset()
+        {
+            HammerItem itemObject = CreateInstance<HammerItem>();
+            AddAssetInfo(itemObject);
+            itemObject.HammerLevel = hammerLevel;
+            itemObject.Speed = speed;
+            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Tools/{itemObject.name}.asset");
         }
     }
     private class FoodItemEditor : ItemObjectEditor
@@ -267,15 +293,18 @@ public class CreateItemObjects : EditorWindow
     private class BowItemEditor : ItemObjectEditor
     {
         public override ItemType Type => ItemType.Bow;
+        private GameObject bowPrefab;
         public override void CreateUI()
         {
             base.CreateUI();
+            bowPrefab = (GameObject)EditorGUILayout.ObjectField("bow prefab:", bowPrefab, typeof(GameObject), false);
         }
         public override void CreateAsset()
         {
             BowItem itemObject = CreateInstance<BowItem>();
             AddAssetInfo(itemObject);
-            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/{itemObject.name}.asset");
+            itemObject.bowPrefab = bowPrefab;
+            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Weapons/{itemObject.name}.asset");
         }
     }
     private class ChestplateItemEditor : ArmorItemEditor
@@ -331,7 +360,7 @@ public class CreateItemObjects : EditorWindow
         {
             SwordItem itemObject = CreateInstance<SwordItem>();
             AddAssetInfo(itemObject);
-            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/{itemObject.name}.asset");
+            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Weapons/{itemObject.name}.asset");
         }
     }
 }

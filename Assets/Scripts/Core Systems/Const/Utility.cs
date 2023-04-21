@@ -34,10 +34,10 @@ public static class Utility
         return 0;
     }
     // Lerp
-    public static float LerpBetween4Values(Vector2 vec, float i1, float i2, float i3, float i4)
+    public static float LerpBetween4Values(Vector2 vec, float TL, float TR, float BL, float BR)
     {
-        float v1 = Mathf.Lerp(i1, i2, vec.x);
-        float v2 = Mathf.Lerp(i3, i4, vec.x);
+        float v1 = Mathf.Lerp(BL, BR, vec.x);
+        float v2 = Mathf.Lerp(TL, TR, vec.x);
         float O = Mathf.Lerp(v1, v2, vec.y);
         return O;
     }

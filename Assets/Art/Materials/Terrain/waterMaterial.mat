@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 222b1c20686fbef4fb0190723b6b71e0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -87,6 +87,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _Ambient_Occlusion: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ChunkSize: 100
@@ -142,7 +143,7 @@ Material:
     - _RippleColor: {r: 0.49466005, g: 0.6603774, b: 0.6603774, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SurfaceColor: {r: 0.4627451, g: 0.8666667, b: 0.75894743, a: 0.5529412}
-    - _WaveDir: {r: 0.02801511, g: 0.9996075, b: 0, a: 0}
+    - _WaveDir: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8154865120874861751
 MonoBehaviour:

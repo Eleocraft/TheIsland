@@ -13,6 +13,7 @@ public enum ItemType
     Leggings,
     Boots,
     Tool,
+    Hammer,
     Bow,
     Sword,
     Spear,

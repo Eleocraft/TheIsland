@@ -31,7 +31,7 @@ public static class GlobalObjectPlacer
                 float heightBR = heightMap[ceildedPos.x, flooredPos.y];
                 float heightTL = heightMap[flooredPos.x, ceildedPos.y];
                 float heightTR = heightMap[ceildedPos.x, ceildedPos.y];
-                float height = Utility.LerpBetween4Values(weightVec, heightBL, heightBR, heightTL, heightTR);
+                float height = Utility.LerpBetween4Values(weightVec, heightTL, heightTR, heightBL, heightBR);
                 
                 int objectID = Random.Range(0, biome.GlobalObjects.Count - 1);
                 SpawnableGlobalObject objectData = biome.GlobalObjects[objectID];
