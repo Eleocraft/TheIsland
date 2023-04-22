@@ -116,7 +116,8 @@ public class CreateItemObjects : EditorWindow
     }
     private abstract class PortableItemEditor : ItemObjectEditor
     {
-        const string PortablePrefabpath = "Assets/Prefabs/Inventory/PortableItemPrefabs";
+        protected virtual string PortablePrefabpath => "Assets/Prefabs/Inventory/PortableItemPrefabs";
+        protected virtual string PortableItemFileNameEnding => "PortableItem";
         private Mesh portableObjectMesh;
         private Material[] portableObjectMaterials;
         private MaterialAssigner materialAssigner;
@@ -144,7 +145,7 @@ public class CreateItemObjects : EditorWindow
             base.AddAssetInfo(itemObject);
             PortableItem portableItem = itemObject as PortableItem;
 
-            GameObject Obj = new(portableItem.Id + "_PortableItem");
+            GameObject Obj = new($"{portableItem.Id}_{PortableItemFileNameEnding}");
             if (reuseGroundItem)
                 Obj = Instantiate(itemObject.GroundPrefab);
             else
@@ -154,7 +155,7 @@ public class CreateItemObjects : EditorWindow
                 Obj.AddComponent<MeshRenderer>().materials = portableObjectMaterials;
             }
             Obj.layer = LayerMask.NameToLayer(FirstPersonLayerName);
-            GameObject ObjPrefab = PrefabUtility.SaveAsPrefabAsset(Obj, $"{PortablePrefabpath}/{portableItem.Id}_PortableItem.prefab");
+            GameObject ObjPrefab = PrefabUtility.SaveAsPrefabAsset(Obj, $"{PortablePrefabpath}/{portableItem.Id}_{PortableItemFileNameEnding}.prefab");
             DestroyImmediate(Obj);
 
             portableItem.portableItemPrefab = ObjPrefab;
@@ -162,7 +163,8 @@ public class CreateItemObjects : EditorWindow
     }
     private abstract class WeaponItemEditor : ItemObjectEditor
     {
-        const string WeaponPrefabpath = "Assets/Prefabs/Inventory/WeaponItemPrefabs";
+        protected virtual string WeaponPrefabpath => "Assets/Prefabs/Inventory/WeaponItemPrefabs";
+        protected virtual string WeaponFileNameEnding => "WeaponItem";
         private Mesh weaponObjectMesh;
         private Material[] weaponObjectMaterials;
         private MaterialAssigner materialAssigner;
@@ -193,7 +195,7 @@ public class CreateItemObjects : EditorWindow
             base.AddAssetInfo(itemObject);
             MeleeWeaponItem weaponItem = itemObject as MeleeWeaponItem;
             
-            GameObject Obj = new(weaponItem.Id + "_WeaponItem");
+            GameObject Obj = new($"{weaponItem.Id}_{WeaponFileNameEnding}");
             if (reuseGroundItem)
                 Obj = Instantiate(itemObject.GroundPrefab);
             else
@@ -203,7 +205,7 @@ public class CreateItemObjects : EditorWindow
                 Obj.AddComponent<MeshRenderer>().materials = weaponObjectMaterials;
             }
 
-            GameObject ObjPrefab = PrefabUtility.SaveAsPrefabAsset(Obj, $"{WeaponPrefabpath}/{weaponItem.Id}_WeaponItem.prefab");
+            GameObject ObjPrefab = PrefabUtility.SaveAsPrefabAsset(Obj, $"{WeaponPrefabpath}/{weaponItem.Id}_{WeaponFileNameEnding}.prefab");
             DestroyImmediate(Obj);
 
             weaponItem.weaponPrefab = ObjPrefab;
@@ -241,6 +243,8 @@ public class CreateItemObjects : EditorWindow
     }
     private class ToolItemEditor : PortableItemEditor
     {
+        protected override string PortablePrefabpath => "Assets/Prefabs/Inventory/ToolItemPrefabs";
+        protected override string PortableItemFileNameEnding => "ToolItem";
         public override ItemType Type => ItemType.Tool;
         private ToolType toolType;
         private float critTime = 0.2f;

@@ -58,7 +58,7 @@ public abstract class InventoryInterface : MonoBehaviour
     {
         if (active)
         {
-            TooltipPanelManager.Instance.Deactivate();
+            TooltipPanelManager.Deactivate();
             Destroy(MouseData.tempItemBeingDragged);
         }
     }
@@ -119,12 +119,12 @@ public abstract class InventoryInterface : MonoBehaviour
     public void OnEnter(GameObject obj)
     {
         if (MouseData.tempItemBeingDragged == null && !slotsOnInterface[obj].isEmpty())
-            TooltipPanelManager.Instance.CreateTooltips(slotsOnInterface[obj].item.ItemObject.GetTooltips());
+            TooltipPanelManager.CreateTooltips(slotsOnInterface[obj].item.ItemObject.GetTooltips());
         MouseData.slotHoveredOver = obj;
     }
     public void OnExit(GameObject obj)
     {
-        TooltipPanelManager.Instance.Deactivate();
+        TooltipPanelManager.Deactivate();
         MouseData.slotHoveredOver = null;
     }
     public void OnClick(GameObject obj, PointerEventData eventData)
@@ -139,7 +139,7 @@ public abstract class InventoryInterface : MonoBehaviour
             {
                 slotsOnInterface[obj].RemoveAmount(1);
                 if (slotsOnInterface[obj].amount <= 0)
-                    TooltipPanelManager.Instance.Deactivate();
+                    TooltipPanelManager.Deactivate();
             }
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
@@ -157,7 +157,7 @@ public abstract class InventoryInterface : MonoBehaviour
         if (slotsOnInterface[obj].isEmpty())
             return;
         MouseData.tempItemBeingDragged = CreateTempItem(obj, eventData.button == PointerEventData.InputButton.Right);
-        TooltipPanelManager.Instance.Deactivate();
+        TooltipPanelManager.Deactivate();
     }
     public GameObject CreateTempItem(GameObject obj, bool halfAmount)
     {
@@ -196,12 +196,12 @@ public abstract class InventoryInterface : MonoBehaviour
             InventorySlot mouseHoverSlotData = MouseData.interfaceMouseIsOver.slotsOnInterface[MouseData.slotHoveredOver];
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                inventory.TransferAmount(slotsOnInterface[obj], mouseHoverSlotData, (int)(slotsOnInterface[obj].amount / 2));
+                inventory.TransferAmount(slotsOnInterface[obj], mouseHoverSlotData, slotsOnInterface[obj].amount / 2);
                 return;
             }
             inventory.SwapItems(slotsOnInterface[obj], mouseHoverSlotData);
             if (!mouseHoverSlotData.isEmpty())
-                TooltipPanelManager.Instance.CreateTooltips(mouseHoverSlotData.item.ItemObject.GetTooltips());
+                TooltipPanelManager.CreateTooltips(mouseHoverSlotData.item.ItemObject.GetTooltips());
         }
     }
     public void OnDrag(GameObject obj)

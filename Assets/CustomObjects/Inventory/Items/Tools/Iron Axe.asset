@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Iron Axe
   Id: iron_axe
   Image: {fileID: 21300000, guid: cd2267759f8d4444e8c45325344961c6, type: 3}
-  GroundPrefab: {fileID: 4520336617350870194, guid: a7adb752cde4a55459d3b98dbbc60233, type: 3}
+  GroundPrefab: {fileID: 4520336617350870194, guid: 95c5dd32f2c707a47828dc3401e3a73c, type: 3}
   stackable: 0
   manualPickUp: 1
   description: A better axe

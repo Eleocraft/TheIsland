@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Stone Axe
   Id: stone_axe
   Image: {fileID: 21300000, guid: 0742fcc1d3246b241af4a40dbb6007c5, type: 3}
-  GroundPrefab: {fileID: 4520336617350870194, guid: a8a72821f1788a848bcee858a81f4ea8, type: 3}
+  GroundPrefab: {fileID: 4520336617350870194, guid: 7a6fa31abe0267e4a8fbbd025cee2af6, type: 3}
   stackable: 0
   manualPickUp: 1
   description: This is a tool

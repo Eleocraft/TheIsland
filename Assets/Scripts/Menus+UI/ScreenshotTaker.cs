@@ -27,7 +27,7 @@ public class ScreenshotTaker : MonoSingleton<ScreenshotTaker>
         if (OnScreenshotTaken == null)
             return;
 
-        Texture2D screenshotTexture = new(width, height, TextureFormat.ARGB32, false);
+        Texture2D screenshotTexture = new(width, height, TextureFormat.RGB24, false);
         Rect rect = new(0, 0, width, height);
         screenshotTexture.ReadPixels(rect, 0, 0);
         screenshotTexture.Apply();
@@ -35,5 +35,5 @@ public class ScreenshotTaker : MonoSingleton<ScreenshotTaker>
         OnScreenshotTaken(screenshotTexture.EncodeToPNG());
         OnScreenshotTaken = null;
     }
-    public static void TakeScreenshot(Action<byte[]> callback) => Instance.OnScreenshotTaken = callback;
+    public static void TakeScreenshot(Action<byte[]> callback) => Instance.OnScreenshotTaken += callback;
 }

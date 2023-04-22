@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4520336617350870197}
   - component: {fileID: 2529457882486643037}
   m_Layer: 12
-  m_Name: StoneAxe
+  m_Name: stone_axe_ToolItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

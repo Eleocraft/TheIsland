@@ -82,14 +82,17 @@ public class SavingGame : MonoSingleton<SavingGame>
     public static void Load()
     {
         SaveAndLoad.Load<SaveData>("localPlayer", LoadCategory.Slot).LoadData(SaveType.player);
-        SaveData worldData = SaveAndLoad.Load<SaveData>("worldData", LoadCategory.Slot);
-        worldData.LoadData(SaveType.world);
+        SaveAndLoad.Load<SaveData>("worldData", LoadCategory.Slot).LoadData(SaveType.world);
     }
     public static void Save()
     {
-        ScreenshotTaker.TakeScreenshot((bytes) => SaveAndLoad.SaveBytes(bytes, "saveImage", LoadCategory.Slot));
+        ScreenshotTaker.TakeScreenshot(EndSave);
         SaveAndLoad.Save(new SaveData(SaveType.player), "localPlayer", LoadCategory.Slot, SerialisationType.Binary);
         SaveAndLoad.Save(new SaveData(SaveType.world), "worldData", LoadCategory.Slot, SerialisationType.Binary);
+    }
+    private static void EndSave(byte[] saveImage)
+    {
+        SaveAndLoad.SaveBytes(saveImage, "saveImage", LoadCategory.Slot);
         SaveAndLoad.CreateBackup();
     }
 

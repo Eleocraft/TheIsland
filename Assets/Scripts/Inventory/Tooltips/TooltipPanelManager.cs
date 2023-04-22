@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,11 +19,12 @@ public class TooltipPanelManager : MonoSingleton<TooltipPanelManager>
     {
         transform.position = controls.Menus.MousePosition.ReadValue<Vector2>();
     }
-    public void Deactivate()
+    public static void Deactivate()
     {
-        gameObject.SetActive(false);
+        Instance.gameObject.SetActive(false);
     }
-    public void CreateTooltips(List<TooltipAttributeData> data)
+    public static void CreateTooltips(List<TooltipAttributeData> data) => Instance.createTooltips(data);
+    private void createTooltips(List<TooltipAttributeData> data)
     {
         gameObject.SetActive(true);
         transform.position = controls.Menus.MousePosition.ReadValue<Vector2>();

@@ -23,7 +23,7 @@ public class GroundItem : MonoBehaviour, IInteractable
     {
         GroundItem groundItem = Instantiate(ItemDropManager.GroundItemPrefab, position, Quaternion.identity);
         groundItem.item = item;
-        groundItem.autoPickUp = !manualPickUp || !item.ItemObject.manualPickUp;
+        groundItem.autoPickUp = !manualPickUp && !item.ItemObject.manualPickUp;
         groundItem.amount = amount;
         groundItem.GetComponent<Rigidbody>().velocity = velocity;
         groundItem.itemModel = Instantiate(item.ItemObject.GroundPrefab, groundItem.gameObject.transform);
