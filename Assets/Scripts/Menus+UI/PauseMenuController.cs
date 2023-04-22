@@ -6,6 +6,8 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject settingsPanel;
 
+    const string QuitMessage = "Are you sure that you want to quit?\nAll unsaved progress will be lost!";
+
     void Start()
     {
         EscQueue.pauseMenu += ToggleVisibility;
@@ -33,14 +35,7 @@ public class PauseMenuController : MonoBehaviour
             InputStateMachine.ChangeInputState(true, this);
         }
     }
-    public void ToggleSettings()
-    {
-        settingsPanel.SetActive(!settingsPanel.activeSelf);
-    }
+    public void ToggleSettings() => settingsPanel.SetActive(!settingsPanel.activeSelf);
 
-    public void LoadMainMenu()
-    {
-        //NetworkManager.Disconnect();
-        SceneManager.LoadScene(GlobalData.menuSceneName);
-    }
+    public void Quit() => Popup.Create(PopupType.YesNo, QuitMessage, () => SceneManager.LoadScene(GlobalData.menuSceneName));
 }

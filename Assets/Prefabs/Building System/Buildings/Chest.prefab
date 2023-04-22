@@ -116,14 +116,14 @@ MonoBehaviour:
   slotCount: 8
 --- !u!95 &2243943264720088979
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2243943264720088981}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1a3a937b4e8c1874a9ef6872eaa47275, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5a048540643798c42b6d343e9bc91825, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -133,7 +133,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &2243943265361256931
 GameObject:
   m_ObjectHideFlags: 0

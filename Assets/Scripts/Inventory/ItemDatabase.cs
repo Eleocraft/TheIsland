@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemDatabase : MonoSingleton<ItemDatabase>
 {
     [SerializeField] private List<ItemObject> EditorItemObjects;
-    public static Dictionary<string, ItemObject> ItemObjects;
+    public static Dictionary<string, ItemObject> ItemObjects { get; private set; }
 
     public void Awake()
     {
@@ -30,13 +30,12 @@ public class ItemDatabase : MonoSingleton<ItemDatabase>
     [ContextMenu("Update")]
     public void GetItems()
     {
-        if (EditorItemObjects == null)
-            EditorItemObjects = new();
+        EditorItemObjects ??= new();
+
         foreach (ItemObject i in Utility.FindAssetsByType<ItemObject>())
-        {
             if (!EditorItemObjects.Contains(i))
                 EditorItemObjects.Add(i);
-        }
+                
         OnValidate();
     }
 #endif

@@ -76,16 +76,17 @@ public abstract class InventoryInterface : MonoBehaviour
         if (!gameObject.activeSelf)
             return;
         
+        Image itemImage = slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>();
         if (!slot.isEmpty())
         {
-            slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = slot.item.ItemObject.Image;
-            slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
+            itemImage.sprite = slot.item.ItemObject.Image;
+            itemImage.color = Color.white;
             slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = slot.amount == 1 ? "" : slot.amount.ToString("n0");
         }
         else
         {
-            slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
-            slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
+            itemImage.sprite = null;
+            itemImage.color = new Color(1, 1, 1, 0);
             slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
         }
     }
@@ -101,8 +102,7 @@ public abstract class InventoryInterface : MonoBehaviour
     private void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
-        EventTrigger.Entry eventTrigger = new EventTrigger.Entry();
-        eventTrigger.eventID = type;
+        EventTrigger.Entry eventTrigger = new() { eventID = type };
         eventTrigger.callback.AddListener(action);
         trigger.triggers.Add(eventTrigger);
     }

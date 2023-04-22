@@ -31,7 +31,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     [Header("--PlayerModel")]
     [SerializeField] private Transform ToolContainer;
     [SerializeField] private Transform WeaponContainer;
-    [SerializeField] private GameObject[] ThirdPersonArms;
+    [SerializeField] private SkinnedMeshRenderer[] ThirdPersonArms;
     [SerializeField] private GameObject Arms;
     private Animator armAnimator;
     private Dictionary<ItemObject, GameObject> newItemDisplayObjects = new Dictionary<ItemObject, GameObject>();
@@ -177,14 +177,14 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     }
     void ActivateThirdPersonArms()
     {
-        foreach (GameObject obj in ThirdPersonArms)
-            obj.SetActive(true);
+        foreach (SkinnedMeshRenderer obj in ThirdPersonArms)
+            obj.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         Arms.SetActive(false);
     }
     void ActivateFirstPersonArms()
     {
-        foreach (GameObject obj in ThirdPersonArms)
-            obj.SetActive(false);
+        foreach (SkinnedMeshRenderer obj in ThirdPersonArms)
+            obj.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         Arms.SetActive(true);
     }
     void Scroll(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
@@ -227,7 +227,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         Instance.toggleInventory();
         Instance.closeCallback += closeCallback;
     }
-    private void toggleInventoryKey(UnityEngine.InputSystem.InputAction.CallbackContext ctx = default(UnityEngine.InputSystem.InputAction.CallbackContext)) => toggleInventory();
+    private void toggleInventoryKey(UnityEngine.InputSystem.InputAction.CallbackContext ctx = default) => toggleInventory();
     private void toggleInventory()
     {
         if (CursorStateMachine.AlreadyLocked(this))

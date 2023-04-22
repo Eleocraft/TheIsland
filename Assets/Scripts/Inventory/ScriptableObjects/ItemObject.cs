@@ -21,7 +21,6 @@ public enum ItemType
 }
 public abstract class ItemObject : ScriptableObject
 {
-    [ReadOnly] [SerializeField] private string Name;
     public string Id;
     public Sprite Image;
     public GameObject GroundPrefab;
@@ -33,7 +32,6 @@ public abstract class ItemObject : ScriptableObject
 
     void OnValidate()
     {
-        Name = name;
         if (string.IsNullOrEmpty(Id))    
             Id = Utility.CreateID(name);
     }
@@ -43,9 +41,11 @@ public abstract class ItemObject : ScriptableObject
     public virtual bool Use() { return false; }
     public virtual List<TooltipAttributeData> GetTooltips()
     {
-        List<TooltipAttributeData> data = new();
-        data.Add(new TooltipAttributeData(TooltipAttributeType.Title, name));
-        data.Add(new TooltipAttributeData(TooltipAttributeType.description, description));
+        List<TooltipAttributeData> data = new()
+        {
+            new TooltipAttributeData(TooltipAttributeType.Title, name),
+            new TooltipAttributeData(TooltipAttributeType.description, description)
+        };
         return data;
     }
     public static Type GetItemObjectType(ItemType itemType)
@@ -57,11 +57,11 @@ public abstract class ItemObject : ScriptableObject
                 .Where(itemObject => itemObject.Type == itemType).Single().GetType();
     }
 }
-[System.Serializable]
+[Serializable]
 public class Item
 {
     [HideInInspector] public string Id;
-    [System.NonSerialized] private ItemObject _itemObject;
+    [NonSerialized] private ItemObject _itemObject;
 
     public ItemObject ItemObject
     {
