@@ -7,8 +7,7 @@ public class BuildingActionController : MonoBehaviour
     [SerializeField] private float HitRange;
     [SerializeField] private LayerMask InteractableLayers;
     InputMaster controls;
-    bool buildMode;
-    GameObject activeBlueprint;
+    ActiveBuildingBlueprint activeBlueprint = new();
     private void Start()
     {
         controls = GlobalData.controls;
@@ -31,8 +30,11 @@ public class BuildingActionController : MonoBehaviour
         if (CursorStateMachine.AlreadyLocked(this))
             return;
 
-        if (buildMode)
+        if (activeBlueprint.BuildMode)
+        {
             EndBuildMode();
+            return;
+        }
 
         EscQueue.Enqueue(CloseBuildMenu);
         CursorStateMachine.ChangeCursorState(false, this);
@@ -51,34 +53,45 @@ public class BuildingActionController : MonoBehaviour
     public void StartBuildMode(BuildingObject buildingObject)
     {
         CloseBuildMenu();
-        buildMode = true;
-        activeBlueprint = Instantiate(buildingObject.blueprintPrefab);
+        activeBlueprint.ActivateBlueprint(Instantiate(buildingObject.blueprintPrefab), buildingObject);
     }
     private void EndBuildMode()
     {
-        buildMode = false;
-        Destroy(activeBlueprint);
+        activeBlueprint.EndBlueprint();
     }
     private void MainAction(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
-        if (buildMode)
+        if (activeBlueprint.BuildMode)
         {
-            buildMode = false;
-            activeBlueprint = null;
+            Instantiate(activeBlueprint.Object.buildingPrefab, activeBlueprint.BuildingPos, Quaternion.identity);
         }
         else
         {
-            Debug.Log("build");
+            Debug.Log("WIP Build");
         }
     }
     private void FixedUpdate()
     {
-        if (!buildMode)
+        if (!activeBlueprint.BuildMode)
             return;
         
         if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit hitData, HitRange, InteractableLayers))
-            activeBlueprint.transform.position = hitData.point;
+            activeBlueprint.SetPosition(hitData.point);
         else
-            activeBlueprint.transform.position = CameraTransform.position + CameraTransform.TransformDirection(Vector3.forward) * HitRange;
+            activeBlueprint.SetPosition(CameraTransform.position + CameraTransform.TransformDirection(Vector3.forward) * HitRange);
+    }
+    private class ActiveBuildingBlueprint
+    {
+        private GameObject Blueprint;
+        public BuildingObject Object;
+        public bool BuildMode => Blueprint != null;
+        public Vector3 BuildingPos => Blueprint.transform.position;
+        public void ActivateBlueprint(GameObject Blueprint, BuildingObject Object)
+        {
+            this.Blueprint = Blueprint;
+            this.Object = Object;
+        }
+        public void EndBlueprint() => Destroy(Blueprint);
+        public void SetPosition(Vector3 Pos) => Blueprint.transform.position = Pos;
     }
 }
