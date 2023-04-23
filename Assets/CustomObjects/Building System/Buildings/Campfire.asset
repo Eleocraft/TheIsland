@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f34444ae01401064f978c31ee21250cb, type: 3}
-  m_Name: Second Building
+  m_Name: Campfire
   m_EditorClassIdentifier: 
-  Id: second_building
+  Id: campfire
   Image: {fileID: 21300000, guid: 5f2db922930a98242ab96e401a735057, type: 3}
-  buildingPrefab: {fileID: 0}
-  blueprintPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 603994052515843055, guid: 470ed31b65233294daab71e43938a68a, type: 3}
+  blueprintPrefab: {fileID: 603994052515843055, guid: 470ed31b65233294daab71e43938a68a, type: 3}
   BuildingLevel: 2
-  description: 'This is a test building
-
-'
+  description: THIS IS A CAMPFIRE

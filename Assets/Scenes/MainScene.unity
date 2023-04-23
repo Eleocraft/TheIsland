@@ -7014,6 +7014,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingMenu: {fileID: 1884535127}
+  CameraTransform: {fileID: 1687258585}
+  HitRange: 7
+  InteractableLayers:
+    serializedVersion: 2
+    m_Bits: 4095
 --- !u!1 &642007560
 GameObject:
   m_ObjectHideFlags: 0
@@ -17939,6 +17944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingField: {fileID: 495297192359833700, guid: f2afc1411d7815d49b5c66332527e1eb, type: 3}
+  BAC: {fileID: 639821039}
 --- !u!1 &1886730775
 GameObject:
   m_ObjectHideFlags: 0
@@ -20001,7 +20007,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.50980395}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.2901961}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

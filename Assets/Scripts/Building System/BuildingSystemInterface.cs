@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class BuildingSystemInterface : MonoBehaviour
 {
     [SerializeField] private GameObject buildingField;
+    [SerializeField] private BuildingActionController BAC;
     List<GameObject> slotsOnInterface;
 
     private void Start()
@@ -50,7 +51,7 @@ public class BuildingSystemInterface : MonoBehaviour
     private void OnClick(BuildingObject obj, PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
-            Debug.Log("building " + obj.name);
+            BAC.StartBuildMode(obj);
     }
 
 }
