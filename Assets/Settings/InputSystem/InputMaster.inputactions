@@ -371,6 +371,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SecondaryInteraction",
+                    "type": "Button",
+                    "id": "00651684-652b-424c-9fbf-46b4ac993976",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Hotbarslot1",
                     "type": "Button",
                     "id": "01577af6-f730-4d37-ac11-5fe56bd20a90",
@@ -553,6 +562,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hotbarslot7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6b5d414-9c21-447b-872a-fd54ae31670c",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "SecondaryInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

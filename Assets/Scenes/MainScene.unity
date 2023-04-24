@@ -11467,7 +11467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treeDestructionParticles: {fileID: 5497843299831856572, guid: f05ab078cbc4d564797a45364c2be6fc, type: 3}
-  trunkDestructionParticles: {fileID: 5497843299831856572, guid: f05ab078cbc4d564797a45364c2be6fc, type: 3}
+  trunkDestructionParticles: {fileID: 5497843299831856572, guid: 69885cd18daa4d049a62adfac6cffa72, type: 3}
   savablePrefabs:
   - {fileID: 4204799616366744079, guid: ba52eb4e279ac0d43b7f7879e44aebea, type: 3}
 --- !u!114 &1269631690

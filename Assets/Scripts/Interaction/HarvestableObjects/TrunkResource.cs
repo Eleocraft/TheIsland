@@ -33,7 +33,7 @@ public class TrunkResource : MonoBehaviour, IInteractable, IHarvestable
         Life -= data.DamagePerHit;
         if (Life <= 0)
         {
-            ParticleSystem destructionParticleSystem = Instantiate(ObjectHolder.TrunkDestructionParticles, transform.position, Quaternion.identity);
+            ParticleSystem destructionParticleSystem = Instantiate(ObjectHolder.TrunkDestructionParticles, transform.position, transform.rotation);
             ParticleSystem.ShapeModule shape = destructionParticleSystem.shape;
             shape.mesh = GetComponent<MeshFilter>().mesh;
             Destroy(gameObject);

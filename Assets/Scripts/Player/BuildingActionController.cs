@@ -13,21 +13,24 @@ public class BuildingActionController : MonoBehaviour
     [SerializeField] private Color BuildableColor;
     InputMaster controls;
     ActiveBuildingBlueprint activeBlueprint;
+    float angleOffset;
     private void Start()
     {
         activeBlueprint = new(this);
 
         controls = GlobalData.controls;
-        controls.MouseFP.SecondaryAction.started += OpenBuildMenu;
-        controls.MouseFP.MainAction.started += MainAction;
-        controls.MouseFP.TertiaryAction.started += Delete;
+        controls.MouseFP.SecondaryAction.performed += OpenBuildMenu;
+        controls.MouseFP.MainAction.performed += MainAction;
+        controls.MouseFP.TertiaryAction.performed += Delete;
+        controls.PlayerFP.SecondaryInteraction.performed += Rotate;
         PlayerInventory.HotbarSlotChange += EndBuildMode;
     }
     void OnDestroy()
     {
-        controls.MouseFP.SecondaryAction.started -= OpenBuildMenu;
-        controls.MouseFP.MainAction.started -= MainAction;
-        controls.MouseFP.TertiaryAction.started -= Delete;
+        controls.MouseFP.SecondaryAction.performed -= OpenBuildMenu;
+        controls.MouseFP.MainAction.performed -= MainAction;
+        controls.MouseFP.TertiaryAction.performed -= Delete;
+        controls.PlayerFP.SecondaryInteraction.performed -= Rotate;
         PlayerInventory.HotbarSlotChange -= EndBuildMode;
     }
 
@@ -89,6 +92,10 @@ public class BuildingActionController : MonoBehaviour
             Destroy(hitData.collider.gameObject);
         }
     }
+    private void Rotate(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    {
+        angleOffset = (angleOffset + 90f).ClampToAngle();
+    }
     private void Update()
     {
         if (!activeBlueprint.BuildMode)
@@ -100,7 +107,7 @@ public class BuildingActionController : MonoBehaviour
         {
             activeBlueprint.PlacingPossible = !activeBlueprint.Blueprint.Blocked;
             activeBlueprint.SetPosition(snapHitData.collider.transform.position);
-            activeBlueprint.SetRotation(snappingPoint.upAxis, GetSmallestAngleDifference(snappingPoint.allowedAngles));
+            activeBlueprint.SetRotation(Vector3.up, GetAngle(snappingPoint.YAngle));
         }
         //FreePlacing
         else if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit hitData, HitRange, FreePlaceLayers))
@@ -115,7 +122,7 @@ public class BuildingActionController : MonoBehaviour
                 buildingNormal = hitData.normal;
             
             activeBlueprint.SetPosition(hitData.point);
-            activeBlueprint.SetRotation(buildingNormal, transform.rotation.eulerAngles.y);
+            activeBlueprint.SetRotation(buildingNormal, (transform.rotation.eulerAngles.y + angleOffset).ClampToAngle());
         }
         else
         {
@@ -123,13 +130,13 @@ public class BuildingActionController : MonoBehaviour
             activeBlueprint.SetPosition(CameraTransform.position + CameraTransform.TransformDirection(Vector3.forward) * HitRange);
             activeBlueprint.SetRotation(Vector3.up, transform.rotation.eulerAngles.y);
         }
-        float GetSmallestAngleDifference(float[] angles)
+        float GetAngle(float YAngle)
         {
             float smallestDiff = float.MaxValue;
             int smallestDiffIndex = 0;
-            for (int i = 0; i < angles.Length; i++)
+            for (int i = 0; i < 4; i++)
             {
-                float diff = Mathf.Abs(angles[i] - transform.eulerAngles.y);
+                float diff = Mathf.Abs(AngleFromIndex(i) - transform.eulerAngles.y);
                 if (diff < smallestDiff)
                 {
                     smallestDiff = diff;
@@ -137,7 +144,9 @@ public class BuildingActionController : MonoBehaviour
                 }
             }
                 
-            return angles[smallestDiffIndex];
+            return (AngleFromIndex(smallestDiffIndex) + angleOffset).ClampToAngle();
+
+            float AngleFromIndex(int i) => (YAngle + i * 90f).ClampToAngle();
         }
     }
     private class ActiveBuildingBlueprint

@@ -393,6 +393,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SecondaryInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""00651684-652b-424c-9fbf-46b4ac993976"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Hotbarslot1"",
                     ""type"": ""Button"",
                     ""id"": ""01577af6-f730-4d37-ac11-5fe56bd20a90"",
@@ -575,6 +584,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hotbarslot7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6b5d414-9c21-447b-872a-fd54ae31670c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""SecondaryInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1027,6 +1047,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_PlayerFP = asset.FindActionMap("PlayerFP", throwIfNotFound: true);
         m_PlayerFP_Interaction = m_PlayerFP.FindAction("Interaction", throwIfNotFound: true);
         m_PlayerFP_Drop = m_PlayerFP.FindAction("Drop", throwIfNotFound: true);
+        m_PlayerFP_SecondaryInteraction = m_PlayerFP.FindAction("SecondaryInteraction", throwIfNotFound: true);
         m_PlayerFP_Hotbarslot1 = m_PlayerFP.FindAction("Hotbarslot1", throwIfNotFound: true);
         m_PlayerFP_Hotbarslot2 = m_PlayerFP.FindAction("Hotbarslot2", throwIfNotFound: true);
         m_PlayerFP_Hotbarslot3 = m_PlayerFP.FindAction("Hotbarslot3", throwIfNotFound: true);
@@ -1266,6 +1287,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private IPlayerFPActions m_PlayerFPActionsCallbackInterface;
     private readonly InputAction m_PlayerFP_Interaction;
     private readonly InputAction m_PlayerFP_Drop;
+    private readonly InputAction m_PlayerFP_SecondaryInteraction;
     private readonly InputAction m_PlayerFP_Hotbarslot1;
     private readonly InputAction m_PlayerFP_Hotbarslot2;
     private readonly InputAction m_PlayerFP_Hotbarslot3;
@@ -1279,6 +1301,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public PlayerFPActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interaction => m_Wrapper.m_PlayerFP_Interaction;
         public InputAction @Drop => m_Wrapper.m_PlayerFP_Drop;
+        public InputAction @SecondaryInteraction => m_Wrapper.m_PlayerFP_SecondaryInteraction;
         public InputAction @Hotbarslot1 => m_Wrapper.m_PlayerFP_Hotbarslot1;
         public InputAction @Hotbarslot2 => m_Wrapper.m_PlayerFP_Hotbarslot2;
         public InputAction @Hotbarslot3 => m_Wrapper.m_PlayerFP_Hotbarslot3;
@@ -1301,6 +1324,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Drop.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnDrop;
+                @SecondaryInteraction.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnSecondaryInteraction;
+                @SecondaryInteraction.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnSecondaryInteraction;
+                @SecondaryInteraction.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnSecondaryInteraction;
                 @Hotbarslot1.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot1;
                 @Hotbarslot1.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot1;
                 @Hotbarslot1.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot1;
@@ -1332,6 +1358,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
+                @SecondaryInteraction.started += instance.OnSecondaryInteraction;
+                @SecondaryInteraction.performed += instance.OnSecondaryInteraction;
+                @SecondaryInteraction.canceled += instance.OnSecondaryInteraction;
                 @Hotbarslot1.started += instance.OnHotbarslot1;
                 @Hotbarslot1.performed += instance.OnHotbarslot1;
                 @Hotbarslot1.canceled += instance.OnHotbarslot1;
@@ -1634,6 +1663,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     {
         void OnInteraction(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnSecondaryInteraction(InputAction.CallbackContext context);
         void OnHotbarslot1(InputAction.CallbackContext context);
         void OnHotbarslot2(InputAction.CallbackContext context);
         void OnHotbarslot3(InputAction.CallbackContext context);

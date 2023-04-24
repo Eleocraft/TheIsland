@@ -59,7 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  SnappingPointActive: 1
 --- !u!1 &5391752092789882122
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  SnappingPointActive: 1
 --- !u!1 &6820567507243570287
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +294,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2.26, z: 0.16217947}
+  m_Size: {x: 2, y: 2.6, z: 0.07}
   m_Center: {x: 0, y: 0.19, z: -0.27}
 --- !u!1 &9127960238007328715
 GameObject:
@@ -357,4 +355,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
-  SnappingPointActive: 1
