@@ -22,10 +22,10 @@ TagManager:
   - FirstPerson
   - GroundItems
   - BuildingBlueprints
-  - 
-  - 
-  - 
-  - 
+  - FloorBuilding
+  - WallBuilding
+  - SnappingPoint
+  - Building
   - 
   - 
   - 

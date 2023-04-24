@@ -47,6 +47,7 @@ public class TerrainChunk //The class that holds all informations to the terrain
 
         meshObject.transform.position = positionV3;
         meshObject.transform.localScale = Vector3.one;
+        meshObject.layer = 7;
 
         waterObject.transform.position = waterPosition;
         waterObject.transform.localScale = Vector3.one;
@@ -58,7 +59,6 @@ public class TerrainChunk //The class that holds all informations to the terrain
         meshRenderer.materials = new Material[] { settings.material, settings.grassMaterial };
 
         meshObject.transform.parent = parent;
-        meshObject.layer = 7;
 
         waterObject.AddComponent<MeshRenderer>().material = settings.waterMaterial;
         waterObject.AddComponent<MeshFilter>().mesh = MRH.waterMesh;

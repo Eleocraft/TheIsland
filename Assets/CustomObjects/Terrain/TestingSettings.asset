@@ -17,6 +17,9 @@ MonoBehaviour:
   Simplification: 10
   spawnSize: 300
   waterHeight: 38
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   maximumViewDistance: 450
   maximumGenerationDistance: 200
   colliderGenerationDistance: 125

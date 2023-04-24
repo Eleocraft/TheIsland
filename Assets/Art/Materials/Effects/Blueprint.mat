@@ -78,6 +78,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha: 0.6
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -98,6 +99,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineStrength: 1
     - _Parallax: 0.005
+    - _Power: 0.35
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -106,16 +108,18 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Transparency: 0.9
+    - _Transparency: 1.11
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DarkColor: {r: 0.29245278, g: 0.29245278, b: 0.29245278, a: 0.4117647}
+    - _CenterColor: {r: 0.44716978, g: 0.8602038, b: 1, a: 1}
+    - _Color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
+    - _DarkColor: {r: 0.29245275, g: 0.29245275, b: 0.29245275, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.34983978, g: 0.5235841, b: 0.5849056, a: 1}
-    - _OutlineColor: {r: 0.9056604, g: 0.8644659, b: 0.6698469, a: 1}
+    - _MainColor: {r: 0.3003204, g: 0.7169812, b: 0.7169812, a: 1}
+    - _Outline: {r: 1, g: 0.5062842, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 0.48936176, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &53918528971734752

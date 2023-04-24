@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4496359625201788596}
   - component: {fileID: 1191863849884651704}
   - component: {fileID: 6760195055554965150}
-  m_Layer: 0
-  m_Name: iron_GroundItem
+  m_Layer: 13
+  m_Name: Iron_GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -301,6 +301,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TertiaryAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""78e5625f-6d89-437f-97fb-7fc49966c21f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -345,6 +354,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": ""NormalizeVector2"",
                     ""groups"": ""Keyboard/Mouse"",
                     ""action"": ""HotbarslotChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4538bf63-fd2f-4ca1-965d-d048068f24e8"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""TertiaryAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1002,6 +1022,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_MouseFP_MainAction = m_MouseFP.FindAction("MainAction", throwIfNotFound: true);
         m_MouseFP_SecondaryAction = m_MouseFP.FindAction("SecondaryAction", throwIfNotFound: true);
         m_MouseFP_HotbarslotChange = m_MouseFP.FindAction("HotbarslotChange", throwIfNotFound: true);
+        m_MouseFP_TertiaryAction = m_MouseFP.FindAction("TertiaryAction", throwIfNotFound: true);
         // PlayerFP
         m_PlayerFP = asset.FindActionMap("PlayerFP", throwIfNotFound: true);
         m_PlayerFP_Interaction = m_PlayerFP.FindAction("Interaction", throwIfNotFound: true);
@@ -1189,6 +1210,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_MouseFP_MainAction;
     private readonly InputAction m_MouseFP_SecondaryAction;
     private readonly InputAction m_MouseFP_HotbarslotChange;
+    private readonly InputAction m_MouseFP_TertiaryAction;
     public struct MouseFPActions
     {
         private @InputMaster m_Wrapper;
@@ -1196,6 +1218,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @MainAction => m_Wrapper.m_MouseFP_MainAction;
         public InputAction @SecondaryAction => m_Wrapper.m_MouseFP_SecondaryAction;
         public InputAction @HotbarslotChange => m_Wrapper.m_MouseFP_HotbarslotChange;
+        public InputAction @TertiaryAction => m_Wrapper.m_MouseFP_TertiaryAction;
         public InputActionMap Get() { return m_Wrapper.m_MouseFP; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1214,6 +1237,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @HotbarslotChange.started -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnHotbarslotChange;
                 @HotbarslotChange.performed -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnHotbarslotChange;
                 @HotbarslotChange.canceled -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnHotbarslotChange;
+                @TertiaryAction.started -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnTertiaryAction;
+                @TertiaryAction.performed -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnTertiaryAction;
+                @TertiaryAction.canceled -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnTertiaryAction;
             }
             m_Wrapper.m_MouseFPActionsCallbackInterface = instance;
             if (instance != null)
@@ -1227,6 +1253,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @HotbarslotChange.started += instance.OnHotbarslotChange;
                 @HotbarslotChange.performed += instance.OnHotbarslotChange;
                 @HotbarslotChange.canceled += instance.OnHotbarslotChange;
+                @TertiaryAction.started += instance.OnTertiaryAction;
+                @TertiaryAction.performed += instance.OnTertiaryAction;
+                @TertiaryAction.canceled += instance.OnTertiaryAction;
             }
         }
     }
@@ -1599,6 +1628,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnMainAction(InputAction.CallbackContext context);
         void OnSecondaryAction(InputAction.CallbackContext context);
         void OnHotbarslotChange(InputAction.CallbackContext context);
+        void OnTertiaryAction(InputAction.CallbackContext context);
     }
     public interface IPlayerFPActions
     {

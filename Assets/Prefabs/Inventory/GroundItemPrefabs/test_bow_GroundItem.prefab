@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 213453538182219354}
   - component: {fileID: 5690719208024494835}
   - component: {fileID: 4483937336479412427}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: test_bow_GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

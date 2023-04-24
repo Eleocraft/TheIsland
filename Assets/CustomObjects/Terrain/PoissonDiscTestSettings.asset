@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: PoissonDiscTestSettings
   m_EditorClassIdentifier: 
   mapSize: 3000
+  islandSize: 600
   Simplification: 10
+  spawnSize: 300
   waterHeight: 38
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   maximumViewDistance: 450
   maximumGenerationDistance: 200
   colliderGenerationDistance: 125
@@ -22,7 +27,6 @@ MonoBehaviour:
   biomeSize: 150
   DistortionPerlinScale: 40
   BiomeDistortion: 50
-  BiomeFinderPerlinScale: 20
   Biomes:
   - {fileID: 11400000, guid: cf5bf39e24c177d4a84722497f87ab43, type: 2}
   - {fileID: 11400000, guid: 4dfb6143cfadf3048a31735943b7222f, type: 2}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4520336617350870195}
   - component: {fileID: 4520336617350870198}
   - component: {fileID: 4520336617350870197}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: stone_axe_GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

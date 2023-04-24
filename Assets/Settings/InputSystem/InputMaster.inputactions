@@ -279,6 +279,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TertiaryAction",
+                    "type": "Button",
+                    "id": "78e5625f-6d89-437f-97fb-7fc49966c21f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -323,6 +332,17 @@
                     "processors": "NormalizeVector2",
                     "groups": "Keyboard/Mouse",
                     "action": "HotbarslotChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4538bf63-fd2f-4ca1-965d-d048068f24e8",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "TertiaryAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -5,6 +5,9 @@ public class BuildingDatabase : MonoSingleton<BuildingDatabase>
 {
     [SerializeField] private List<BuildingObject> EditorBuildingObjects;
     public static Dictionary<string, BuildingObject> BuildingObjects { get; private set; }
+    // [SerializeField] private EnumDictionary<BuildingType, LayerMask> BuildingTypeLayerMasks;
+
+    // public static LayerMask BuildingTypeToLayer(BuildingType type) => Instance.BuildingTypeLayerMasks[type];
 
     public void Awake()
     {

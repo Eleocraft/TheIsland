@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3316405235889703362}
   - component: {fileID: 868870827809433503}
   - component: {fileID: 592733930875544834}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: stone_hammer_GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
