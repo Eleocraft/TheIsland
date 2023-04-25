@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3411739899251169222}
   - component: {fileID: 2956662997861798669}
-  - component: {fileID: 850036514684148644}
+  - component: {fileID: 3019230999190744523}
   m_Layer: 17
   m_Name: FoundationSnapPoint2
   m_TagString: Untagged
@@ -45,8 +45,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 1.5836296, z: 1.8}
-  m_Center: {x: 1, y: 0.2918148, z: 0}
---- !u!114 &850036514684148644
+  m_Center: {x: 1, y: 0.56, z: 0}
+--- !u!114 &3019230999190744523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,10 +55,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1571366057631332419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3f47d55e060294d8b80510c84cc543, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  type: 1
+  allowRotation: 1
 --- !u!1 &5391752092789882122
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3669870297533651544}
   - component: {fileID: 3574365059024252649}
-  - component: {fileID: 1000695745107514595}
+  - component: {fileID: 7844571322669407215}
   m_Layer: 17
   m_Name: FoundationSnapPoint3
   m_TagString: Untagged
@@ -104,8 +105,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.5836296, z: 0.2}
-  m_Center: {x: 0, y: 0.2918148, z: -1}
---- !u!114 &1000695745107514595
+  m_Center: {x: 0, y: 0.56, z: -1}
+--- !u!114 &7844571322669407215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,10 +115,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5391752092789882122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3f47d55e060294d8b80510c84cc543, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  type: 1
+  allowRotation: 1
 --- !u!1 &6820567507243570287
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +133,7 @@ GameObject:
   - component: {fileID: 6820567507243570285}
   - component: {fileID: 9103584198757093202}
   - component: {fileID: 6820567507243570284}
-  - component: {fileID: -7934319019467554630}
+  - component: {fileID: 1606130815333472528}
   m_Layer: 18
   m_Name: FoundationStaircase
   m_TagString: Untagged
@@ -236,9 +238,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1.5723488, z: 0.16217947}
-  m_Center: {x: -0.021803975, y: 0.30449247, z: 0.9194}
---- !u!114 &-7934319019467554630
+  m_Size: {x: 2, y: 1.27, z: 0.16217947}
+  m_Center: {x: -0.021803975, y: 0.48, z: 0.9194}
+--- !u!114 &1606130815333472528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,10 +249,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6820567507243570287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03f3d2debb860234d95b5c113b4c2354, type: 3}
+  m_Script: {fileID: 11500000, guid: 841be69e2a1ed814d89d8ceb2cb7af3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
+  BottomSnappingPoint: {fileID: 0}
 --- !u!1 &7632854530909356577
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +298,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2.6, z: 0.07}
-  m_Center: {x: 0, y: 0.19, z: -0.27}
+  m_Center: {x: 0, y: 0.33, z: -0.42}
 --- !u!1 &9127960238007328715
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4955336413386536365}
   - component: {fileID: 8575033176796654405}
-  - component: {fileID: 6315570965312368993}
+  - component: {fileID: 954764838039629850}
   m_Layer: 17
   m_Name: FoundationSnapPoint1
   m_TagString: Untagged
@@ -341,8 +344,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 1.5836296, z: 1.8}
-  m_Center: {x: -1, y: 0.2918148, z: 0}
---- !u!114 &6315570965312368993
+  m_Center: {x: -1, y: 0.56, z: 0}
+--- !u!114 &954764838039629850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -351,7 +354,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9127960238007328715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3f47d55e060294d8b80510c84cc543, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  type: 1
+  allowRotation: 1

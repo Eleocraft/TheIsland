@@ -103,11 +103,11 @@ public class BuildingActionController : MonoBehaviour
         // Snapping
         if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit snapHitData, HitRange, SnappingPointLayer) &&
             snapHitData.collider.TryGetComponent(out BuildingSnappingPoint snappingPoint) && 
-            snappingPoint.SnappingPointActive && snappingPoint.Type == activeBlueprint.Object.buildingType)
+            snappingPoint.TryGetSnappingInfo(activeBlueprint.Object.buildingType, out Vector3 position, out float yangle, out bool allowRotation))
         {
             activeBlueprint.PlacingPossible = !activeBlueprint.Blueprint.Blocked;
-            activeBlueprint.SetPosition(snapHitData.collider.transform.position);
-            activeBlueprint.SetRotation(Vector3.up, GetAngle(snappingPoint.YAngle));
+            activeBlueprint.SetPosition(position);
+            activeBlueprint.SetRotation(Vector3.up, allowRotation ? GetAngle(yangle) : yangle);
         }
         //FreePlacing
         else if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit hitData, HitRange, FreePlaceLayers))
@@ -156,14 +156,18 @@ public class BuildingActionController : MonoBehaviour
         private Rigidbody blueprintRB;
         private MeshRenderer blueprintRenderer;
         public BuildingObject Object { get; private set; }
+        private bool newBuilding = false;
         private bool placingPossible;
         public bool PlacingPossible
         {
             get => placingPossible;
             set
             {
-                if (placingPossible != value)
+                if (placingPossible != value || newBuilding)
+                {
                     SetColor(value ? BAC.BuildableColor : BAC.BlockedColor);
+                    newBuilding = false;
+                }
                 placingPossible = value;
             }
         }
@@ -180,7 +184,7 @@ public class BuildingActionController : MonoBehaviour
             blueprintRB = Blueprint.GetComponent<Rigidbody>();
             blueprintRenderer = Blueprint.GetComponent<MeshRenderer>();
             this.Object = Object;
-            SetColor(BAC.BlockedColor);
+            newBuilding = true;
         }
         public void EndBlueprint() => Destroy(blueprintRB.gameObject);
         public void SetPosition(Vector3 Pos) => blueprintRB.MovePosition(Pos);

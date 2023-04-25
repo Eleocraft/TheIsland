@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6438115114100656607}
   - component: {fileID: 3223383825776091261}
-  - component: {fileID: 8747317880264465478}
+  - component: {fileID: 7786494638416107961}
   m_Layer: 17
   m_Name: FloorSnapPoint4
   m_TagString: Untagged
@@ -46,7 +46,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 1}
---- !u!114 &8747317880264465478
+--- !u!114 &7786494638416107961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,11 +55,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1737102039221338465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3f47d55e060294d8b80510c84cc543, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
-  SnappingPointActive: 1
+  type: 3
 --- !u!1 &1964349951650356766
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4238723218336197522}
   - component: {fileID: 3580581482501532560}
-  - component: {fileID: 1505887157651454161}
+  - component: {fileID: 311410744334149981}
   m_Layer: 17
   m_Name: FloorSnapPoint3
   m_TagString: Untagged
@@ -240,7 +239,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: -1}
---- !u!114 &1505887157651454161
+--- !u!114 &311410744334149981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,11 +248,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2852063674408935967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3f47d55e060294d8b80510c84cc543, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
-  SnappingPointActive: 1
+  type: 3
 --- !u!1 &5087995155207514048
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6295972691536369229}
   - component: {fileID: 1561598558935105423}
-  - component: {fileID: 3651861410236177212}
+  - component: {fileID: 7985214085855784289}
   m_Layer: 17
   m_Name: FoundationSnapPoint
   m_TagString: Untagged
@@ -280,7 +278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5087995155207514048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -299,8 +297,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 0.1, z: 1.8}
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &3651861410236177212
+  m_Center: {x: 0, y: 1.29, z: 0}
+--- !u!114 &7985214085855784289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,11 +307,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5087995155207514048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3f47d55e060294d8b80510c84cc543, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
-  SnappingPointActive: 1
+  type: 1
 --- !u!1 &5332499908694014184
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4106378239500589035}
   - component: {fileID: 6547335365257902168}
-  - component: {fileID: 1289382032778100536}
+  - component: {fileID: 4676136376783070784}
   m_Layer: 17
   m_Name: FloorSnapPoint2
   m_TagString: Untagged
@@ -360,7 +357,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 1.8}
   m_Center: {x: 1, y: 0, z: 0}
---- !u!114 &1289382032778100536
+--- !u!114 &4676136376783070784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,11 +366,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5332499908694014184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3f47d55e060294d8b80510c84cc543, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
-  SnappingPointActive: 1
+  type: 3
 --- !u!1 &7032276644313998792
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4603345762045895856}
   - component: {fileID: 7030704140891676469}
-  - component: {fileID: 6596851555394304108}
+  - component: {fileID: 3768232105081774211}
   m_Layer: 17
   m_Name: FloorSnapPoint1
   m_TagString: Untagged
@@ -420,7 +416,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 1.8}
   m_Center: {x: -1, y: 0, z: 0}
---- !u!114 &6596851555394304108
+--- !u!114 &3768232105081774211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -429,8 +425,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7032276644313998792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3f47d55e060294d8b80510c84cc543, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
-  SnappingPointActive: 1
+  type: 3

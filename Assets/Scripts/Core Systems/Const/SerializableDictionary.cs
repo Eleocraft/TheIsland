@@ -48,7 +48,7 @@ public class SerializableDictionary<Key, Value>
     private class PanelObject
     {
         [HideInInspector] public string name = "panel";
-        [ReadOnly] public Key key;
+        public Key key;
         public Value value;
         public PanelObject(Key key)
         {
