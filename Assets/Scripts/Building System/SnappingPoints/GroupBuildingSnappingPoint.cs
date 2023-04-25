@@ -9,14 +9,13 @@ public class GroupBuildingSnappingPoint : BuildingSnappingPoint
     {
         snappingPoints.Update();
     }
-    protected override bool IncludesType(BuildingType buildingType) => snappingPoints.Keys.Contains(buildingType);
     public override bool TryGetSnappingInfo(BuildingType buildingType, out Vector3 position, out float yangle, out bool allowRotation)
     {
         position = Vector3.zero;
         yangle = transform.parent.eulerAngles.y;
         allowRotation = false;
 
-        if (!IncludesType(buildingType))
+        if (!snappingPoints.Keys.Contains(buildingType))
             return false;
         
         position = snappingPoints[buildingType].transform.position;

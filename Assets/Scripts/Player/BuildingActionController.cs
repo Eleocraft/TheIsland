@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Linq;
 
 public class BuildingActionController : MonoBehaviour
 {
@@ -77,7 +76,9 @@ public class BuildingActionController : MonoBehaviour
         if (activeBlueprint.BuildMode)
         {
             if (activeBlueprint.PlacingPossible)
-                Instantiate(activeBlueprint.Object.buildingPrefab, activeBlueprint.BuildingPos, activeBlueprint.BuildingRot);
+            {
+                Instantiate(activeBlueprint.Object.buildingPrefab, activeBlueprint.BuildingPos, activeBlueprint.BuildingRot).Initialize();
+            }
         }
         else if (PlayerInventory.TryGetActiveItem(out Item equippedItem) && equippedItem.ItemObject.Type == ItemType.Hammer)
         {

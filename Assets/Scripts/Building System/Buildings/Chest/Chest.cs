@@ -1,5 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
 
+[RequireComponent(typeof(Building))]
 public class Chest : MonoBehaviour, IInteractable
 {
     private Inventory chestInv;
@@ -7,11 +9,31 @@ public class Chest : MonoBehaviour, IInteractable
     private Animator animator;
     private bool open;
     [SerializeField] private int slotCount;
-
     public string InteractionInfo => "chest";
+
+    private static Dictionary<int, Inventory> chests = new();
+
+    [Save(SaveType.world)]
+    public static object ChestsSaveData
+    {
+        get => chests;
+        set => chests = (Dictionary<int, Inventory>)value;
+    }
+    public static void ResetChestLists() => chests = new();
+    
     private void Start()
     {
-        chestInv = new Inventory(slotCount, PlayerInventory.MaxStack);
+        int Id = GetComponent<Building>().Id;
+        if (!chests.ContainsKey(Id))
+        {
+            chestInv = new Inventory(slotCount, PlayerInventory.MaxStack);
+            chests.Add(Id, chestInv);
+        }
+        else
+        {
+            chestInv = chests[Id];
+            chestInv.Load();
+        }
         chestInterface = PlayerInventory.ChestInterface;
         animator = GetComponent<Animator>();
     }

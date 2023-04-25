@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: campfire
   buildingType: 0
   Image: {fileID: 21300000, guid: 5f2db922930a98242ab96e401a735057, type: 3}
-  buildingPrefab: {fileID: 603994052515843055, guid: ab0d516998074de4eae00d037bedaac8, type: 3}
+  buildingPrefab: {fileID: 3323651336557287379, guid: ab0d516998074de4eae00d037bedaac8, type: 3}
   blueprintPrefab: {fileID: 8037042343230948047, guid: 25f3d0ed7036dac49aad4bd070f62958, type: 3}
   BuildingLevel: 2
   FreePlacingLayer:

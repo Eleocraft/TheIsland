@@ -8,7 +8,7 @@ public class BuildingObject : ScriptableObject
     public string Id;
     public BuildingType buildingType;
     public Sprite Image;
-    public GameObject buildingPrefab;
+    public Building buildingPrefab;
     public Blueprint blueprintPrefab;
     [Range(0, 4)] public int BuildingLevel;
     public LayerMask FreePlacingLayer;

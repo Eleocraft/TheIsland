@@ -5060,4 +5060,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f3d2debb860234d95b5c113b4c2354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  buildingObject: {fileID: 11400000, guid: 09aea05da3686ad42b61df8d9d015d04, type: 2}

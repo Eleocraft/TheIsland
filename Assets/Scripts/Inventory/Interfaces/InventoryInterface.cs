@@ -175,7 +175,6 @@ public abstract class InventoryInterface : MonoBehaviour
     {
         if (slotsOnInterface[obj].isEmpty())
             return;
-        
         Destroy(MouseData.tempItemBeingDragged);
         if (MouseData.interfaceMouseIsOver == null)
         {

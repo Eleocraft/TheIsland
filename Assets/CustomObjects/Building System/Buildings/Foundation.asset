@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: foundation
   buildingType: 1
   Image: {fileID: 21300000, guid: 362b104db8c770a4b9807cedafe427c2, type: 3}
-  buildingPrefab: {fileID: 6820567507243570287, guid: c2a85425b8470f34d8b544dfbef08814, type: 3}
+  buildingPrefab: {fileID: 2918511257833401453, guid: c2a85425b8470f34d8b544dfbef08814, type: 3}
   blueprintPrefab: {fileID: 1475721603087804782, guid: c1c7b633a92a6064fbe7a54f3e1f9a38, type: 3}
   BuildingLevel: 1
   FreePlacingLayer:

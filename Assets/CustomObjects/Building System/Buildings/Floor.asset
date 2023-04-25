@@ -15,12 +15,13 @@ MonoBehaviour:
   Id: floor
   buildingType: 3
   Image: {fileID: 21300000, guid: 362b104db8c770a4b9807cedafe427c2, type: 3}
-  buildingPrefab: {fileID: 1964349951650356766, guid: 5587df3198594d04497f1ff20ef73d95, type: 3}
+  buildingPrefab: {fileID: 8697691891472538702, guid: 5587df3198594d04497f1ff20ef73d95, type: 3}
   blueprintPrefab: {fileID: 499118336229678346, guid: 25ea3f4252f7c3247967e2b4c81413c1, type: 3}
   BuildingLevel: 0
   FreePlacingLayer:
     serializedVersion: 2
     m_Bits: 0
   AjustToNormals: 0
+  UseMaxSteepness: 0
   MaxSteepnessRadiants: 6.2831855
   description: Floor

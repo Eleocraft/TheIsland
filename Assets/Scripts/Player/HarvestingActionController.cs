@@ -14,6 +14,7 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
     [SerializeField] [ReadOnly] private bool hitting;
     [SerializeField] [ReadOnly] private bool locked;
     private float critTimer;
+    private bool startingCrit;
     void Start()
     {
         controls = GlobalData.controls;
@@ -43,6 +44,7 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
                 if (!locked && critTimer > 0)
                 {
                     armAnimator.SetTrigger("CritHit");
+                    startingCrit = true;
                     critTimer = 0;
                 }
                 else
@@ -87,6 +89,11 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
     }
     public static void EndPlaying()
     {
+        if (Instance.startingCrit)
+        {
+            Instance.startingCrit = false;
+            return;
+        }
         Instance.hitting = false;
         Instance.armAnimator.speed = 1;
     }

@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  allowRotation: 1
 --- !u!1 &1964349951650356766
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f3d2debb860234d95b5c113b4c2354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
+  buildingObject: {fileID: 11400000, guid: cb5e09c9d5f210d4d946d29e80dc0aa1, type: 2}
 --- !u!1 &2852063674408935967
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  allowRotation: 1
 --- !u!1 &5087995155207514048
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  allowRotation: 1
 --- !u!1 &5332499908694014184
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  allowRotation: 1
 --- !u!1 &7032276644313998792
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,3 +433,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  allowRotation: 1

@@ -11,7 +11,6 @@ public class MapObject : MonoBehaviour
 
     private static Dictionary<ChunkID, SerializableList<MapObjectData>> MapObjects = new();
     private static Dictionary<ChunkID, List<MapObject>> CreatedMapObjects = new();
-    private static Dictionary<MapObjectID, float> modifiedObjects = new();
 
     [Save(SaveType.world)]
     public static object MapObjectSaveData
@@ -42,12 +41,6 @@ public class MapObject : MonoBehaviour
             MapObjectID mapObjectId = new(chunkId, i);
             objControl.Id = mapObjectId;
             float life = objControl.GetBaseLife;
-            if (modifiedObjects.ContainsKey(mapObjectId))
-            {
-                life = modifiedObjects[mapObjectId];
-                modifiedObjects.Remove(mapObjectId);
-                objControl.UpdateLocalState(life);
-            }
             CreatedMapObjects[chunkId].Add(objControl);
             MapObjects[chunkId].Add(new(life, chunkData.biomeMap[(int)pos.x, chunkSize - (int)pos.y], generatedChunk.objectSpawnPoints.objectIDs[i], obj.transform.position, generatedChunk.objectSpawnPoints.rotations[i]));
         }
@@ -89,38 +82,12 @@ public class MapObject : MonoBehaviour
     {
         CreatedMapObjects = new();
         MapObjects = new();
-        modifiedObjects = new();
     }
     protected static void UpdateState(MapObjectID Id, float Life)
     {
         if (!Id.chunkId.Chunkless())
             MapObjects[Id.chunkId][Id.objectId].UpdateLife(Life);
-
-        // Message stateUpdate = Message.Create(MessageSendMode.reliable, MessageId.recourceStateUpdate);
-        // stateUpdate.AddInt(Id.chunkId.x);
-        // stateUpdate.AddInt(Id.chunkId.y);
-        // stateUpdate.AddInt(Id.objectId);
-        // stateUpdate.AddFloat(Life);
-        // NetworkManager.Send(stateUpdate);
     }
-
-    // [MessageHandler((ushort)MessageId.recourceStateUpdate, clientServerIndependent : true)]
-    // public static void ReceiveStateUpdate(Message message)
-    // {
-    //     int ChunkIdX = message.GetInt();
-    //     int ChunkIdY = message.GetInt();
-    //     int ObjectId = message.GetInt();
-    //     float Life = message.GetFloat();
-    //     ChunkID chunkId = new(ChunkIdX, ChunkIdY);
-    //     if (MapObjects.ContainsKey(chunkId))
-    //         MapObjects[chunkId][ObjectId].UpdateLife(Life);
-
-    //     else if (!chunkId.Chunkless())
-    //         modifiedObjects.Add(new(chunkId, ObjectId), Life);        
-        
-    //     if (CreatedMapObjects.ContainsKey(chunkId))
-    //         CreatedMapObjects[chunkId][ObjectId].UpdateLocalState(Life);
-    // }
     [System.Serializable]
     public class MapObjectData
     {

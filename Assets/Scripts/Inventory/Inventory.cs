@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public class Inventory
 {   
-    private int maxStack;
+    public int maxStack;
     public InventorySlot[] Slots;
 
     public int EmptySlotCount
@@ -203,23 +204,15 @@ public class Inventory
                 amount += maxStack - slot.amount;
         return amount != 0;
     }
-    public InventorySlot[] GetSaveData()
+    public void Load()
     {
-        return Slots;
-    }
-    public void Load(InventorySlot[] newInventory)
-    {
-        for (int i = 0; i < Slots.Length; i++)
-        {
-            Slots[i].UpdateSlot(newInventory[i].item, newInventory[i].amount);
-        }
+        foreach (InventorySlot slot in Slots)
+            slot.UpdateSlot(maxStack);
     }
     public void Clear()
     {
-        for (int i = 0; i < Slots.Length; i++)
-        {
-            Slots[i].RemoveItem();
-        }
+        foreach (InventorySlot slot in Slots)
+            slot.RemoveItem();
     }
 }
 [Serializable]
@@ -280,6 +273,12 @@ public class InventorySlot
     public void UpdateAmount(int value)
     {
         UpdateSlot(item, value);
+    }
+    public void UpdateSlot(int maxStack)
+    {
+        this.maxStack = maxStack;
+        AllowedItems = new ItemType[0];
+        UpdateSlot(_item, _amount);
     }
     public void UpdateSlot(Item item, int amount)
     {

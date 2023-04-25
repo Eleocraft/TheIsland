@@ -15,13 +15,14 @@ MonoBehaviour:
   Id: staircase
   buildingType: 1
   Image: {fileID: 21300000, guid: 362b104db8c770a4b9807cedafe427c2, type: 3}
-  buildingPrefab: {fileID: 6820567507243570287, guid: 5da25a906cd75e649a52527da6d643ff, type: 3}
+  buildingPrefab: {fileID: 1606130815333472528, guid: 5da25a906cd75e649a52527da6d643ff, type: 3}
   blueprintPrefab: {fileID: 1475721603087804782, guid: 9baf02fe4e8038142b93ff5c5b487006, type: 3}
   BuildingLevel: 1
   FreePlacingLayer:
     serializedVersion: 2
     m_Bits: 128
   AjustToNormals: 0
+  UseMaxSteepness: 0
   MaxSteepnessRadiants: 0.8
   description: 'Staircase
 

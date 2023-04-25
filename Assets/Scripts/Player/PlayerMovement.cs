@@ -52,11 +52,13 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         get => Instance.moveMode;
         set => Instance.moveMode = (MoveMode)value;
     }
-
+    protected override void SingletonAwake()
+    {
+        mainRB = GetComponent<Rigidbody>();
+    }
     void Start()
     {
         groundCheck = defaultGroundCheck;
-        mainRB = GetComponent<Rigidbody>();
         drag = mainRB.drag;
         controls = GlobalData.controls;
         controls.Player.Jump.performed += Jump;

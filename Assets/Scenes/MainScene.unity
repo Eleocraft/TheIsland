@@ -6772,7 +6772,7 @@ MonoBehaviour:
   WeaponContainer: {fileID: 1096045102}
   ThirdPersonArms:
   - {fileID: 1167780804}
-  Arms: {fileID: 335648912}
+  armAnimator: {fileID: 335648908}
 --- !u!114 &639821022
 MonoBehaviour:
   m_ObjectHideFlags: 0

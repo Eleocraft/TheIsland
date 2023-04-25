@@ -32,8 +32,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     [SerializeField] private Transform ToolContainer;
     [SerializeField] private Transform WeaponContainer;
     [SerializeField] private SkinnedMeshRenderer[] ThirdPersonArms;
-    [SerializeField] private GameObject Arms;
-    private Animator armAnimator;
+    [SerializeField] private Animator armAnimator;
     private Dictionary<ItemObject, GameObject> newItemDisplayObjects = new Dictionary<ItemObject, GameObject>();
     private bool active;
     private int activeSlot = 0;
@@ -58,26 +57,50 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     [Save(SaveType.player)]
     public static object PlayerInventorySaveData
     {
-        get => Instance.inventory.GetSaveData();
-        set => Instance.inventory.Load((InventorySlot[])value);
+        get => Instance.inventory;
+        set {
+            Instance.inventory = (Inventory)value;
+            Instance.inventoryInterface.Initialize(Instance.inventory);
+            Instance.inventory.Load();
+        }
     }
     [Save(SaveType.player)]
     public static object EquipmentInventorySaveData
     {
-        get => Instance.equipmentInventory.GetSaveData();
-        set => Instance.equipmentInventory.Load((InventorySlot[])value);
+        get => Instance.equipmentInventory;
+        set {
+            Instance.equipmentInventory = (Inventory)value;
+            Instance.equipmentInventoryInterface.Initialize(Instance.equipmentInventory);
+            Instance.equipmentInventory.Load();
+        }
     }
     [Save(SaveType.player)]
     public static object HotbarSaveData
     {
-        get => Instance.hotbar.GetSaveData();
-        set => Instance.hotbar.Load((InventorySlot[])value);
+        get => Instance.hotbar;
+        set {
+            Instance.hotbar = (Inventory)value;
+            Instance.hotbarInterface.Initialize(Instance.hotbar);
+            Instance.hotbar.Load();
+        }
+    }
+    [Save(SaveType.player)]
+    public static object SelectedHotbarSlot
+    {
+        get => Instance.activeSlot;
+        set => Instance.activeSlot = (int)value;
     }
     [Save(SaveType.player)]
     public static object FightingHotbarSaveData
     {
-        get => Instance.fightingHotbar.GetSaveData();
-        set => Instance.fightingHotbar.Load((InventorySlot[])value);
+        get => Instance.fightingHotbar;
+        set {
+            Instance.fightingHotbar = (Inventory)value;
+            Instance.fightingHotbarInterface.Initialize(Instance.fightingHotbar);
+            Instance.fightingHotbar.Load();
+            Instance.fightingHotbar.Slots[0].OnAfterUpdate += slot => Instance.UpdatePortableWeapon();
+            //Instance.fightingHotbar.Slots[1].OnAfterUpdate += slot => Instance.UpdatePortableWeapon();
+        }
     }
 
     public static bool TryGetActiveItem(out Item item)
@@ -92,6 +115,9 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     }
     protected override void SingletonAwake()
     {
+        if (GlobalData.loadMode == LoadMode.Load)
+            return;
+        
         inventory = new Inventory(slotCount, maxStack);
         equipmentInventory = new Inventory(eqSlotCount, 1);
         hotbar = new Inventory(hotbarSlotCount, maxStack);
@@ -128,10 +154,8 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
             hotbar.Slots[i].OnAfterUpdate += slot => { if (activeSlot == SlotNum) ChangeHotbarSlot(SlotNum); };
         }
 
-        fightingHotbar.Slots[0].OnAfterUpdate += slot => UpdatePortableWeapon();
-        //fightingHotbar.Slots[1].OnAfterUpdate += slot => UpdatePortableWeapon();
         controls.MouseFP.HotbarslotChange.performed += Scroll;
-        armAnimator = Arms.GetComponent<Animator>();
+        ChangeHotbarSlot(activeSlot);
     }
     void ChangeToHotbarSlot1(UnityEngine.InputSystem.InputAction.CallbackContext ctx) => ChangeHotbarSlot(0);
     void ChangeToHotbarSlot2(UnityEngine.InputSystem.InputAction.CallbackContext ctx) => ChangeHotbarSlot(1);
@@ -179,13 +203,13 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     {
         foreach (SkinnedMeshRenderer obj in ThirdPersonArms)
             obj.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-        Arms.SetActive(false);
+        armAnimator.gameObject.SetActive(false);
     }
     void ActivateFirstPersonArms()
     {
         foreach (SkinnedMeshRenderer obj in ThirdPersonArms)
             obj.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-        Arms.SetActive(true);
+        armAnimator.gameObject.SetActive(true);
     }
     void Scroll(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
