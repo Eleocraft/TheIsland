@@ -55,7 +55,7 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
         set => Instance.moonTime = (float)value;
     }
 
-    void Start()
+    protected override void SingletonAwake()
     {
         timeRate = 1.0f / fullDayLength;
         time = startTime;

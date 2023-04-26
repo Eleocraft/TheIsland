@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 20
   type: 3
   allowRotation: 1
 --- !u!1 &1964349951650356766
@@ -73,7 +74,7 @@ GameObject:
   - component: {fileID: 1964349951650356752}
   - component: {fileID: 5891773226345693483}
   - component: {fileID: 1964349951650356753}
-  - component: {fileID: 8697691891472538702}
+  - component: {fileID: 3980621677051371404}
   m_Layer: 15
   m_Name: Floor
   m_TagString: Untagged
@@ -181,7 +182,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.12067541, z: 2}
   m_Center: {x: -0.0001116097, y: 0.0046320744, z: 0}
---- !u!114 &8697691891472538702
+--- !u!114 &3980621677051371404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,10 +191,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1964349951650356766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03f3d2debb860234d95b5c113b4c2354, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a17c66efc834a7469139495cd7b4819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingObject: {fileID: 11400000, guid: cb5e09c9d5f210d4d946d29e80dc0aa1, type: 2}
+  snappingPoints:
+  - {fileID: 3768232105081774211}
+  - {fileID: 4676136376783070784}
+  - {fileID: 311410744334149981}
+  - {fileID: 7786494638416107961}
+  - {fileID: 7985214085855784289}
 --- !u!1 &2852063674408935967
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 20
   type: 3
   allowRotation: 1
 --- !u!1 &5087995155207514048
@@ -312,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 2
   type: 1
   allowRotation: 1
 --- !u!1 &5332499908694014184
@@ -372,6 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 20
   type: 3
   allowRotation: 1
 --- !u!1 &7032276644313998792
@@ -432,5 +442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 20
   type: 3
   allowRotation: 1

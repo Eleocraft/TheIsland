@@ -4,12 +4,12 @@ using System.Linq;
 
 public class Building : MonoBehaviour
 {
+    const float checkStabilityDelay = 0.5f;
     public BuildingObject buildingObject;
     public BuildingObject BuildingObject => buildingObject;
     public int Id { get; private set; }
-    protected int stability = 100;
     [ResetOnDestroy]
-    private static Dictionary<int, BuildingData> buildings = new();
+    protected static Dictionary<int, BuildingData> buildings = new();
     [Save(SaveType.world)]
     public static object BuildingSaveData
     {
@@ -29,13 +29,18 @@ public class Building : MonoBehaviour
         Id = 0;
         while (buildings.Keys.Contains(Id))
             Id++;
-        buildings.Add(Id, new(buildingObject.Id, stability, transform.position, transform.rotation));
+        buildings.Add(Id, new(buildingObject.Id, transform.position, transform.rotation));
+        Invoke("checkStability", checkStabilityDelay);
+    }
+    private void checkStability()
+    {
+        buildings[Id].stability = GetStability();
     }
     public virtual void Load(int Id)
     {
         this.Id = Id;
-        stability = buildings[Id].stability;
     }
+    public virtual int GetStability() => 100;
     void OnDestroy()
     {
         buildings.Remove(Id);
@@ -54,10 +59,10 @@ public class Building : MonoBehaviour
         readonly float rotY;
         readonly float rotZ;
         readonly float rotW;
-        public BuildingData(string buildingObjectId, int stability, Vector3 pos, Quaternion rot)
+        public BuildingData(string buildingObjectId, Vector3 pos, Quaternion rot)
         {
             this.buildingObjectId = buildingObjectId;
-            this.stability = stability;
+            stability = 100;
             posX = pos.x;
             posY = pos.y;
             posZ = pos.z;

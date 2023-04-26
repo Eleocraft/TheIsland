@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 10
   type: 1
   allowRotation: 1
 --- !u!1 &6064519473882287679
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 10
   type: 1
   allowRotation: 1
 --- !u!1 &6497754093134320183
@@ -161,7 +163,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6497754093134320183}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 0.12595367, z: 1.8}
@@ -178,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 2
   type: 1
   allowRotation: 0
 --- !u!1 &6820567507243570287
@@ -314,6 +317,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingObject: {fileID: 11400000, guid: 9204578d66167a947aa748af8f70ecfd, type: 2}
+  snappingPoints:
+  - {fileID: 7625141879596973101}
+  - {fileID: 6665822502430456758}
+  - {fileID: 6571491106290806669}
+  - {fileID: 4105916109537115912}
   BottomSnappingPoint: {fileID: 6497754093134320183}
   FoundationBase: {fileID: 8213717018197533350, guid: 45ed218f52574214d8444c1ae80d2638, type: 3}
   CheckLayer:
@@ -423,5 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stabilityReduction: 10
   type: 1
   allowRotation: 1

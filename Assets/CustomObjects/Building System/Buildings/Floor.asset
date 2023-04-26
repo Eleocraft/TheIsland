@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: floor
   Image: {fileID: 21300000, guid: 2cb099d1d80b6fe40b889fa042b786cb, type: 3}
-  buildingPrefab: {fileID: 8697691891472538702, guid: 5587df3198594d04497f1ff20ef73d95, type: 3}
+  buildingPrefab: {fileID: 3980621677051371404, guid: 5587df3198594d04497f1ff20ef73d95, type: 3}
   blueprintPrefab: {fileID: 499118336229678346, guid: 25ea3f4252f7c3247967e2b4c81413c1, type: 3}
   BuildingLevel: 0
   Cost: []
