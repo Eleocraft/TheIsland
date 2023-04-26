@@ -9,19 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f34444ae01401064f978c31ee21250cb, type: 3}
+  m_Script: {fileID: 11500000, guid: c10374ef855828347b0d822f8bde1832, type: 3}
   m_Name: Chest
   m_EditorClassIdentifier: 
   Id: chest
-  buildingType: 0
-  Image: {fileID: 21300000, guid: b9e1e4abf9e9e614fb80dcc27d6485b1, type: 3}
+  Image: {fileID: 21300000, guid: a152777108366564c910bcf7beabd86a, type: 3}
   buildingPrefab: {fileID: 8789764927745094144, guid: 3e8fab28f6c259b4a8db7c29741245cc, type: 3}
   blueprintPrefab: {fileID: -946005898844468144, guid: 954026afc6cd6514783a74372a22619d, type: 3}
-  BuildingLevel: 3
+  BuildingLevel: 1
+  Cost: []
   FreePlacingLayer:
     serializedVersion: 2
     m_Bits: 32768
+  allowRotation: 1
+  description: This is a chest
   AjustToNormals: 0
   UseMaxSteepness: 0
   MaxSteepnessRadiants: 6.2831855
-  description: This is a Chest

@@ -9,19 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f34444ae01401064f978c31ee21250cb, type: 3}
+  m_Script: {fileID: 11500000, guid: c10374ef855828347b0d822f8bde1832, type: 3}
   m_Name: Campfire
   m_EditorClassIdentifier: 
   Id: campfire
-  buildingType: 0
-  Image: {fileID: 21300000, guid: 5f2db922930a98242ab96e401a735057, type: 3}
+  Image: {fileID: 21300000, guid: a152777108366564c910bcf7beabd86a, type: 3}
   buildingPrefab: {fileID: 3323651336557287379, guid: ab0d516998074de4eae00d037bedaac8, type: 3}
   blueprintPrefab: {fileID: 8037042343230948047, guid: 25f3d0ed7036dac49aad4bd070f62958, type: 3}
   BuildingLevel: 2
+  Cost: []
   FreePlacingLayer:
     serializedVersion: 2
     m_Bits: 128
+  allowRotation: 1
+  description: This is a campfire
   AjustToNormals: 1
   UseMaxSteepness: 1
   MaxSteepnessRadiants: 0.3
-  description: THIS IS A CAMPFIRE

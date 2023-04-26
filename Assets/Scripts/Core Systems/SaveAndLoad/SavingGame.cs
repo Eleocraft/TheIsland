@@ -65,7 +65,7 @@ public class SavingGame : MonoSingleton<SavingGame>
                     savableWorldProperties.Add(string.IsNullOrEmpty(attribute.Name) ? property.Name : attribute.Name, new(property));
             }
             else
-                throw new Exception($"'{property.DeclaringType}.{property.Name}' is not of type byte[]");
+                throw new Exception($"'{property.DeclaringType}.{property.Name}' is not of type object");
         }
     }
     void Start()

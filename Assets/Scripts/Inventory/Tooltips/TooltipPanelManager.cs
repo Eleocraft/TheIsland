@@ -34,11 +34,11 @@ public class TooltipPanelManager : MonoSingleton<TooltipPanelManager>
         tooltipTransform.sizeDelta = DefaultScale;
         foreach (TooltipAttributeData Tooltip in data)
         {
-            GameObject TooltipObject = Instantiate(TooltipPrefabLister.tooltipPrefabs[Tooltip.type]) as GameObject;
+            GameObject TooltipObject = Instantiate(TooltipPrefabLister.TooltipPrefabs[Tooltip.type]);
             RectTransform TooltipObjectTransform = TooltipObject.GetComponent<RectTransform>();
             TooltipObjectTransform.SetParent(tooltipTransform, false);
             TooltipObjectTransform.anchoredPosition = new Vector2(0, CurrentPlacement) + TooltipSpacing;
-            Vector2 bounds = TooltipObject.GetComponent<ITooltipObject>().Initialize(Tooltip.data);
+            Vector2 bounds = TooltipObject.GetComponent<ITooltipObject>().Initialize(Tooltip);
             CurrentPlacement -= bounds.y;
             if (tooltipTransform.sizeDelta.x + TooltipSpacing.x < bounds.x + TooltipSpacing.x * 2)
                 tooltipTransform.sizeDelta = new Vector2(bounds.x + TooltipSpacing.x * 2, tooltipTransform.sizeDelta.y);
@@ -54,19 +54,20 @@ public enum TooltipAttributeType
     description,
     HealValue,
     AttackValue,
-    DefenseValue
+    DefenseValue,
+    BuildingLevel,
+    BuildingCost,
+    HarvestingSpeed
 }
-public struct TooltipAttributeData
+public class TooltipAttributeData
 {
     public readonly TooltipAttributeType type;
-    public readonly string data;
-    public TooltipAttributeData(TooltipAttributeType type, string data)
+    public TooltipAttributeData(TooltipAttributeType type)
     {
         this.type = type;
-        this.data = data;
     }
 }
 public interface ITooltipObject
 {
-    Vector2 Initialize(string Information);
+    Vector2 Initialize(TooltipAttributeData Information);
 }

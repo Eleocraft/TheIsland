@@ -9,7 +9,9 @@ public class MapObject : MonoBehaviour
     public virtual void UpdateLocalState(float Life) { }
     public virtual float GetBaseLife => 0;
 
+    [ResetOnDestroy]
     private static Dictionary<ChunkID, SerializableList<MapObjectData>> MapObjects = new();
+    [ResetOnDestroy]
     private static Dictionary<ChunkID, List<MapObject>> CreatedMapObjects = new();
 
     [Save(SaveType.world)]
@@ -78,11 +80,6 @@ public class MapObject : MonoBehaviour
         newObject.Id = new(chunklessObjId, CreatedMapObjects[chunklessObjId].Count - 1);
     }
     public static bool ChunkPopulated(Vector2Int chunkCoord) => MapObjects.ContainsKey(new(chunkCoord));
-    public static void ResetMapObjectLists()
-    {
-        CreatedMapObjects = new();
-        MapObjects = new();
-    }
     protected static void UpdateState(MapObjectID Id, float Life)
     {
         if (!Id.chunkId.Chunkless())

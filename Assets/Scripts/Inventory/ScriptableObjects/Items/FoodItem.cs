@@ -15,7 +15,7 @@ public class FoodItem : ItemObject
     public override List<TooltipAttributeData> GetTooltips()
     {
         List<TooltipAttributeData> data = base.GetTooltips();
-        data.Add(new TooltipAttributeData(TooltipAttributeType.HealValue, restoreHealthValue.ToString()));
+        data.Add(new TextTooltipAttributeData(TooltipAttributeType.HealValue, restoreHealthValue.ToString()));
         return data;
     }
 }

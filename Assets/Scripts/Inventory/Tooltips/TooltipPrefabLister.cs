@@ -1,23 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TooltipPrefabLister : MonoBehaviour
+public class TooltipPrefabLister : MonoSingleton<TooltipPrefabLister>
 {
-    [SerializeField] private TooltipPrefab[] TooltipPrefabs;
-    public static Dictionary<TooltipAttributeType, GameObject> tooltipPrefabs;
-    void Awake()
+    [SerializeField] private EnumDictionary<TooltipAttributeType, GameObject> tooltipPrefabs;
+    public static EnumDictionary<TooltipAttributeType, GameObject> TooltipPrefabs => Instance.tooltipPrefabs;
+    private void OnValidate()
     {
-        tooltipPrefabs = new Dictionary<TooltipAttributeType, GameObject>();
-        foreach (TooltipPrefab data in TooltipPrefabs)
-        {
-            tooltipPrefabs.Add(data.type, data.prefab);
-        }
-    }
-    [System.Serializable]
-    private struct TooltipPrefab
-    {
-        public TooltipAttributeType type;
-        public GameObject prefab;
+        tooltipPrefabs.Update();
     }
 }

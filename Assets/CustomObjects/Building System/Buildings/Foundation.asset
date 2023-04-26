@@ -9,21 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f34444ae01401064f978c31ee21250cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 48aedffe818f91143bbf1d8d5bd63b4f, type: 3}
   m_Name: Foundation
   m_EditorClassIdentifier: 
   Id: foundation
-  buildingType: 1
-  Image: {fileID: 21300000, guid: 362b104db8c770a4b9807cedafe427c2, type: 3}
+  Image: {fileID: 21300000, guid: 8034657a804d52c4580fd174a3c86fc4, type: 3}
   buildingPrefab: {fileID: 2918511257833401453, guid: c2a85425b8470f34d8b544dfbef08814, type: 3}
   blueprintPrefab: {fileID: 1475721603087804782, guid: c1c7b633a92a6064fbe7a54f3e1f9a38, type: 3}
-  BuildingLevel: 1
+  BuildingLevel: 0
+  Cost: []
   FreePlacingLayer:
     serializedVersion: 2
     m_Bits: 128
-  AjustToNormals: 0
+  allowRotation: 0
+  description: This is a foundation
   UseMaxSteepness: 1
-  MaxSteepnessRadiants: 0.8
-  description: 'Foundation
-
-'
+  MaxSteepnessRadiants: 1

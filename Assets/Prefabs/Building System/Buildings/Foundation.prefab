@@ -217,7 +217,7 @@ MonoBehaviour:
       key: 1
       value:
         transform: {fileID: 3835351650901052589}
-        allowRotation: 0
+        allowRotation: 1
     - name: 
       key: 3
       value:

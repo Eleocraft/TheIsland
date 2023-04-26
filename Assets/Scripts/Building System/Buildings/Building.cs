@@ -8,6 +8,7 @@ public class Building : MonoBehaviour
     public BuildingObject BuildingObject => buildingObject;
     public int Id { get; private set; }
     protected int stability = 100;
+    [ResetOnDestroy]
     private static Dictionary<int, BuildingData> buildings = new();
     [Save(SaveType.world)]
     public static object BuildingSaveData
@@ -23,7 +24,6 @@ public class Building : MonoBehaviour
             }
         }
     }
-    public static void ResetBuildingLists() => buildings = new();
     public virtual void Initialize()
     {
         Id = 0;

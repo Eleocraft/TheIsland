@@ -75,10 +75,9 @@ public class BuildingActionController : MonoBehaviour
     {
         if (activeBlueprint.BuildMode)
         {
-            if (activeBlueprint.PlacingPossible)
-            {
+            PlayerInventory.TryGetActiveItem(out Item item);
+            if (activeBlueprint.PlacingPossible && PlayerInventory.UseItems(activeBlueprint.Object.Cost) && ((HammerItem)item.ItemObject).HammerLevel >= activeBlueprint.Object.BuildingLevel)
                 Instantiate(activeBlueprint.Object.buildingPrefab, activeBlueprint.BuildingPos, activeBlueprint.BuildingRot).Initialize();
-            }
         }
         else if (PlayerInventory.TryGetActiveItem(out Item equippedItem) && equippedItem.ItemObject.Type == ItemType.Hammer)
         {
@@ -108,19 +107,15 @@ public class BuildingActionController : MonoBehaviour
         {
             activeBlueprint.PlacingPossible = !activeBlueprint.Blueprint.Blocked;
             activeBlueprint.SetPosition(position);
-            activeBlueprint.SetRotation(Vector3.up, allowRotation ? GetAngle(yangle) : yangle);
+            activeBlueprint.SetRotation(Vector3.up, allowRotation && activeBlueprint.Object.allowRotation ? GetAngle(yangle) : yangle);
         }
         //FreePlacing
         else if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit hitData, HitRange, FreePlaceLayers))
         {
-            activeBlueprint.PlacingPossible = 
-                activeBlueprint.Object.FreePlacingLayer == (activeBlueprint.Object.FreePlacingLayer | 1 << hitData.collider.gameObject.layer)
-                && (!activeBlueprint.Object.UseMaxSteepness || Utility.CalcualteSteepnessRadientFromNormal(hitData.normal) < activeBlueprint.Object.MaxSteepnessRadiants)
+            activeBlueprint.PlacingPossible = activeBlueprint.Object.FreePlacingPossible(hitData)
                 && !activeBlueprint.Blueprint.Blocked;
             
-            Vector3 buildingNormal = Vector3.up;
-            if (activeBlueprint.Object.AjustToNormals && activeBlueprint.Object.FreePlacingLayer == (activeBlueprint.Object.FreePlacingLayer | 1 << hitData.collider.gameObject.layer))
-                buildingNormal = hitData.normal;
+            Vector3 buildingNormal = activeBlueprint.Object.GetNormal(hitData);
             
             activeBlueprint.SetPosition(hitData.point);
             activeBlueprint.SetRotation(buildingNormal, (transform.rotation.eulerAngles.y + angleOffset).ClampToAngle());

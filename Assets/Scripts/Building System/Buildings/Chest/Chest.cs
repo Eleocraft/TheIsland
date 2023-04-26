@@ -11,6 +11,7 @@ public class Chest : MonoBehaviour, IInteractable
     [SerializeField] private int slotCount;
     public string InteractionInfo => "chest";
 
+    [ResetOnDestroy]
     private static Dictionary<int, Inventory> chests = new();
 
     [Save(SaveType.world)]
@@ -19,7 +20,6 @@ public class Chest : MonoBehaviour, IInteractable
         get => chests;
         set => chests = (Dictionary<int, Inventory>)value;
     }
-    public static void ResetChestLists() => chests = new();
     
     private void Start()
     {

@@ -270,19 +270,16 @@ public class CreateItemObjects : EditorWindow
     {
         public override ItemType Type => ItemType.Hammer;
         private int hammerLevel = 1;
-        private float speed = 1;
         public override void CreateUI()
         {
             base.CreateUI();
             hammerLevel = EditorGUILayout.IntField("Hammer Level:", hammerLevel);
-            speed = EditorGUILayout.FloatField("speed:", speed);
         }
         public override void CreateAsset()
         {
             HammerItem itemObject = CreateInstance<HammerItem>();
             AddAssetInfo(itemObject);
             itemObject.HammerLevel = hammerLevel;
-            itemObject.Speed = speed;
             AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Tools/{itemObject.name}.asset");
         }
     }

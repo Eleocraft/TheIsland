@@ -11526,17 +11526,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f480cdf59f1acac4989a0f5e365c1596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TooltipPrefabs:
-  - type: 0
-    prefab: {fileID: 6409845089051682333, guid: f2795e4dd272b1545bb4e89eef5fe9be, type: 3}
-  - type: 1
-    prefab: {fileID: 879610473934263116, guid: 3147a9adc1c28b647a2cdbebfa03d052, type: 3}
-  - type: 2
-    prefab: {fileID: 879610473934263116, guid: 24ab6e1becf36f245b22b4ebf7dc0b51, type: 3}
-  - type: 3
-    prefab: {fileID: 0}
-  - type: 4
-    prefab: {fileID: 0}
+  tooltipPrefabs:
+    values:
+    - name: Title
+      key: 0
+      value: {fileID: 6409845089051682333, guid: f2795e4dd272b1545bb4e89eef5fe9be, type: 3}
+    - name: description
+      key: 1
+      value: {fileID: 879610473934263116, guid: 3147a9adc1c28b647a2cdbebfa03d052, type: 3}
+    - name: HealValue
+      key: 2
+      value: {fileID: 879610473934263116, guid: 24ab6e1becf36f245b22b4ebf7dc0b51, type: 3}
+    - name: AttackValue
+      key: 3
+      value: {fileID: 0}
+    - name: DefenseValue
+      key: 4
+      value: {fileID: 0}
+    - name: BuildingLevel
+      key: 5
+      value: {fileID: 879610473934263116, guid: dacd9a5fffea0f7439ba0c22ba09ba69, type: 3}
+    - name: BuildingCost
+      key: 6
+      value: {fileID: 879610473934263116, guid: 20bb0b82bd7971e4db8c2dc38b32fbfa, type: 3}
+    - name: HarvestingSpeed
+      key: 7
+      value: {fileID: 879610473934263116, guid: 4cb067bcdc687e747a9b887b5a0fa97e, type: 3}
 --- !u!1 &1272430751
 GameObject:
   m_ObjectHideFlags: 0
@@ -12686,9 +12701,9 @@ RectTransform:
   m_Father: {fileID: 1788137549}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -736, y: 467}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 224, y: -59.21}
   m_SizeDelta: {x: 330, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1347381618
@@ -15281,7 +15296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 500, y: 330}
+  m_AnchoredPosition: {x: 430, y: 330}
   m_SizeDelta: {x: 800, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1626631843
@@ -15812,7 +15827,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 500, y: 90}
+  m_AnchoredPosition: {x: 430, y: 90}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1666036486

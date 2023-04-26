@@ -43,8 +43,8 @@ public abstract class ItemObject : ScriptableObject
     {
         List<TooltipAttributeData> data = new()
         {
-            new TooltipAttributeData(TooltipAttributeType.Title, name),
-            new TooltipAttributeData(TooltipAttributeType.description, description)
+            new TextTooltipAttributeData(TooltipAttributeType.Title, name),
+            new TextTooltipAttributeData(TooltipAttributeType.description, description)
         };
         return data;
     }
