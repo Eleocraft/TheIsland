@@ -27,6 +27,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     [SerializeField] private Transform defaultGroundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float gravity;
 
     [Header("--Animation")]
     [Range(0.1f, 0.5f)] [SerializeField] private float AnimationLerp;
@@ -121,14 +122,23 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     void FixedUpdate()
     {
         // Movement
-        onSolidGround = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        onSolidGround = Physics.Raycast(groundCheck.position, Vector3.down, out RaycastHit hitData, groundDistance, groundMask);
         // If the player is attacking, he can't move
         if (FightActionController.Attacking)
             return;
 
         Vector3 Movement = (mainRB.transform.right * Direction.x + mainRB.transform.forward * Direction.y) * normalSpeed * flySpeedMultiplier;
+        float currentYVelocity;
+        if (onSolidGround)
+        {
+            Quaternion groundRotation = Quaternion.FromToRotation(Vector3.up, hitData.normal);
+            Vector3 realMovement = groundRotation * Movement;
+            currentYVelocity = (realMovement.y > 0) ? realMovement.y : 0;
+        }
+        else
+            currentYVelocity = mainRB.velocity.y + gravity * Time.fixedDeltaTime;
 
-        mainRB.velocity = new Vector3(Movement.x, mainRB.velocity.y, Movement.z);
+        mainRB.velocity = new Vector3(Movement.x, currentYVelocity, Movement.z);
 
         // If in Flymode and neither spacebar or shift is pressed, velocity.y = 0
         if (moveMode == MoveMode.Fly && !controls.Player.Running.ReadValue<float>().AsBool() && !controls.Player.Jump.ReadValue<float>().AsBool())

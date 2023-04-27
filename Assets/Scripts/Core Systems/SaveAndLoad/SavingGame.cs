@@ -116,7 +116,8 @@ public class SavingGame : MonoSingleton<SavingGame>
         {
             Dictionary<string, PropertyAction<object>> savableProperties = (saveType == SaveType.player) ? savablePlayerProperties : savableWorldProperties;
             for (int i = 0; i < data.Count; i++)
-                savableProperties[keys[i]].Set(data[i]);
+                if (savableProperties.ContainsKey(keys[i]))
+                    savableProperties[keys[i]].Set(data[i]);
         }
     }
 }

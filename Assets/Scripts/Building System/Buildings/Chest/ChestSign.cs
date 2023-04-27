@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using TMPro;
 
 public class ChestSign : MonoBehaviour, IInteractable
@@ -9,9 +8,23 @@ public class ChestSign : MonoBehaviour, IInteractable
     bool active;
     bool closeSign;
     public string InteractionInfo => "Change name";
+    [ResetOnDestroy]
+    private static Dictionary<int, string> chestsSigns = new();
+
+    [Save(SaveType.world)]
+    public static object ChestSignsSaveData
+    {
+        get => chestsSigns;
+        set => chestsSigns = (Dictionary<int, string>)value;
+    }
     void Start()
     {
         signInput = GetComponentInChildren<TMP_InputField>();
+        int Id = GetComponentInParent<Building>().Id;
+        if (chestsSigns.ContainsKey(Id))
+            signInput.text = chestsSigns[Id];
+        else
+            chestsSigns.Add(Id, "");
     }
     public void Interact()
     {
@@ -33,6 +46,7 @@ public class ChestSign : MonoBehaviour, IInteractable
     {
         InputStateMachine.ChangeInputState(true, this);
         signInput.DeactivateInputField();
+        chestsSigns[GetComponentInParent<Building>().Id] = signInput.text;
         GlobalData.controls.Menus.ExitSign.performed -= CloseSignInput;
         active = false;
         closeSign = false;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FoundationBuilding : GridBuilding
 {
@@ -6,32 +7,50 @@ public class FoundationBuilding : GridBuilding
     [SerializeField] private GameObject FoundationBase;
     [SerializeField] private LayerMask CheckLayer;
     [SerializeField] private float maxDistance = 4;
+    [SerializeField] private Transform raycastOrigin;
     const int GroundLayer = 7;
     private bool connected;
+    [ResetOnDestroy]
+    private static List<int> groundConnections = new();
+    [Save(SaveType.world)]
+    public static object FoundationBuildingSaveData
+    {
+        get => groundConnections;
+        set => groundConnections = (List<int>)value;
+    }
 
     public override void Initialize()
     {
-        if (Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, out RaycastHit hitInfo, maxDistance, CheckLayer)&& hitInfo.collider.gameObject.layer == GroundLayer)
+        base.Initialize();
+        if (Physics.Raycast(raycastOrigin.position, Vector3.down, out RaycastHit hitInfo, maxDistance, CheckLayer) && hitInfo.collider.gameObject.layer == GroundLayer)
         {
             BottomSnappingPoint.SetActive(false);
             Instantiate(FoundationBase, transform.position, transform.rotation, transform);
             connected = true;
+            groundConnections.Add(Id);
         }
-        base.Initialize();
     }
-    public override int GetStability()
+    protected override void OnDestroy()
     {
-        return connected ? 100 : base.GetStability();
+        base.OnDestroy();
+        groundConnections.Remove(Id);
+    }
+    public override int GetStability(bool recalculateStability = false)
+    {
+        return connected ? 100 : base.GetStability(recalculateStability);
     }
     public override void Load(int Id)
     {
         base.Load(Id);
-        if (buildings[Id].stability >= 100)
+        StartCoroutine(Utility.WaitForFrames(1, checkGroundConnections));
+    }
+    private void checkGroundConnections()
+    {
+        if (groundConnections.Contains(Id))
         {
             BottomSnappingPoint.SetActive(false);
             Instantiate(FoundationBase, transform.position, transform.rotation, transform);
             connected = true;
         }
     }
-
 }

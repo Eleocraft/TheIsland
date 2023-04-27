@@ -5,7 +5,7 @@ public class GroupBuildingSnappingPoint : BuildingSnappingPoint
 {
     [SerializeField] private SerializableDictionary<BuildingType, GroupBuildingSnappingPointInfo> snappingPoints;
 
-    void Start()
+    void Awake()
     {
         snappingPoints.Update();
     }

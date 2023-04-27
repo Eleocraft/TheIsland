@@ -3,6 +3,7 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
+using System.Collections;
 
 public static class Utility
 {
@@ -142,7 +143,7 @@ public static class Utility
     // NormalCalculation
     public static float CalcualteSteepnessRadientFromNormal(Vector3 normal)
 	{
-		return Mathf.Acos(Vector3.Dot(normal, Vector3.up));
+		return Mathf.Acos(Vector3.Dot(normal.normalized, Vector3.up));
 	}
 
     // Enum stuff
@@ -193,5 +194,20 @@ public static class Utility
         return string.Concat(Name.Trim()
                     .Select(c => char.IsWhiteSpace(c) ? '_' : c)
                     .Select(c => char.ToLower(c)));
+    }
+    // Wait For Frames
+    public static IEnumerator WaitForFrames(int frameCount, Action callback)
+    {
+        while (frameCount > 0)
+        {
+            frameCount--;
+            yield return null;
+        }
+        callback?.Invoke();
+    }
+    public static IEnumerator WaitForPhysicsUpdate(Action callback)
+    {
+        yield return new WaitForSeconds(Time.fixedDeltaTime);
+        callback?.Invoke();
     }
 }
