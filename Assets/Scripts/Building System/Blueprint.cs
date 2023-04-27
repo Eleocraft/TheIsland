@@ -1,16 +1,24 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider))]
 public class Blueprint : MonoBehaviour
 {
-    private int collisions;
-    public bool Blocked => collisions > 0;
+    private List<Collider> collisions = new();
+    public bool Blocked
+    {
+        get
+        {
+            collisions.RemoveAll(col => col == null);
+            return collisions.Count > 0;
+        }
+    }
     private void OnTriggerEnter(Collider col)
     {
-        collisions++;
+        collisions.Add(col);
     }
     private void OnTriggerExit(Collider col)
     {
-        collisions--;
+        collisions.Remove(col);
     }
 }

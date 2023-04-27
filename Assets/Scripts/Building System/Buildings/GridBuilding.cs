@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GridBuilding : Building
 {
-    [SerializeField] private BuildingSnappingPoint[] snappingPoints;
+    private BuildingSnappingPoint[] snappingPoints;
     public bool checkingForStability { get; private set; }
     private bool recalculatingStability;
     private List<StandaloneGridBuilding> connectedStandaloneBuildings = new();
@@ -14,6 +14,10 @@ public class GridBuilding : Building
     {
         get => stabilities;
         set => stabilities = (Dictionary<int, int>)value;
+    }
+    void Awake()
+    {
+        snappingPoints = GetComponentsInChildren<BuildingSnappingPoint>();
     }
     public override void Initialize()
     {

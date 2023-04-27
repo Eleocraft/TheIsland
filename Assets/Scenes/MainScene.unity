@@ -6791,7 +6791,7 @@ MonoBehaviour:
   sprintSpeedMultiplier: 2
   normalSpeed: 3
   defaultGroundCheck: {fileID: 1327681859}
-  groundDistance: 0.2
+  groundDistance: 0.3
   groundMask:
     serializedVersion: 2
     m_Bits: 364161
@@ -10787,7 +10787,7 @@ MonoBehaviour:
   ikWeightDistance: 30
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1665
+    m_Bits: 362113
 --- !u!95 &1136619758
 Animator:
   serializedVersion: 5
@@ -12315,7 +12315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327681858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.265, z: 0}
+  m_LocalPosition: {x: -0, y: -1.097, z: 0.203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

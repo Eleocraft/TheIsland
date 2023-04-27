@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb30e424ab40b546b21a6c91bcfffb1, type: 3}
+  m_Name: Wall
+  m_EditorClassIdentifier: 
+  Id: wall
+  Image: {fileID: 21300000, guid: c4044530716cbc546ab927145995da42, type: 3}
+  buildingPrefab: {fileID: 8292119273092716378, guid: d04f9f3040de15e439a19deda68123a6, type: 3}
+  blueprintPrefab: {fileID: 1230559406503811189, guid: d2a889321ba86f34ea865a420216f08d, type: 3}
+  BuildingLevel: 0
+  Cost: []
+  FreePlacingLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  allowRotation: 0
+  description: Walls

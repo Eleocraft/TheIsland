@@ -8,7 +8,7 @@ public class SimpleBuildingSnappingPoint : BuildingSnappingPoint
     public override bool TryGetSnappingInfo(BuildingType buildingType, out Vector3 position, out float yangle, out bool allowRotation)
     {
         position = transform.position;
-        yangle = transform.parent.eulerAngles.y;
+        yangle = transform.eulerAngles.y;
         allowRotation = this.allowRotation;
 
         return buildingType == type && SnappingPointActive;

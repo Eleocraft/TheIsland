@@ -81,7 +81,7 @@ public class BuildingActionController : MonoBehaviour
         }
         else if (PlayerInventory.TryGetActiveItem(out Item equippedItem) && equippedItem.ItemObject.Type == ItemType.Hammer)
         {
-            Debug.Log("WIP Build");
+            //Debug.Log("WIP Build");
         }
     }
     private void Delete(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
