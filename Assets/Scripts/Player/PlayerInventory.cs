@@ -8,12 +8,10 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     private Inventory inventory;
     private Inventory equipmentInventory;
     private Inventory hotbar;
-    private Inventory fightingHotbar;
     [Header("--Panels")]
     [SerializeField] private InventoryInterface inventoryInterface;
     [SerializeField] private InventoryInterface equipmentInventoryInterface;
     [SerializeField] private HotbarInterface hotbarInterface;
-    [SerializeField] private InventoryInterface fightingHotbarInterface;
     public static InventoryInterface ChestInterface => Instance.chestInterface;
     [SerializeField] private InventoryInterface chestInterface;
     [Header("--Main Player Inv Settings")]
@@ -30,7 +28,6 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     [SerializeField] private float fadeTime;
     [Header("--PlayerModel")]
     [SerializeField] private Transform ToolContainer;
-    [SerializeField] private Transform WeaponContainer;
     [SerializeField] private SkinnedMeshRenderer[] ThirdPersonArms;
     [SerializeField] private Animator armAnimator;
     private Dictionary<ItemObject, GameObject> newItemDisplayObjects = new Dictionary<ItemObject, GameObject>();
@@ -48,11 +45,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
 
     public static Item activeItem => Instance.hotbar.Slots[Instance.activeSlot].item;
 
-    private bool PortableItem => (PlayerStateManager.State == PlayerState.ThirdPerson) ? false : activeItem?.ItemObject as PortableItem;
-
-    public static Item mainWeapon => Instance.fightingHotbar.Slots[0].item;
-
-    public static Item bow => Instance.fightingHotbar.Slots[1].item;
+    private bool PortableItem => activeItem?.ItemObject as PortableItem;
     // Save data
     [Save(SaveType.player)]
     public static object PlayerInventorySaveData
@@ -90,19 +83,6 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         get => Instance.activeSlot;
         set => Instance.activeSlot = (int)value;
     }
-    [Save(SaveType.player)]
-    public static object FightingHotbarSaveData
-    {
-        get => Instance.fightingHotbar;
-        set {
-            Instance.fightingHotbar = (Inventory)value;
-            Instance.fightingHotbarInterface.Initialize(Instance.fightingHotbar);
-            Instance.fightingHotbar.Load();
-            Instance.fightingHotbar.Slots[0].OnAfterUpdate += slot => Instance.UpdatePortableWeapon();
-            //Instance.fightingHotbar.Slots[1].OnAfterUpdate += slot => Instance.UpdatePortableWeapon();
-        }
-    }
-
     public static bool TryGetActiveItem(out Item item)
     {
         item = Instance.hotbar.Slots[Instance.activeSlot].item;
@@ -121,12 +101,10 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         inventory = new Inventory(slotCount, maxStack);
         equipmentInventory = new Inventory(eqSlotCount, 1);
         hotbar = new Inventory(hotbarSlotCount, maxStack);
-        fightingHotbar = new Inventory(3, 1);
 
         inventoryInterface.Initialize(inventory);
         equipmentInventoryInterface.Initialize(equipmentInventory);
         hotbarInterface.Initialize(hotbar);
-        fightingHotbarInterface.Initialize(fightingHotbar);
     }
 
     void Start()
@@ -134,19 +112,17 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         controls = GlobalData.controls;
         controls.Menus.ToggleInventory.performed += toggleInventoryKey;
 
-        controls.PlayerFP.Hotbarslot1.performed += ChangeToHotbarSlot1;
-        controls.PlayerFP.Hotbarslot2.performed += ChangeToHotbarSlot2;
-        controls.PlayerFP.Hotbarslot3.performed += ChangeToHotbarSlot3;
-        controls.PlayerFP.Hotbarslot4.performed += ChangeToHotbarSlot4;
-        controls.PlayerFP.Hotbarslot5.performed += ChangeToHotbarSlot5;
-        controls.PlayerFP.Hotbarslot6.performed += ChangeToHotbarSlot6;
-        controls.PlayerFP.Hotbarslot7.performed += ChangeToHotbarSlot7;
-        PlayerStateManager.GamemodeChange += ThirdPersonToggle;
+        controls.Player.Hotbarslot1.performed += ChangeToHotbarSlot1;
+        controls.Player.Hotbarslot2.performed += ChangeToHotbarSlot2;
+        controls.Player.Hotbarslot3.performed += ChangeToHotbarSlot3;
+        controls.Player.Hotbarslot4.performed += ChangeToHotbarSlot4;
+        controls.Player.Hotbarslot5.performed += ChangeToHotbarSlot5;
+        controls.Player.Hotbarslot6.performed += ChangeToHotbarSlot6;
+        controls.Player.Hotbarslot7.performed += ChangeToHotbarSlot7;
 
         inventoryInterface.OnItemDropped += ItemDropManager.DropItemAmount;
         equipmentInventoryInterface.OnItemDropped += ItemDropManager.DropItemAmount;
         hotbarInterface.OnItemDropped += ItemDropManager.DropItemAmount;
-        fightingHotbarInterface.OnItemDropped += ItemDropManager.DropItemAmount;
 
         for (int i = 0; i < hotbar.Slots.Length; i++)
         {
@@ -154,7 +130,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
             hotbar.Slots[i].OnAfterUpdate += slot => { if (activeSlot == SlotNum) ChangeHotbarSlot(SlotNum); };
         }
 
-        controls.MouseFP.HotbarslotChange.performed += Scroll;
+        controls.Mouse.HotbarslotChange.performed += Scroll;
         ChangeHotbarSlot(activeSlot);
     }
     void ChangeToHotbarSlot1(UnityEngine.InputSystem.InputAction.CallbackContext ctx) => ChangeHotbarSlot(0);
@@ -168,36 +144,21 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     void OnDestroy()
     {
         controls.Menus.ToggleInventory.performed -= toggleInventoryKey;
-        controls.PlayerFP.Hotbarslot1.performed -= ChangeToHotbarSlot1;
-        controls.PlayerFP.Hotbarslot2.performed -= ChangeToHotbarSlot2;
-        controls.PlayerFP.Hotbarslot3.performed -= ChangeToHotbarSlot3;
-        controls.PlayerFP.Hotbarslot4.performed -= ChangeToHotbarSlot4;
-        controls.PlayerFP.Hotbarslot5.performed -= ChangeToHotbarSlot5;
-        controls.PlayerFP.Hotbarslot6.performed -= ChangeToHotbarSlot6;
-        controls.PlayerFP.Hotbarslot7.performed -= ChangeToHotbarSlot7;
-        PlayerStateManager.GamemodeChange -= ThirdPersonToggle;
+        controls.Player.Hotbarslot1.performed -= ChangeToHotbarSlot1;
+        controls.Player.Hotbarslot2.performed -= ChangeToHotbarSlot2;
+        controls.Player.Hotbarslot3.performed -= ChangeToHotbarSlot3;
+        controls.Player.Hotbarslot4.performed -= ChangeToHotbarSlot4;
+        controls.Player.Hotbarslot5.performed -= ChangeToHotbarSlot5;
+        controls.Player.Hotbarslot6.performed -= ChangeToHotbarSlot6;
+        controls.Player.Hotbarslot7.performed -= ChangeToHotbarSlot7;
 
         inventoryInterface.OnItemDropped -= ItemDropManager.DropItemAmount;
         equipmentInventoryInterface.OnItemDropped -= ItemDropManager.DropItemAmount;
         hotbarInterface.OnItemDropped -= ItemDropManager.DropItemAmount;
-        fightingHotbarInterface.OnItemDropped -= ItemDropManager.DropItemAmount;
 
         if(closeCallback != null)
             foreach (Delegate d in closeCallback.GetInvocationList())
                 closeCallback -= d as Action;
-    }
-    void ThirdPersonToggle(PlayerState newState)
-    {
-        hotbarInterface.gameObject.SetActive(newState == PlayerState.FirstPerson);
-        fightingHotbarInterface.gameObject.SetActive(newState == PlayerState.ThirdPerson);
-        if (newState == PlayerState.ThirdPerson)
-        {
-            ActivateThirdPersonArms();
-            Destroy(ItemInHand);
-            UpdatePortableWeapon();
-        }
-        else
-            UpdatePortableItem();
     }
     void ActivateThirdPersonArms()
     {
@@ -240,12 +201,6 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         else
             ActivateThirdPersonArms();
     }
-    void UpdatePortableWeapon()
-    {
-        Destroy(ActiveWeapon);
-        if (mainWeapon != null)
-            ActiveWeapon = Instantiate(((MeleeWeaponItem)mainWeapon.ItemObject).weaponPrefab, WeaponContainer);
-    }
     public static void ToggleInventory(Action closeCallback)
     {
         Instance.toggleInventory();
@@ -263,19 +218,11 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         {
             EscQueue.Enqueue(toggleInventory);
             CursorStateMachine.ChangeCursorState(false, this);
-            if (PlayerStateManager.State == PlayerState.ThirdPerson)
-                hotbarInterface.gameObject.SetActive(true);
-            else
-                fightingHotbarInterface.gameObject.SetActive(true);
         }
         else
         {
             EscQueue.Remove(toggleInventory);
             CursorStateMachine.ChangeCursorState(true, this);
-            if (PlayerStateManager.State == PlayerState.ThirdPerson)
-                hotbarInterface.gameObject.SetActive(false);
-            else
-                fightingHotbarInterface.gameObject.SetActive(false);
             closeCallback?.Invoke();
         }
     }
@@ -287,7 +234,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     public static void AddItem(ItemAmountInfo info) => Instance.addItem(info.itemObj.CreateItem(), info.amount);
     public void addItem(Item item, int amount)
     {
-        // First try adding to existing stacks
+        // First try adding to existing stacks (To prevent items from being added to the hotbar if it can stack in the inventory)
         if (hotbar.AddItemToStack(item, amount, out int droppedAmount))
         {
             createNewItemDisplay(item, amount);

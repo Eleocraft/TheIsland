@@ -35,6 +35,42 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MainAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef927fab-fcac-4581-9cb5-1c5aac3d8939"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""db332ec5-c910-4036-aee2-3ba171a2ed19"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HotbarslotChange"",
+                    ""type"": ""Value"",
+                    ""id"": ""a1cc96fe-7e08-4459-8f8f-8af9c5fbe7bc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TertiaryAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""de5cece3-c8cb-4e0f-a9eb-532fcf72f68e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +128,61 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""View"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7074da78-6137-46b4-ae22-491d3dbce7e0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""MainAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81a2aa0e-222d-4ebf-8685-1870e232b6bf"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MainAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02176dd2-92db-43e6-bba9-0292a581ddba"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""SecondaryAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8815500d-21ad-4259-a4b2-6e63031d4fc6"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2"",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""HotbarslotChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4655dda-6644-4ffd-8922-2b84075b54ca"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""TertiaryAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -127,9 +218,90 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ChangeMode"",
+                    ""name"": ""Interaction"",
                     ""type"": ""Button"",
-                    ""id"": ""615bfd7a-8f44-4998-b1c3-9dd57fbcfa3b"",
+                    ""id"": ""5f442502-db4f-49a6-a050-9af3a6cf1226"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce86ea07-4bfb-496c-b06d-7ebc00a7f3f7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1b96ac0-63ec-4c2b-828c-28983fd7ba75"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbarslot1"",
+                    ""type"": ""Button"",
+                    ""id"": ""9add3451-dee1-44e0-95f0-57d7fcb46f05"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbarslot2"",
+                    ""type"": ""Button"",
+                    ""id"": ""4bfb31c6-8199-454b-b2c9-074621cd52be"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbarslot3"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8b62323-c361-47a9-951c-935c28af40c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbarslot4"",
+                    ""type"": ""Button"",
+                    ""id"": ""5851c3e6-faf0-436b-8839-7bf25738c7ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbarslot5"",
+                    ""type"": ""Button"",
+                    ""id"": ""17584dbc-624d-4610-9bb0-9f63a0781367"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbarslot6"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b4fb00d-f43b-4c65-90ee-7ae470f8bd00"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbarslot7"",
+                    ""type"": ""Button"",
+                    ""id"": ""52cff4d4-082a-4182-9ae4-aa49ea3ba4eb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -249,226 +421,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2bea8610-4c0b-4049-b8a9-1ffb85b00eb0"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""ChangeMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ba5fc8dc-6348-421a-b588-d40f894b2b6a"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""ChangeMode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""MouseFP"",
-            ""id"": ""cdb2c323-00bb-4fa3-8420-1ffa04fab95a"",
-            ""actions"": [
-                {
-                    ""name"": ""MainAction"",
-                    ""type"": ""Button"",
-                    ""id"": ""3a875af5-db99-49f4-97f2-f6090ddfabf4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SecondaryAction"",
-                    ""type"": ""Button"",
-                    ""id"": ""496a9f16-d308-4be6-970d-840cd8f1894c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""HotbarslotChange"",
-                    ""type"": ""Value"",
-                    ""id"": ""5eda4c56-ab40-4048-818a-df3bb23e043d"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""TertiaryAction"",
-                    ""type"": ""Button"",
-                    ""id"": ""78e5625f-6d89-437f-97fb-7fc49966c21f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""a9db6708-9585-41e7-b474-b46c536e71d9"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""MainAction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6228d37d-a5b7-4928-a9f5-0e5b11ca4035"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MainAction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7163de2a-0738-47d0-843a-22c4b50f6043"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""SecondaryAction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6d6599ca-26c7-4ba7-b15d-3473ef2a8eae"",
-                    ""path"": ""<Mouse>/scroll"",
-                    ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""HotbarslotChange"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4538bf63-fd2f-4ca1-965d-d048068f24e8"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""TertiaryAction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""PlayerFP"",
-            ""id"": ""57e3b50d-6e7b-4663-abb9-41c809ff1610"",
-            ""actions"": [
-                {
-                    ""name"": ""Interaction"",
-                    ""type"": ""Button"",
-                    ""id"": ""2b97ad86-b75f-422e-9626-ff6a50c0fcd1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Drop"",
-                    ""type"": ""Button"",
-                    ""id"": ""b9b25248-5ebf-4988-92fd-5e3cb1335106"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SecondaryInteraction"",
-                    ""type"": ""Button"",
-                    ""id"": ""00651684-652b-424c-9fbf-46b4ac993976"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Hotbarslot1"",
-                    ""type"": ""Button"",
-                    ""id"": ""01577af6-f730-4d37-ac11-5fe56bd20a90"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Hotbarslot2"",
-                    ""type"": ""Button"",
-                    ""id"": ""85c7fb5c-0c41-4039-b9e5-661f46607141"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Hotbarslot3"",
-                    ""type"": ""Button"",
-                    ""id"": ""8c580906-ce31-41d4-ba8f-711227de84dd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Hotbarslot4"",
-                    ""type"": ""Button"",
-                    ""id"": ""4a0eb1d9-15c2-43dd-992d-47f287756e19"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Hotbarslot5"",
-                    ""type"": ""Button"",
-                    ""id"": ""bb7c7806-4b32-4a7c-a9cc-034b516a2d53"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Hotbarslot6"",
-                    ""type"": ""Button"",
-                    ""id"": ""b5ea05fe-a653-404e-b434-206975547ed4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Hotbarslot7"",
-                    ""type"": ""Button"",
-                    ""id"": ""72d9c2b6-bbce-4e26-a2db-f71bdd85fcd0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""69009410-aeaa-497d-9274-0753d372a006"",
+                    ""id"": ""2eff7d9a-b1b1-4acc-9d87-dc72cdd9f240"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -479,7 +432,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ea050d2a-58a4-4c50-8f84-4dff9aa088e9"",
+                    ""id"": ""2cf30f26-ada9-4719-80f5-603de496441a"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -490,7 +443,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3c6b5f21-81fd-44e6-9864-0e0754d97ad8"",
+                    ""id"": ""b98d4d39-9056-4334-b375-bc94aa3c1340"",
                     ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -501,7 +454,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""44525734-1a66-4f6e-9ea0-9dc55a9317a0"",
+                    ""id"": ""73986139-04ad-44e4-a368-1e6c609f65bb"",
                     ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -512,7 +465,18 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1f159ce7-7b6a-4f3e-bca1-f7cc419eab2d"",
+                    ""id"": ""8752005d-5821-4190-9e7b-b9d1c1cda9b4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""SecondaryInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc79f1a1-d7db-4279-9130-e6e5d02dccc0"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -523,7 +487,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2264f02e-684d-46c5-aa7a-628a6b0da1f7"",
+                    ""id"": ""84517761-dc26-4acc-bc9a-38edc962b53a"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -534,7 +498,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b75c315b-1597-455f-b6f3-9115dad043d8"",
+                    ""id"": ""1c7dabed-3eac-442f-827e-4b8ddc5e0c66"",
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -545,7 +509,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2138c303-2daf-4faf-92c3-d26720af52e1"",
+                    ""id"": ""7ee8dda4-4610-49f6-a9b1-80cf6aa0281c"",
                     ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -556,7 +520,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""07302fd7-f1ad-4f7a-983a-a33a668d1929"",
+                    ""id"": ""579b2bc7-8a9c-4a77-ac0a-678823f18387"",
                     ""path"": ""<Keyboard>/5"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -567,7 +531,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""159a59dc-f2b4-470d-a682-facb9fc540fd"",
+                    ""id"": ""11930b53-73b0-4e22-a3cd-5037114bce0a"",
                     ""path"": ""<Keyboard>/6"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -578,99 +542,12 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""dd40510f-7bbd-49f4-a783-4c5a968af9da"",
+                    ""id"": ""f8362133-d3c6-43f5-8744-67dd716629fc"",
                     ""path"": ""<Keyboard>/7"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hotbarslot7"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c6b5d414-9c21-447b-872a-fd54ae31670c"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""SecondaryInteraction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""MouseTP"",
-            ""id"": ""10f92a2d-9909-45e2-ba6a-1f297db6da8b"",
-            ""actions"": [
-                {
-                    ""name"": ""DrawBow"",
-                    ""type"": ""Button"",
-                    ""id"": ""29def72c-4ec6-4baa-ad6c-77a5c75f781d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""7fe3099a-033b-4665-a680-1196e49fe93d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""a502de2e-0bc6-4849-8f61-f2d60ca00b56"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""DrawBow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""54f3af0b-53bb-403e-abd3-33bab251ec26"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""PlayerTP"",
-            ""id"": ""8f337fa3-9ac2-465b-b47a-d18e6c54c496"",
-            ""actions"": [
-                {
-                    ""name"": ""HeavyAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""27ec0ee3-33ba-41f3-b235-77eaac40dd44"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""59b4a79e-5757-43d0-88c1-c8caf35007d4"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""HeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1031,37 +908,25 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_View = m_Mouse.FindAction("View", throwIfNotFound: true);
+        m_Mouse_MainAction = m_Mouse.FindAction("MainAction", throwIfNotFound: true);
+        m_Mouse_SecondaryAction = m_Mouse.FindAction("SecondaryAction", throwIfNotFound: true);
+        m_Mouse_HotbarslotChange = m_Mouse.FindAction("HotbarslotChange", throwIfNotFound: true);
+        m_Mouse_TertiaryAction = m_Mouse.FindAction("TertiaryAction", throwIfNotFound: true);
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Running = m_Player.FindAction("Running", throwIfNotFound: true);
-        m_Player_ChangeMode = m_Player.FindAction("ChangeMode", throwIfNotFound: true);
-        // MouseFP
-        m_MouseFP = asset.FindActionMap("MouseFP", throwIfNotFound: true);
-        m_MouseFP_MainAction = m_MouseFP.FindAction("MainAction", throwIfNotFound: true);
-        m_MouseFP_SecondaryAction = m_MouseFP.FindAction("SecondaryAction", throwIfNotFound: true);
-        m_MouseFP_HotbarslotChange = m_MouseFP.FindAction("HotbarslotChange", throwIfNotFound: true);
-        m_MouseFP_TertiaryAction = m_MouseFP.FindAction("TertiaryAction", throwIfNotFound: true);
-        // PlayerFP
-        m_PlayerFP = asset.FindActionMap("PlayerFP", throwIfNotFound: true);
-        m_PlayerFP_Interaction = m_PlayerFP.FindAction("Interaction", throwIfNotFound: true);
-        m_PlayerFP_Drop = m_PlayerFP.FindAction("Drop", throwIfNotFound: true);
-        m_PlayerFP_SecondaryInteraction = m_PlayerFP.FindAction("SecondaryInteraction", throwIfNotFound: true);
-        m_PlayerFP_Hotbarslot1 = m_PlayerFP.FindAction("Hotbarslot1", throwIfNotFound: true);
-        m_PlayerFP_Hotbarslot2 = m_PlayerFP.FindAction("Hotbarslot2", throwIfNotFound: true);
-        m_PlayerFP_Hotbarslot3 = m_PlayerFP.FindAction("Hotbarslot3", throwIfNotFound: true);
-        m_PlayerFP_Hotbarslot4 = m_PlayerFP.FindAction("Hotbarslot4", throwIfNotFound: true);
-        m_PlayerFP_Hotbarslot5 = m_PlayerFP.FindAction("Hotbarslot5", throwIfNotFound: true);
-        m_PlayerFP_Hotbarslot6 = m_PlayerFP.FindAction("Hotbarslot6", throwIfNotFound: true);
-        m_PlayerFP_Hotbarslot7 = m_PlayerFP.FindAction("Hotbarslot7", throwIfNotFound: true);
-        // MouseTP
-        m_MouseTP = asset.FindActionMap("MouseTP", throwIfNotFound: true);
-        m_MouseTP_DrawBow = m_MouseTP.FindAction("DrawBow", throwIfNotFound: true);
-        m_MouseTP_Attack = m_MouseTP.FindAction("Attack", throwIfNotFound: true);
-        // PlayerTP
-        m_PlayerTP = asset.FindActionMap("PlayerTP", throwIfNotFound: true);
-        m_PlayerTP_HeavyAttack = m_PlayerTP.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
+        m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
+        m_Player_SecondaryInteraction = m_Player.FindAction("SecondaryInteraction", throwIfNotFound: true);
+        m_Player_Hotbarslot1 = m_Player.FindAction("Hotbarslot1", throwIfNotFound: true);
+        m_Player_Hotbarslot2 = m_Player.FindAction("Hotbarslot2", throwIfNotFound: true);
+        m_Player_Hotbarslot3 = m_Player.FindAction("Hotbarslot3", throwIfNotFound: true);
+        m_Player_Hotbarslot4 = m_Player.FindAction("Hotbarslot4", throwIfNotFound: true);
+        m_Player_Hotbarslot5 = m_Player.FindAction("Hotbarslot5", throwIfNotFound: true);
+        m_Player_Hotbarslot6 = m_Player.FindAction("Hotbarslot6", throwIfNotFound: true);
+        m_Player_Hotbarslot7 = m_Player.FindAction("Hotbarslot7", throwIfNotFound: true);
         // Raft
         m_Raft = asset.FindActionMap("Raft", throwIfNotFound: true);
         m_Raft_ChangeValue = m_Raft.FindAction("ChangeValue", throwIfNotFound: true);
@@ -1139,11 +1004,19 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Mouse;
     private IMouseActions m_MouseActionsCallbackInterface;
     private readonly InputAction m_Mouse_View;
+    private readonly InputAction m_Mouse_MainAction;
+    private readonly InputAction m_Mouse_SecondaryAction;
+    private readonly InputAction m_Mouse_HotbarslotChange;
+    private readonly InputAction m_Mouse_TertiaryAction;
     public struct MouseActions
     {
         private @InputMaster m_Wrapper;
         public MouseActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @View => m_Wrapper.m_Mouse_View;
+        public InputAction @MainAction => m_Wrapper.m_Mouse_MainAction;
+        public InputAction @SecondaryAction => m_Wrapper.m_Mouse_SecondaryAction;
+        public InputAction @HotbarslotChange => m_Wrapper.m_Mouse_HotbarslotChange;
+        public InputAction @TertiaryAction => m_Wrapper.m_Mouse_TertiaryAction;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1156,6 +1029,18 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @View.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnView;
                 @View.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnView;
                 @View.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnView;
+                @MainAction.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnMainAction;
+                @MainAction.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnMainAction;
+                @MainAction.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnMainAction;
+                @SecondaryAction.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnSecondaryAction;
+                @SecondaryAction.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnSecondaryAction;
+                @SecondaryAction.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnSecondaryAction;
+                @HotbarslotChange.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnHotbarslotChange;
+                @HotbarslotChange.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnHotbarslotChange;
+                @HotbarslotChange.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnHotbarslotChange;
+                @TertiaryAction.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnTertiaryAction;
+                @TertiaryAction.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnTertiaryAction;
+                @TertiaryAction.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnTertiaryAction;
             }
             m_Wrapper.m_MouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -1163,6 +1048,18 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @View.started += instance.OnView;
                 @View.performed += instance.OnView;
                 @View.canceled += instance.OnView;
+                @MainAction.started += instance.OnMainAction;
+                @MainAction.performed += instance.OnMainAction;
+                @MainAction.canceled += instance.OnMainAction;
+                @SecondaryAction.started += instance.OnSecondaryAction;
+                @SecondaryAction.performed += instance.OnSecondaryAction;
+                @SecondaryAction.canceled += instance.OnSecondaryAction;
+                @HotbarslotChange.started += instance.OnHotbarslotChange;
+                @HotbarslotChange.performed += instance.OnHotbarslotChange;
+                @HotbarslotChange.canceled += instance.OnHotbarslotChange;
+                @TertiaryAction.started += instance.OnTertiaryAction;
+                @TertiaryAction.performed += instance.OnTertiaryAction;
+                @TertiaryAction.canceled += instance.OnTertiaryAction;
             }
         }
     }
@@ -1174,7 +1071,16 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Running;
-    private readonly InputAction m_Player_ChangeMode;
+    private readonly InputAction m_Player_Interaction;
+    private readonly InputAction m_Player_Drop;
+    private readonly InputAction m_Player_SecondaryInteraction;
+    private readonly InputAction m_Player_Hotbarslot1;
+    private readonly InputAction m_Player_Hotbarslot2;
+    private readonly InputAction m_Player_Hotbarslot3;
+    private readonly InputAction m_Player_Hotbarslot4;
+    private readonly InputAction m_Player_Hotbarslot5;
+    private readonly InputAction m_Player_Hotbarslot6;
+    private readonly InputAction m_Player_Hotbarslot7;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -1182,7 +1088,16 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Running => m_Wrapper.m_Player_Running;
-        public InputAction @ChangeMode => m_Wrapper.m_Player_ChangeMode;
+        public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
+        public InputAction @Drop => m_Wrapper.m_Player_Drop;
+        public InputAction @SecondaryInteraction => m_Wrapper.m_Player_SecondaryInteraction;
+        public InputAction @Hotbarslot1 => m_Wrapper.m_Player_Hotbarslot1;
+        public InputAction @Hotbarslot2 => m_Wrapper.m_Player_Hotbarslot2;
+        public InputAction @Hotbarslot3 => m_Wrapper.m_Player_Hotbarslot3;
+        public InputAction @Hotbarslot4 => m_Wrapper.m_Player_Hotbarslot4;
+        public InputAction @Hotbarslot5 => m_Wrapper.m_Player_Hotbarslot5;
+        public InputAction @Hotbarslot6 => m_Wrapper.m_Player_Hotbarslot6;
+        public InputAction @Hotbarslot7 => m_Wrapper.m_Player_Hotbarslot7;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1201,9 +1116,36 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Running.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRunning;
                 @Running.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRunning;
                 @Running.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRunning;
-                @ChangeMode.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMode;
-                @ChangeMode.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMode;
-                @ChangeMode.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeMode;
+                @Interaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Drop.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop;
+                @Drop.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop;
+                @Drop.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrop;
+                @SecondaryInteraction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryInteraction;
+                @SecondaryInteraction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryInteraction;
+                @SecondaryInteraction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryInteraction;
+                @Hotbarslot1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot1;
+                @Hotbarslot1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot1;
+                @Hotbarslot1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot1;
+                @Hotbarslot2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot2;
+                @Hotbarslot2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot2;
+                @Hotbarslot2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot2;
+                @Hotbarslot3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot3;
+                @Hotbarslot3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot3;
+                @Hotbarslot3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot3;
+                @Hotbarslot4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot4;
+                @Hotbarslot4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot4;
+                @Hotbarslot4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot4;
+                @Hotbarslot5.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot5;
+                @Hotbarslot5.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot5;
+                @Hotbarslot5.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot5;
+                @Hotbarslot6.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot6;
+                @Hotbarslot6.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot6;
+                @Hotbarslot6.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot6;
+                @Hotbarslot7.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot7;
+                @Hotbarslot7.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot7;
+                @Hotbarslot7.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHotbarslot7;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1217,141 +1159,6 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Running.started += instance.OnRunning;
                 @Running.performed += instance.OnRunning;
                 @Running.canceled += instance.OnRunning;
-                @ChangeMode.started += instance.OnChangeMode;
-                @ChangeMode.performed += instance.OnChangeMode;
-                @ChangeMode.canceled += instance.OnChangeMode;
-            }
-        }
-    }
-    public PlayerActions @Player => new PlayerActions(this);
-
-    // MouseFP
-    private readonly InputActionMap m_MouseFP;
-    private IMouseFPActions m_MouseFPActionsCallbackInterface;
-    private readonly InputAction m_MouseFP_MainAction;
-    private readonly InputAction m_MouseFP_SecondaryAction;
-    private readonly InputAction m_MouseFP_HotbarslotChange;
-    private readonly InputAction m_MouseFP_TertiaryAction;
-    public struct MouseFPActions
-    {
-        private @InputMaster m_Wrapper;
-        public MouseFPActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MainAction => m_Wrapper.m_MouseFP_MainAction;
-        public InputAction @SecondaryAction => m_Wrapper.m_MouseFP_SecondaryAction;
-        public InputAction @HotbarslotChange => m_Wrapper.m_MouseFP_HotbarslotChange;
-        public InputAction @TertiaryAction => m_Wrapper.m_MouseFP_TertiaryAction;
-        public InputActionMap Get() { return m_Wrapper.m_MouseFP; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MouseFPActions set) { return set.Get(); }
-        public void SetCallbacks(IMouseFPActions instance)
-        {
-            if (m_Wrapper.m_MouseFPActionsCallbackInterface != null)
-            {
-                @MainAction.started -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnMainAction;
-                @MainAction.performed -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnMainAction;
-                @MainAction.canceled -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnMainAction;
-                @SecondaryAction.started -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnSecondaryAction;
-                @SecondaryAction.performed -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnSecondaryAction;
-                @SecondaryAction.canceled -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnSecondaryAction;
-                @HotbarslotChange.started -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnHotbarslotChange;
-                @HotbarslotChange.performed -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnHotbarslotChange;
-                @HotbarslotChange.canceled -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnHotbarslotChange;
-                @TertiaryAction.started -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnTertiaryAction;
-                @TertiaryAction.performed -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnTertiaryAction;
-                @TertiaryAction.canceled -= m_Wrapper.m_MouseFPActionsCallbackInterface.OnTertiaryAction;
-            }
-            m_Wrapper.m_MouseFPActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @MainAction.started += instance.OnMainAction;
-                @MainAction.performed += instance.OnMainAction;
-                @MainAction.canceled += instance.OnMainAction;
-                @SecondaryAction.started += instance.OnSecondaryAction;
-                @SecondaryAction.performed += instance.OnSecondaryAction;
-                @SecondaryAction.canceled += instance.OnSecondaryAction;
-                @HotbarslotChange.started += instance.OnHotbarslotChange;
-                @HotbarslotChange.performed += instance.OnHotbarslotChange;
-                @HotbarslotChange.canceled += instance.OnHotbarslotChange;
-                @TertiaryAction.started += instance.OnTertiaryAction;
-                @TertiaryAction.performed += instance.OnTertiaryAction;
-                @TertiaryAction.canceled += instance.OnTertiaryAction;
-            }
-        }
-    }
-    public MouseFPActions @MouseFP => new MouseFPActions(this);
-
-    // PlayerFP
-    private readonly InputActionMap m_PlayerFP;
-    private IPlayerFPActions m_PlayerFPActionsCallbackInterface;
-    private readonly InputAction m_PlayerFP_Interaction;
-    private readonly InputAction m_PlayerFP_Drop;
-    private readonly InputAction m_PlayerFP_SecondaryInteraction;
-    private readonly InputAction m_PlayerFP_Hotbarslot1;
-    private readonly InputAction m_PlayerFP_Hotbarslot2;
-    private readonly InputAction m_PlayerFP_Hotbarslot3;
-    private readonly InputAction m_PlayerFP_Hotbarslot4;
-    private readonly InputAction m_PlayerFP_Hotbarslot5;
-    private readonly InputAction m_PlayerFP_Hotbarslot6;
-    private readonly InputAction m_PlayerFP_Hotbarslot7;
-    public struct PlayerFPActions
-    {
-        private @InputMaster m_Wrapper;
-        public PlayerFPActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Interaction => m_Wrapper.m_PlayerFP_Interaction;
-        public InputAction @Drop => m_Wrapper.m_PlayerFP_Drop;
-        public InputAction @SecondaryInteraction => m_Wrapper.m_PlayerFP_SecondaryInteraction;
-        public InputAction @Hotbarslot1 => m_Wrapper.m_PlayerFP_Hotbarslot1;
-        public InputAction @Hotbarslot2 => m_Wrapper.m_PlayerFP_Hotbarslot2;
-        public InputAction @Hotbarslot3 => m_Wrapper.m_PlayerFP_Hotbarslot3;
-        public InputAction @Hotbarslot4 => m_Wrapper.m_PlayerFP_Hotbarslot4;
-        public InputAction @Hotbarslot5 => m_Wrapper.m_PlayerFP_Hotbarslot5;
-        public InputAction @Hotbarslot6 => m_Wrapper.m_PlayerFP_Hotbarslot6;
-        public InputAction @Hotbarslot7 => m_Wrapper.m_PlayerFP_Hotbarslot7;
-        public InputActionMap Get() { return m_Wrapper.m_PlayerFP; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerFPActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerFPActions instance)
-        {
-            if (m_Wrapper.m_PlayerFPActionsCallbackInterface != null)
-            {
-                @Interaction.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnInteraction;
-                @Interaction.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnInteraction;
-                @Interaction.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnInteraction;
-                @Drop.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnDrop;
-                @Drop.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnDrop;
-                @Drop.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnDrop;
-                @SecondaryInteraction.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnSecondaryInteraction;
-                @SecondaryInteraction.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnSecondaryInteraction;
-                @SecondaryInteraction.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnSecondaryInteraction;
-                @Hotbarslot1.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot1;
-                @Hotbarslot1.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot1;
-                @Hotbarslot1.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot1;
-                @Hotbarslot2.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot2;
-                @Hotbarslot2.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot2;
-                @Hotbarslot2.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot2;
-                @Hotbarslot3.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot3;
-                @Hotbarslot3.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot3;
-                @Hotbarslot3.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot3;
-                @Hotbarslot4.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot4;
-                @Hotbarslot4.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot4;
-                @Hotbarslot4.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot4;
-                @Hotbarslot5.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot5;
-                @Hotbarslot5.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot5;
-                @Hotbarslot5.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot5;
-                @Hotbarslot6.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot6;
-                @Hotbarslot6.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot6;
-                @Hotbarslot6.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot6;
-                @Hotbarslot7.started -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot7;
-                @Hotbarslot7.performed -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot7;
-                @Hotbarslot7.canceled -= m_Wrapper.m_PlayerFPActionsCallbackInterface.OnHotbarslot7;
-            }
-            m_Wrapper.m_PlayerFPActionsCallbackInterface = instance;
-            if (instance != null)
-            {
                 @Interaction.started += instance.OnInteraction;
                 @Interaction.performed += instance.OnInteraction;
                 @Interaction.canceled += instance.OnInteraction;
@@ -1385,81 +1192,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
             }
         }
     }
-    public PlayerFPActions @PlayerFP => new PlayerFPActions(this);
-
-    // MouseTP
-    private readonly InputActionMap m_MouseTP;
-    private IMouseTPActions m_MouseTPActionsCallbackInterface;
-    private readonly InputAction m_MouseTP_DrawBow;
-    private readonly InputAction m_MouseTP_Attack;
-    public struct MouseTPActions
-    {
-        private @InputMaster m_Wrapper;
-        public MouseTPActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
-        public InputAction @DrawBow => m_Wrapper.m_MouseTP_DrawBow;
-        public InputAction @Attack => m_Wrapper.m_MouseTP_Attack;
-        public InputActionMap Get() { return m_Wrapper.m_MouseTP; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MouseTPActions set) { return set.Get(); }
-        public void SetCallbacks(IMouseTPActions instance)
-        {
-            if (m_Wrapper.m_MouseTPActionsCallbackInterface != null)
-            {
-                @DrawBow.started -= m_Wrapper.m_MouseTPActionsCallbackInterface.OnDrawBow;
-                @DrawBow.performed -= m_Wrapper.m_MouseTPActionsCallbackInterface.OnDrawBow;
-                @DrawBow.canceled -= m_Wrapper.m_MouseTPActionsCallbackInterface.OnDrawBow;
-                @Attack.started -= m_Wrapper.m_MouseTPActionsCallbackInterface.OnAttack;
-                @Attack.performed -= m_Wrapper.m_MouseTPActionsCallbackInterface.OnAttack;
-                @Attack.canceled -= m_Wrapper.m_MouseTPActionsCallbackInterface.OnAttack;
-            }
-            m_Wrapper.m_MouseTPActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @DrawBow.started += instance.OnDrawBow;
-                @DrawBow.performed += instance.OnDrawBow;
-                @DrawBow.canceled += instance.OnDrawBow;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
-            }
-        }
-    }
-    public MouseTPActions @MouseTP => new MouseTPActions(this);
-
-    // PlayerTP
-    private readonly InputActionMap m_PlayerTP;
-    private IPlayerTPActions m_PlayerTPActionsCallbackInterface;
-    private readonly InputAction m_PlayerTP_HeavyAttack;
-    public struct PlayerTPActions
-    {
-        private @InputMaster m_Wrapper;
-        public PlayerTPActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
-        public InputAction @HeavyAttack => m_Wrapper.m_PlayerTP_HeavyAttack;
-        public InputActionMap Get() { return m_Wrapper.m_PlayerTP; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerTPActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerTPActions instance)
-        {
-            if (m_Wrapper.m_PlayerTPActionsCallbackInterface != null)
-            {
-                @HeavyAttack.started -= m_Wrapper.m_PlayerTPActionsCallbackInterface.OnHeavyAttack;
-                @HeavyAttack.performed -= m_Wrapper.m_PlayerTPActionsCallbackInterface.OnHeavyAttack;
-                @HeavyAttack.canceled -= m_Wrapper.m_PlayerTPActionsCallbackInterface.OnHeavyAttack;
-            }
-            m_Wrapper.m_PlayerTPActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @HeavyAttack.started += instance.OnHeavyAttack;
-                @HeavyAttack.performed += instance.OnHeavyAttack;
-                @HeavyAttack.canceled += instance.OnHeavyAttack;
-            }
-        }
-    }
-    public PlayerTPActions @PlayerTP => new PlayerTPActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
 
     // Raft
     private readonly InputActionMap m_Raft;
@@ -1644,23 +1377,16 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     public interface IMouseActions
     {
         void OnView(InputAction.CallbackContext context);
+        void OnMainAction(InputAction.CallbackContext context);
+        void OnSecondaryAction(InputAction.CallbackContext context);
+        void OnHotbarslotChange(InputAction.CallbackContext context);
+        void OnTertiaryAction(InputAction.CallbackContext context);
     }
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRunning(InputAction.CallbackContext context);
-        void OnChangeMode(InputAction.CallbackContext context);
-    }
-    public interface IMouseFPActions
-    {
-        void OnMainAction(InputAction.CallbackContext context);
-        void OnSecondaryAction(InputAction.CallbackContext context);
-        void OnHotbarslotChange(InputAction.CallbackContext context);
-        void OnTertiaryAction(InputAction.CallbackContext context);
-    }
-    public interface IPlayerFPActions
-    {
         void OnInteraction(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnSecondaryInteraction(InputAction.CallbackContext context);
@@ -1671,15 +1397,6 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnHotbarslot5(InputAction.CallbackContext context);
         void OnHotbarslot6(InputAction.CallbackContext context);
         void OnHotbarslot7(InputAction.CallbackContext context);
-    }
-    public interface IMouseTPActions
-    {
-        void OnDrawBow(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
-    }
-    public interface IPlayerTPActions
-    {
-        void OnHeavyAttack(InputAction.CallbackContext context);
     }
     public interface IRaftActions
     {

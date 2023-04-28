@@ -24,11 +24,11 @@ TagManager:
   - BuildingBlueprints
   - FloorBuilding
   - WallBuilding
-  - SnappingPoint
   - Building
   - 
-  - 
-  - 
+  - FloorSnappingPoint
+  - WallSnappingPoint
+  - FoundationSnappingPoint
   - 
   - 
   - 

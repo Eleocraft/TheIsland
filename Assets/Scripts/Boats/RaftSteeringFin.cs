@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RaftSteeringFin : MonoBehaviour, IInteractable
 {
-    public string InteractionInfo => $"hold {GlobalData.controls.PlayerFP.Interaction.bindings[0].ToDisplayString()} to turn";
+    public string InteractionInfo => $"hold {GlobalData.controls.Player.Interaction.bindings[0].ToDisplayString()} to turn";
     private RaftMovement movementControl;
     private bool active;
     private InputMaster controls;

@@ -25,11 +25,11 @@ public class ItemDropManager : MonoSingleton<ItemDropManager>
     void Start()
     {
         controls = GlobalData.controls;
-        controls.PlayerFP.Drop.performed += DropActiveItem;
+        controls.Player.Drop.performed += DropActiveItem;
     }
     void OnDestroy()
     {
-        controls.PlayerFP.Drop.performed -= DropActiveItem;
+        controls.Player.Drop.performed -= DropActiveItem;
     }
     public static void DropItemAmount(Item item, int amount) => Instance.dropItemAmount(item, amount);
     private void dropItemAmount(Item item, int amount)

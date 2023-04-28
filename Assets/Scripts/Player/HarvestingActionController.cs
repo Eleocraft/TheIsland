@@ -18,7 +18,7 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
     void Start()
     {
         controls = GlobalData.controls;
-        controls.MouseFP.MainAction.started += StartAction;
+        controls.Mouse.MainAction.started += StartAction;
         // If Hotbarslot is changed the current action should be stopped
         PlayerInventory.HotbarSlotChange += AbortAction;
         armAnimationEventHandler.Events["HitObject"] += HitObject;
@@ -26,7 +26,7 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
     }
     void OnDestroy()
     {
-        controls.MouseFP.MainAction.started -= StartAction;
+        controls.Mouse.MainAction.started -= StartAction;
         PlayerInventory.HotbarSlotChange -= AbortAction;
         armAnimationEventHandler.Events["HitObject"] -= HitObject;
         armAnimationEventHandler.Events["CritChance"] -= CritChance;

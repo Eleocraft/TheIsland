@@ -15,12 +15,17 @@ public class BrokenRaftPart : MonoBehaviour, IInteractable
 
     private BrokenRaft controller;
 
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        materials = meshRenderer.materials;
+        gameObject.SetActive(false);
+    }
+
     public void Activate(BrokenRaft controller)
     {
         gameObject.SetActive(true);
         this.controller = controller;
-        meshRenderer = GetComponent<MeshRenderer>();
-        materials = meshRenderer.materials;
         // Creating BluePrintMaterial Array
         Material[] bluePrintMaterials = new Material[materials.Length];
         for (int i = 0; i < materials.Length; i++)
@@ -39,6 +44,6 @@ public class BrokenRaftPart : MonoBehaviour, IInteractable
     {
         _repaired = true;
         meshRenderer.materials = materials;
-        controller.AddPart();
+        controller?.AddPart();
     }
 }

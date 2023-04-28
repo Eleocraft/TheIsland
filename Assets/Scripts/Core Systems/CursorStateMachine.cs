@@ -25,20 +25,12 @@ public class CursorStateMachine : MonoBehaviour
         if (Locked)
         {
             Cursor.lockState = CursorLockMode.Locked;
-
             controls.Mouse.Enable();
-            if (PlayerStateManager.State == PlayerState.ThirdPerson)
-                controls.MouseTP.Enable();
-            else
-                controls.MouseFP.Enable();
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
-
             controls.Mouse.Disable();
-            controls.MouseFP.Disable();
-            controls.MouseTP.Disable();
         }
     }
 }

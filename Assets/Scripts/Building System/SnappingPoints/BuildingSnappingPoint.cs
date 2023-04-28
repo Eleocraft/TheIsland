@@ -10,7 +10,7 @@ public abstract class BuildingSnappingPoint : MonoBehaviour
     private int connectedBuildingStability = -1;
     private void OnTriggerEnter(Collider col)
     {
-        if (col.TryGetComponent(out GridBuilding building) && TryGetSnappingInfo(building.BuildingObject.buildingType, out Vector3 position, out float yangle, out bool allowRotation)
+        if (col.TryGetComponent(out GridBuilding building) && TryGetSnappingInfo(building.BuildingObject.buildingType, out Vector3 position, out float yangle)
             && (position - col.transform.position).sqrMagnitude < floatTolerance)
             connectedBuilding = building;
     }
@@ -43,5 +43,5 @@ public abstract class BuildingSnappingPoint : MonoBehaviour
 
         connectedBuilding.RecalculateCalculateStabilityAfterPhysicsUpdate();
     }
-    public abstract bool TryGetSnappingInfo(BuildingType buildingType, out Vector3 position, out float yangle, out bool allowRotation);
+    public abstract bool TryGetSnappingInfo(BuildingType buildingType, out Vector3 position, out float yangle);
 }

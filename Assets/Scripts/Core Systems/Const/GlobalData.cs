@@ -17,6 +17,5 @@ public class GlobalData : MonoBehaviour
         // Global InputMaster
         controls = new InputMaster();
         controls.Enable();
-        controls.PlayerTP.Disable();
     }
 }

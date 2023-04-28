@@ -6,10 +6,11 @@ public class BuildingActionController : MonoBehaviour
     [SerializeField] private Transform CameraTransform;
     [SerializeField] private float HitRange;
     [SerializeField] private LayerMask FreePlaceLayers;
-    [SerializeField] private LayerMask SnappingPointLayer;
     [SerializeField] private LayerMask BuildingSortingLayers;
     [SerializeField] private Color BlockedColor;
     [SerializeField] private Color BuildableColor;
+
+    private LayerMask snappingPointLayer;
     InputMaster controls;
     ActiveBuildingBlueprint activeBlueprint;
     float angleOffset;
@@ -18,18 +19,18 @@ public class BuildingActionController : MonoBehaviour
         activeBlueprint = new(this);
 
         controls = GlobalData.controls;
-        controls.MouseFP.SecondaryAction.performed += OpenBuildMenu;
-        controls.MouseFP.MainAction.performed += MainAction;
-        controls.MouseFP.TertiaryAction.performed += Delete;
-        controls.PlayerFP.SecondaryInteraction.performed += Rotate;
+        controls.Mouse.SecondaryAction.performed += OpenBuildMenu;
+        controls.Mouse.MainAction.performed += MainAction;
+        controls.Mouse.TertiaryAction.performed += Delete;
+        controls.Player.SecondaryInteraction.performed += Rotate;
         PlayerInventory.HotbarSlotChange += EndBuildMode;
     }
     void OnDestroy()
     {
-        controls.MouseFP.SecondaryAction.performed -= OpenBuildMenu;
-        controls.MouseFP.MainAction.performed -= MainAction;
-        controls.MouseFP.TertiaryAction.performed -= Delete;
-        controls.PlayerFP.SecondaryInteraction.performed -= Rotate;
+        controls.Mouse.SecondaryAction.performed -= OpenBuildMenu;
+        controls.Mouse.MainAction.performed -= MainAction;
+        controls.Mouse.TertiaryAction.performed -= Delete;
+        controls.Player.SecondaryInteraction.performed -= Rotate;
         PlayerInventory.HotbarSlotChange -= EndBuildMode;
     }
 
@@ -65,6 +66,7 @@ public class BuildingActionController : MonoBehaviour
     {
         CloseBuildMenu();
         activeBlueprint.ActivateBlueprint(Instantiate(buildingObject.blueprintPrefab), buildingObject);
+        snappingPointLayer = BuildingDatabase.BuildingTypeToSnappingLayer(buildingObject.buildingType);
     }
     private void EndBuildMode()
     {
@@ -101,13 +103,13 @@ public class BuildingActionController : MonoBehaviour
         if (!activeBlueprint.BuildMode)
             return;
         // Snapping
-        if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit snapHitData, HitRange, SnappingPointLayer) &&
+        if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit snapHitData, HitRange, snappingPointLayer) &&
             snapHitData.collider.TryGetComponent(out BuildingSnappingPoint snappingPoint) && 
-            snappingPoint.TryGetSnappingInfo(activeBlueprint.Object.buildingType, out Vector3 position, out float yangle, out bool allowRotation))
+            snappingPoint.TryGetSnappingInfo(activeBlueprint.Object.buildingType, out Vector3 position, out float yangle))
         {
             activeBlueprint.PlacingPossible = !activeBlueprint.Blueprint.Blocked;
             activeBlueprint.SetPosition(position);
-            activeBlueprint.SetRotation(Vector3.up, allowRotation && activeBlueprint.Object.allowRotation ? GetAngle(yangle) : yangle);
+            activeBlueprint.SetRotation(Vector3.up, activeBlueprint.Object.allowRotation ? GetAngle(yangle) : yangle);
         }
         //FreePlacing
         else if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit hitData, HitRange, FreePlaceLayers))

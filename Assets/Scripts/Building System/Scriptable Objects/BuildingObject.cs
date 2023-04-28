@@ -33,6 +33,8 @@ public abstract class BuildingObject : ScriptableObject
             new TextTooltipAttributeData(TooltipAttributeType.description, description),
             new HammerLevelTooltipAttributeData(BuildingLevel, ((HammerItem)item.ItemObject).HammerLevel >= BuildingLevel)
         };
+        foreach (ItemAmountInfo info in Cost)
+            data.Add(new MaterialTooltipAttributeData(info));
         return data;
     }
 }

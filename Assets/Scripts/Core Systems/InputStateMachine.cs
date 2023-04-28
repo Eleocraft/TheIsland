@@ -22,18 +22,8 @@ public class InputStateMachine : MonoBehaviour
             locker.RemoveLock(lockObj);
 
         if (Active)
-        {
             controls.Player.Enable();
-            if (PlayerStateManager.State == PlayerState.ThirdPerson)
-                controls.PlayerTP.Enable();
-            else
-                controls.PlayerFP.Enable();
-        }
         else
-        {
             controls.Player.Disable();
-            controls.PlayerFP.Disable();
-            controls.PlayerTP.Disable();
-        }
     }
 }

@@ -3,13 +3,11 @@ using UnityEngine;
 public class SimpleBuildingSnappingPoint : BuildingSnappingPoint
 {
     [SerializeField] private BuildingType type;
-    [SerializeField] private bool allowRotation = true;
 
-    public override bool TryGetSnappingInfo(BuildingType buildingType, out Vector3 position, out float yangle, out bool allowRotation)
+    public override bool TryGetSnappingInfo(BuildingType buildingType, out Vector3 position, out float yangle)
     {
         position = transform.position;
         yangle = transform.eulerAngles.y;
-        allowRotation = this.allowRotation;
 
         return buildingType == type && SnappingPointActive;
     }

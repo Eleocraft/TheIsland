@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Dummy : IDamagable
+public class Dummy
 {
     public void OnHit()
     {

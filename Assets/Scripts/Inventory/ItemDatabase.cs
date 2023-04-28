@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDatabase : MonoSingleton<ItemDatabase>
+public class ItemDatabase : MonoBehaviour
 {
     [SerializeField] private List<ItemObject> EditorItemObjects;
     public static Dictionary<string, ItemObject> ItemObjects { get; private set; }
 
     public void Awake()
     {
+#if UNITY_EDITOR
+        GetItems();
+#endif
         ItemObjects = new();
         for (int i = 0; i < EditorItemObjects.Count; i++)
         {

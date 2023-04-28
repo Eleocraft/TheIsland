@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1543827607677126212}
   - component: {fileID: 1716092591656304803}
   - component: {fileID: 6700580748381546509}
-  m_Layer: 17
+  m_Layer: 20
   m_Name: WallSnapPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 6884499116584593028}
   - component: {fileID: 276615877570524794}
   - component: {fileID: 6622888910090223712}
-  m_Layer: 17
+  m_Layer: 20
   m_Name: WallSnapPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 6438115114100656607}
   - component: {fileID: 3223383825776091261}
   - component: {fileID: 7786494638416107961}
-  m_Layer: 17
+  m_Layer: 19
   m_Name: FloorSnapPoint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,12 +321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingObject: {fileID: 11400000, guid: cb5e09c9d5f210d4d946d29e80dc0aa1, type: 2}
-  snappingPoints:
-  - {fileID: 3768232105081774211}
-  - {fileID: 4676136376783070784}
-  - {fileID: 311410744334149981}
-  - {fileID: 7786494638416107961}
-  - {fileID: 7985214085855784289}
 --- !u!1 &2852063674408935967
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +332,7 @@ GameObject:
   - component: {fileID: 4238723218336197522}
   - component: {fileID: 3580581482501532560}
   - component: {fileID: 311410744334149981}
-  m_Layer: 17
+  m_Layer: 19
   m_Name: FloorSnapPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +393,7 @@ GameObject:
   - component: {fileID: 6295972691536369229}
   - component: {fileID: 1561598558935105423}
   - component: {fileID: 7985214085855784289}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: FoundationSnapPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +454,7 @@ GameObject:
   - component: {fileID: 4106378239500589035}
   - component: {fileID: 6547335365257902168}
   - component: {fileID: 4676136376783070784}
-  m_Layer: 17
+  m_Layer: 19
   m_Name: FloorSnapPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +515,7 @@ GameObject:
   - component: {fileID: 3915369028880929232}
   - component: {fileID: 6410266163906435190}
   - component: {fileID: 7562493517642190358}
-  m_Layer: 17
+  m_Layer: 20
   m_Name: WallSnapPoint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +576,7 @@ GameObject:
   - component: {fileID: 4603345762045895856}
   - component: {fileID: 7030704140891676469}
   - component: {fileID: 3768232105081774211}
-  m_Layer: 17
+  m_Layer: 19
   m_Name: FloorSnapPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,7 +637,7 @@ GameObject:
   - component: {fileID: 3046122251786816356}
   - component: {fileID: 3740693137664053097}
   - component: {fileID: 7955951253358702721}
-  m_Layer: 17
+  m_Layer: 20
   m_Name: WallSnapPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

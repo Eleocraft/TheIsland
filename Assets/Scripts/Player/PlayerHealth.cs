@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerHealth : MonoSingleton<PlayerHealth>, IDamagable
+public class PlayerHealth : MonoSingleton<PlayerHealth>
 {
     [SerializeField] private float MaxLife;
     [SerializeField] private IndicatorBar lifeBar;

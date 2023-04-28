@@ -56,7 +56,7 @@ public enum TooltipAttributeType
     AttackValue,
     DefenseValue,
     BuildingLevel,
-    BuildingCost,
+    MaterialCost,
     HarvestingSpeed
 }
 public class TooltipAttributeData

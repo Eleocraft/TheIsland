@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8579363768300984460}
   - component: {fileID: 3909637809414732593}
   - component: {fileID: 7625141879596973101}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: FoundationSnapPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 10
   type: 1
-  allowRotation: 1
 --- !u!1 &6064519473882287679
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +71,7 @@ GameObject:
   - component: {fileID: 6661938738712183887}
   - component: {fileID: 2047343086432778932}
   - component: {fileID: 6571491106290806669}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: FoundationSnapPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 10
   type: 1
-  allowRotation: 1
 --- !u!1 &6497754093134320183
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +131,7 @@ GameObject:
   - component: {fileID: 8231278194060543739}
   - component: {fileID: 4301321839970872583}
   - component: {fileID: 4105916109537115912}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: BottomSnappingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 2
   type: 1
-  allowRotation: 0
 --- !u!1 &6820567507243570287
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +194,7 @@ GameObject:
   - component: {fileID: 9103584198757093202}
   - component: {fileID: 8731727761858410909}
   - component: {fileID: 1606130815333472528}
-  m_Layer: 18
+  m_Layer: 17
   m_Name: FoundationStaircase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,11 +315,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingObject: {fileID: 11400000, guid: 9204578d66167a947aa748af8f70ecfd, type: 2}
-  snappingPoints:
-  - {fileID: 7625141879596973101}
-  - {fileID: 6665822502430456758}
-  - {fileID: 6571491106290806669}
-  - {fileID: 4105916109537115912}
   BottomSnappingPoint: {fileID: 6497754093134320183}
   FoundationBase: {fileID: 8213717018197533350, guid: 45ed218f52574214d8444c1ae80d2638, type: 3}
   CheckLayer:
@@ -372,7 +364,7 @@ GameObject:
   - component: {fileID: 5227705668619317811}
   - component: {fileID: 1084343329895040744}
   - component: {fileID: 6665822502430456758}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: FoundationSnapPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,4 +413,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 10
   type: 1
-  allowRotation: 1

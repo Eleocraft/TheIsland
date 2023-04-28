@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7207137026777851096}
   - component: {fileID: 5379706785744734771}
   - component: {fileID: 2098176326713902458}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: BottomSnappingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6820567507243570283}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5379706785744734771
 BoxCollider:
@@ -61,37 +61,6 @@ MonoBehaviour:
   stabilityReduction: 2
   type: 1
   allowRotation: 0
---- !u!1 &907208644858054925
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3835351650901052589}
-  m_Layer: 17
-  m_Name: Foundation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3835351650901052589
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907208644858054925}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7035472343261656588}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571366057631332419
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +72,7 @@ GameObject:
   - component: {fileID: 3411739899251169222}
   - component: {fileID: 2956662997861798669}
   - component: {fileID: 5641080834823398456}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: FoundationSnapPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,9 +132,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7035472343261656588}
   - component: {fileID: 614367708779294624}
-  - component: {fileID: 4563615378807112066}
-  m_Layer: 17
-  m_Name: SnappingPointAbove
+  - component: {fileID: 4009509323173799059}
+  m_Layer: 19
+  m_Name: FloorSnappingPointAbove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,12 +148,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765551683635446732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7736590954871131446}
-  - {fileID: 3835351650901052589}
+  m_Children: []
   m_Father: {fileID: 6820567507243570283}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -200,8 +167,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 0.21, z: 1.8}
-  m_Center: {x: 0, y: 1.4, z: 0}
---- !u!114 &4563615378807112066
+  m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &4009509323173799059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,22 +177,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765551683635446732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6754278d7d76624297c4c3506f7bc69, type: 3}
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stabilityReduction: 40
-  snappingPoints:
-    values:
-    - name: 
-      key: 1
-      value:
-        transform: {fileID: 3835351650901052589}
-        allowRotation: 1
-    - name: 
-      key: 3
-      value:
-        transform: {fileID: 7736590954871131446}
-        allowRotation: 1
+  type: 3
+  allowRotation: 1
 --- !u!1 &2596713623181016242
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +194,7 @@ GameObject:
   - component: {fileID: 4454266275693613833}
   - component: {fileID: 6376198160493015672}
   - component: {fileID: 6910623470754648270}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: FoundationSnapPoint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,6 +244,67 @@ MonoBehaviour:
   stabilityReduction: 10
   type: 1
   allowRotation: 1
+--- !u!1 &4630449431004648408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 646152857290499626}
+  - component: {fileID: 8987242425490811586}
+  - component: {fileID: 3293356446618496919}
+  m_Layer: 21
+  m_Name: FoundationSnappingPointAbove
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &646152857290499626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630449431004648408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6820567507243570283}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8987242425490811586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630449431004648408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8, y: 0.21, z: 1.8}
+  m_Center: {x: 0, y: -0.1, z: 0}
+--- !u!114 &3293356446618496919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630449431004648408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c503d672d5cb16248ab7a14c68c4ea02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stabilityReduction: 40
+  type: 1
+  allowRotation: 1
 --- !u!1 &5391752092789882122
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +316,7 @@ GameObject:
   - component: {fileID: 3669870297533651544}
   - component: {fileID: 3574365059024252649}
   - component: {fileID: 3342977473364107618}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: FoundationSnapPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,38 +395,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6820567507243570283}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5971739675163351180
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7736590954871131446}
-  m_Layer: 17
-  m_Name: Floor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7736590954871131446
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5971739675163351180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7035472343261656588}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6820567507243570287
 GameObject:
@@ -424,7 +411,7 @@ GameObject:
   - component: {fileID: 9103584198757093202}
   - component: {fileID: 6820567507243570284}
   - component: {fileID: 2918511257833401453}
-  m_Layer: 18
+  m_Layer: 17
   m_Name: Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,6 +435,7 @@ Transform:
   - {fileID: 3669870297533651544}
   - {fileID: 4454266275693613833}
   - {fileID: 7035472343261656588}
+  - {fileID: 646152857290499626}
   - {fileID: 7207137026777851096}
   - {fileID: 4365265032839586730}
   m_Father: {fileID: 0}
@@ -546,13 +534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingObject: {fileID: 11400000, guid: bbe8afbed4c3e384a92498a0da59664d, type: 2}
-  snappingPoints:
-  - {fileID: 6315570965312368993}
-  - {fileID: 5641080834823398456}
-  - {fileID: 3342977473364107618}
-  - {fileID: 6910623470754648270}
-  - {fileID: 4563615378807112066}
-  - {fileID: 2098176326713902458}
   BottomSnappingPoint: {fileID: 140733596091602028}
   FoundationBase: {fileID: 8213717018197533350, guid: 45ed218f52574214d8444c1ae80d2638, type: 3}
   CheckLayer:
@@ -571,7 +552,7 @@ GameObject:
   - component: {fileID: 4955336413386536365}
   - component: {fileID: 8575033176796654405}
   - component: {fileID: 6315570965312368993}
-  m_Layer: 17
+  m_Layer: 21
   m_Name: FoundationSnapPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

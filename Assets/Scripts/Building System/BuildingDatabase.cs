@@ -5,12 +5,15 @@ public class BuildingDatabase : MonoSingleton<BuildingDatabase>
 {
     [SerializeField] private List<BuildingObject> EditorBuildingObjects;
     public static Dictionary<string, BuildingObject> BuildingObjects { get; private set; }
-    // [SerializeField] private EnumDictionary<BuildingType, LayerMask> BuildingTypeLayerMasks;
+    [SerializeField] private EnumDictionary<BuildingType, LayerMask> SnappingTypeLayerMasks;
 
-    // public static LayerMask BuildingTypeToLayer(BuildingType type) => Instance.BuildingTypeLayerMasks[type];
-
-    public void Awake()
+    public static LayerMask BuildingTypeToSnappingLayer(BuildingType type) => Instance.SnappingTypeLayerMasks[type];
+    protected override void SingletonAwake()
     {
+#if UNITY_EDITOR
+        GetItems();
+#endif
+
         BuildingObjects = new();
         for (int i = 0; i < EditorBuildingObjects.Count; i++)
         {
@@ -25,6 +28,7 @@ public class BuildingDatabase : MonoSingleton<BuildingDatabase>
     }
     public void OnValidate()
     {
+        SnappingTypeLayerMasks.Update();
         for (int i = 0; i < EditorBuildingObjects.Count; i++)
             if (EditorBuildingObjects[i] == null)
                 EditorBuildingObjects.RemoveAt(i);

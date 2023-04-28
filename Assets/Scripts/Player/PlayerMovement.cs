@@ -107,9 +107,6 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     void Update()
     {
         Vector2 Input = controls.Player.Movement.ReadValue<Vector2>().normalized;
-        // In Third Person the Player should only walk forward (Kinda Temporary)
-        if (CameraControl.LockedForward && Input != Vector2.zero)
-            Input = Vector2.up;
         // Sprinting
         if (Input.y >= 0 && Sprinting)
             Input.y *= sprintSpeedMultiplier;
@@ -123,9 +120,6 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     {
         // Movement
         onSolidGround = Physics.Raycast(groundCheck.position, Vector3.down, out RaycastHit hitData, groundDistance, groundMask);
-        // If the player is attacking, he can't move
-        if (FightActionController.Attacking)
-            return;
 
         Vector3 Movement = (mainRB.transform.right * Direction.x + mainRB.transform.forward * Direction.y) * normalSpeed * flySpeedMultiplier;
         float currentYVelocity;

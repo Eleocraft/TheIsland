@@ -17,7 +17,9 @@ MonoBehaviour:
   buildingPrefab: {fileID: 3323651336557287379, guid: ab0d516998074de4eae00d037bedaac8, type: 3}
   blueprintPrefab: {fileID: 8037042343230948047, guid: 25f3d0ed7036dac49aad4bd070f62958, type: 3}
   BuildingLevel: 1
-  Cost: []
+  Cost:
+  - itemObj: {fileID: 11400000, guid: d37f1539b5a636c4da1a8a71fc0fbf8e, type: 2}
+    amount: 5
   FreePlacingLayer:
     serializedVersion: 2
     m_Bits: 128

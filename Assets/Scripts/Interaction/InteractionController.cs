@@ -16,15 +16,15 @@ public class InteractionController : MonoSingleton<InteractionController>
     void Start()
     {
         controls = GlobalData.controls;
-        controls.PlayerFP.Interaction.performed += Interact;
-        controls.PlayerFP.Interaction.started += StartInteraction;
-        controls.PlayerFP.Interaction.canceled += StopInteraction;
+        controls.Player.Interaction.performed += Interact;
+        controls.Player.Interaction.started += StartInteraction;
+        controls.Player.Interaction.canceled += StopInteraction;
     }
     void OnDestroy()
     {
-        controls.PlayerFP.Interaction.performed -= Interact;
-        controls.PlayerFP.Interaction.started -= StartInteraction;
-        controls.PlayerFP.Interaction.canceled -= StopInteraction;
+        controls.Player.Interaction.performed -= Interact;
+        controls.Player.Interaction.started -= StartInteraction;
+        controls.Player.Interaction.canceled -= StopInteraction;
     }
     void FixedUpdate()
     {
