@@ -4,8 +4,8 @@ using TMPro;
 public class InteractionController : MonoSingleton<InteractionController>
 {
     private InputMaster controls;
-    private InteractionData interaction;
-    private InteractionData lastInteraction;
+    private InteractionData currentInteraction;
+    private InteractionData activeInteraction;
     [Header("--Raycast")]
     [Range(0.1f, 3)] [SerializeField] private float HitRange;
     [SerializeField] private Transform CameraTransform;
@@ -16,15 +16,15 @@ public class InteractionController : MonoSingleton<InteractionController>
     void Start()
     {
         controls = GlobalData.controls;
-        controls.Player.Interaction.performed += Interact;
-        controls.Player.Interaction.started += StartInteraction;
-        controls.Player.Interaction.canceled += StopInteraction;
+        controls.Interaction.MainInteraction.performed += Interact;
+        controls.Interaction.MainInteraction.started += StartInteraction;
+        controls.Interaction.MainInteraction.canceled += StopInteraction;
     }
     void OnDestroy()
     {
-        controls.Player.Interaction.performed -= Interact;
-        controls.Player.Interaction.started -= StartInteraction;
-        controls.Player.Interaction.canceled -= StopInteraction;
+        controls.Interaction.MainInteraction.performed -= Interact;
+        controls.Interaction.MainInteraction.started -= StartInteraction;
+        controls.Interaction.MainInteraction.canceled -= StopInteraction;
     }
     void FixedUpdate()
     {
@@ -35,7 +35,7 @@ public class InteractionController : MonoSingleton<InteractionController>
             if (hitData.collider.gameObject.TryGetComponent(out IInteractable interactable))
             {
                 // the object can be interacted with directly
-                interaction = new InteractionData(interactable, hitData);
+                currentInteraction = new InteractionData(interactable, hitData);
                 // Display Information
                 if (interactable.InteractionInfo != informationField.text)
                     informationField.text = interactable.InteractionInfo;
@@ -44,39 +44,40 @@ public class InteractionController : MonoSingleton<InteractionController>
         }
         if (informationField.text != "")
             informationField.text = "";
-        interaction = null;
+        currentInteraction = null;
     }
     void Interact(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
-        if (interaction != null)
-            interaction.interactable.Interact();
+        if (currentInteraction != null)
+            currentInteraction.interactable.Interact();
     }
     void StartInteraction(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
-        if (interaction != null)
+        if (currentInteraction != null)
         {
-            interaction.interactable.StartInteraction();
-            lastInteraction = interaction;
+            currentInteraction.interactable.StartInteraction();
+            activeInteraction = currentInteraction;
         }
     }
     void StopInteraction(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
-        if (lastInteraction != null)
+        Debug.Log("nice");
+        if (activeInteraction != null)
         {
-            lastInteraction.interactable.StopInteraction();
-            lastInteraction = null;
+            activeInteraction.interactable.StopInteraction();
+            activeInteraction = null;
         }
     }
     // Get the interaction data
     public static InteractionData GetInteraction()
     {
-        return Instance.interaction;
+        return Instance.currentInteraction;
     }
     // Version of the GetInteraction for If-statements
     public static bool TryGetInteraction(out InteractionData interactionData)
     {
-        interactionData = Instance.interaction;
-        if (Instance.interaction != null)
+        interactionData = Instance.currentInteraction;
+        if (Instance.currentInteraction != null)
             return true;
         return false;
     }

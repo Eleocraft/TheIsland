@@ -196,27 +196,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interaction",
-                    "type": "Button",
-                    "id": "5f442502-db4f-49a6-a050-9af3a6cf1226",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Drop",
                     "type": "Button",
                     "id": "ce86ea07-4bfb-496c-b06d-7ebc00a7f3f7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SecondaryInteraction",
-                    "type": "Button",
-                    "id": "a1b96ac0-63ec-4c2b-828c-28983fd7ba75",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -399,28 +381,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2eff7d9a-b1b1-4acc-9d87-dc72cdd9f240",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2cf30f26-ada9-4719-80f5-603de496441a",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b98d4d39-9056-4334-b375-bc94aa3c1340",
                     "path": "<Keyboard>/t",
                     "interactions": "",
@@ -438,17 +398,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8752005d-5821-4190-9e7b-b9d1c1cda9b4",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "SecondaryInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -526,6 +475,65 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hotbarslot7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Interaction",
+            "id": "15f383df-4a31-4bc6-8fcf-ec615a3f7abc",
+            "actions": [
+                {
+                    "name": "MainInteraction",
+                    "type": "Button",
+                    "id": "89e58c64-48d1-4dc7-a076-c34ddcf5e872",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondaryInteraction",
+                    "type": "Button",
+                    "id": "82af9d1d-1ca7-4ca4-84c5-9d5d5250c716",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c19a3e4d-b574-4045-a6ab-add427580f5c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "MainInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "502585f8-ea40-4543-a646-11a9c58c10fb",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MainInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6ae849d-aa57-4da4-88fd-267c40512026",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "SecondaryInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

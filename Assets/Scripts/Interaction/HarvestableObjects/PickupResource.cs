@@ -1,7 +1,7 @@
 public class PickupResource : MapObject, IInteractable
 {
     public PickupResourceData objectData;
-    public string InteractionInfo => objectData.recourceName + $"\nPress {GlobalData.controls.Player.Interaction.bindings[0].ToDisplayString()} to pick up {objectData.Item.name}";
+    public string InteractionInfo => objectData.recourceName + $"\nPress {GlobalData.controls.Interaction.MainInteraction.bindings[0].ToDisplayString()} to pick up {objectData.Item.name}";
     public override float GetBaseLife => 1f;
     public override void UpdateLocalState(float life)
     {

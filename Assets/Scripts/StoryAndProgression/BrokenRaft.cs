@@ -23,7 +23,7 @@ public class BrokenRaft : MonoSingleton<BrokenRaft>, IInteractable
         get
         {
             if (state == BrokenRaftState.Inactive)
-                return $"press {GlobalData.controls.Player.Interaction.bindings[0].ToDisplayString()} to Inspekt the Raft";
+                return $"press {GlobalData.controls.Interaction.MainInteraction.bindings[0].ToDisplayString()} to Inspekt the Raft";
             else if (state == BrokenRaftState.Repairing)
             {
                 string parts = "";
@@ -32,7 +32,7 @@ public class BrokenRaft : MonoSingleton<BrokenRaft>, IInteractable
                 return $"repair {parts} to proceed";
             }
             else
-                return $"press {GlobalData.controls.Player.Interaction.bindings[0].ToDisplayString()} to Repair the Raft";;
+                return $"press {GlobalData.controls.Interaction.MainInteraction.bindings[0].ToDisplayString()} to Repair the Raft";;
         }
     }
 

@@ -22,7 +22,7 @@ public class BuildingActionController : MonoBehaviour
         controls.Mouse.SecondaryAction.performed += OpenBuildMenu;
         controls.Mouse.MainAction.performed += MainAction;
         controls.Mouse.TertiaryAction.performed += Delete;
-        controls.Player.SecondaryInteraction.performed += Rotate;
+        controls.Interaction.SecondaryInteraction.performed += Rotate;
         PlayerInventory.HotbarSlotChange += EndBuildMode;
     }
     void OnDestroy()
@@ -30,7 +30,7 @@ public class BuildingActionController : MonoBehaviour
         controls.Mouse.SecondaryAction.performed -= OpenBuildMenu;
         controls.Mouse.MainAction.performed -= MainAction;
         controls.Mouse.TertiaryAction.performed -= Delete;
-        controls.Player.SecondaryInteraction.performed -= Rotate;
+        controls.Interaction.SecondaryInteraction.performed -= Rotate;
         PlayerInventory.HotbarSlotChange -= EndBuildMode;
     }
 
