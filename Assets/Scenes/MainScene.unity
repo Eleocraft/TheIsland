@@ -23,9 +23,9 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.2831998, g: 0.38092366, b: 0.37693492, a: 1}
   m_AmbientEquatorColor: {r: 0.41568628, g: 0.36862746, b: 0.26078433, a: 1}
   m_AmbientGroundColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
-  m_AmbientIntensity: 1.25
+  m_AmbientIntensity: 0.4
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.13705942, g: 0.5878863, b: 0.9433962, a: 1}
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: b92ebf1bd13dc7b4d89f5abf1c359c23, type: 2}
   m_HaloStrength: 0.362
   m_FlareStrength: 1
@@ -33,12 +33,12 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 512
   m_ReflectionBounces: 2
-  m_ReflectionIntensity: 0.267
+  m_ReflectionIntensity: 0.357
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.14446788, g: 0.05906127, b: 0.05226256, a: 0.267}
+  m_IndirectSpecularColor: {r: 0.07820042, g: 0.22938038, b: 0.4688408, a: 0.357}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1693,7 +1693,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.2
+      value: 0.49782103
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1701,17 +1701,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.25905204
-      value: 0.4323499
-      inSlope: 2.9810686
-      outSlope: 2.9810686
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 0.5
-      value: 1.2
+      value: 0.89677966
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1719,17 +1710,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.37095666
     - serializedVersion: 3
-      time: 0.740948
-      value: 0.43889785
-      inSlope: -2.568104
-      outSlope: -2.568104
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 0.99786377
-      value: 0.2
+      value: 0.49782103
       inSlope: -0.17780657
       outSlope: -0.17780657
       tangentMode: 0
@@ -1753,7 +1735,7 @@ MonoBehaviour:
       outWeight: 0.4372806
     - serializedVersion: 3
       time: 0.49900335
-      value: 0.9917145
+      value: 0.70194244
       inSlope: -0.00728128
       outSlope: -0.00728128
       tangentMode: 0
@@ -18944,7 +18926,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.85
     m_Bias: 0.02
     m_NormalBias: 0.1
     m_NearPlane: 0.1
