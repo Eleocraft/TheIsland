@@ -12,7 +12,6 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         get => _moveMode;
         set {
             _moveMode = value;
-            mainRB.useGravity = value == MoveMode.Walk;
             flySpeedMultiplier = (value == MoveMode.Fly) ? FlyingSpeedMultiplier : 1f;
             mainRB.drag = (value == MoveMode.Fly) ? 0 : drag;
         }
@@ -35,6 +34,9 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     [Header("--flyMode")]
     [SerializeField] private float FlyingSpeedMultiplier;
     [SerializeField] private float VerticalSpeed;
+
+    public static RaycastHit GroundHitData => Instance.groundHitData;
+    private RaycastHit groundHitData;
 
     private float flySpeedMultiplier = 1;
     private bool Sprinting;
@@ -102,7 +104,7 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         }
         // Fly down
         else if (moveMode == MoveMode.Fly)
-            mainRB.velocity = new Vector3(mainRB.velocity.x, VerticalSpeed * -1f, mainRB.velocity.z);
+            mainRB.velocity = new Vector3(mainRB.velocity.x, -VerticalSpeed, mainRB.velocity.z);
     }
     void Update()
     {
@@ -119,24 +121,26 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
     void FixedUpdate()
     {
         // Movement
-        onSolidGround = Physics.Raycast(groundCheck.position, Vector3.down, out RaycastHit hitData, groundDistance, groundMask);
+        onSolidGround = Physics.Raycast(groundCheck.position, Vector3.down, out groundHitData, groundDistance, groundMask);
 
         Vector3 Movement = (mainRB.transform.right * Direction.x + mainRB.transform.forward * Direction.y) * normalSpeed * flySpeedMultiplier;
-        float currentYVelocity;
-        if (onSolidGround)
+        float currentYVelocity = mainRB.velocity.y;
+        if (moveMode == MoveMode.Walk)
         {
-            Quaternion groundRotation = Quaternion.FromToRotation(Vector3.up, hitData.normal);
-            Vector3 realMovement = groundRotation * Movement;
-            currentYVelocity = (realMovement.y > 0) ? realMovement.y : 0;
+            if (onSolidGround)
+            {
+                Quaternion groundRotation = Quaternion.FromToRotation(Vector3.up, groundHitData.normal);
+                Vector3 realMovement = groundRotation * Movement;
+                currentYVelocity = realMovement.y;
+            }
+            else
+                currentYVelocity += gravity * Time.fixedDeltaTime;
         }
-        else
-            currentYVelocity = mainRB.velocity.y + gravity * Time.fixedDeltaTime;
-
-        mainRB.velocity = new Vector3(Movement.x, currentYVelocity, Movement.z);
-
         // If in Flymode and neither spacebar or shift is pressed, velocity.y = 0
-        if (moveMode == MoveMode.Fly && !controls.Player.Running.ReadValue<float>().AsBool() && !controls.Player.Jump.ReadValue<float>().AsBool())
-            mainRB.velocity = new Vector3(mainRB.velocity.x, 0, mainRB.velocity.z);
+        else if (!controls.Player.Running.ReadValue<float>().AsBool() && !controls.Player.Jump.ReadValue<float>().AsBool())
+            currentYVelocity = 0;
+        
+        mainRB.velocity = new Vector3(Movement.x, currentYVelocity, Movement.z);
     }
     public void SetPosition(Vector3 newPosition)
     {

@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Linq;
 
 [CreateAssetMenu(fileName = "New Biome Dependent List", menuName = "CustomObjects/Audio/BiomeDependentList")]
-public class BiomeDependentList : MusicStateObject
+public class BiomeDependentList : SoundStateObject
 {
     [SerializeField] private TerrainSettings referenceTerrain;
-    [SerializeField] private SerializableDictionary<string, MusicList> music;
+    [SerializeField] private SerializableDictionary<string, SoundStateObject> music;
     private string biome;
 
     public void OnValidate()

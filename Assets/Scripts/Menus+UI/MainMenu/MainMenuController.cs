@@ -105,11 +105,6 @@ public class MainMenuController : MonoSingleton<MainMenuController>
                 i = -1; //reset i
             }
         }
-        if (dirs.Length <= 0)
-        {
-            ContinueButton.SetActive(false);
-            NewGameButton.SetActive(true);
-        }
 
         CreateSaveFileButtons();
 
@@ -123,7 +118,7 @@ public class MainMenuController : MonoSingleton<MainMenuController>
         {
             SaveButton button = Instantiate(SaveFileButton, ScrollRectContent);
             button.transform.localPosition = new Vector2(0, position);
-            Texture2D tex = new Texture2D(1, 1, TextureFormat.ARGB32, false);
+            Texture2D tex = new (1, 1, TextureFormat.ARGB32, false);
             if(SaveAndLoad.TryLoadBytes(out byte[] bytes, "saveImage", LoadCategory.Slot, savenames[i]))
                 tex.LoadImage(bytes);
             button.OnInitialisation(savenames[i], savegames[i], i, tex);
@@ -131,6 +126,12 @@ public class MainMenuController : MonoSingleton<MainMenuController>
             saveFileButtons.Add(button.gameObject);
         }
         ScrollRectContent.sizeDelta = new Vector2(100, additionalScrollLegth + SaveFileButtonsStartPos * -1f + savegames.Count * SaveFileButtonsDisplacement);
+        
+        if (savegames.Count <= 0)
+        {
+            ContinueButton.SetActive(false);
+            NewGameButton.SetActive(true);
+        }
     }
     public static void OpenBackups(int slot)
     {

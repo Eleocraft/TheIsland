@@ -127,4 +127,6 @@ public static class Extensions
         foreach (Transform child in children)
             child.gameObject.layer = layer;
     }
+    // Layer mask
+    public static bool Contains(this LayerMask mask, int layer) => mask == (mask | (1 << layer));
 }

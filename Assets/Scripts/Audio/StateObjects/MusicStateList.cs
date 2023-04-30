@@ -9,9 +9,9 @@ public enum MusicState
     Fighting = 2
 }
 [CreateAssetMenu(fileName = "New Music State List", menuName = "CustomObjects/Audio/Main")]
-public class MusicStateList : MusicStateObject
+public class MusicStateList : SoundStateObject
 {
-    [SerializeField] private EnumDictionary<MusicState, MusicStateObject> states;
+    [SerializeField] private EnumDictionary<MusicState, SoundStateObject> states;
     [SerializeField] [ReadOnly] private MusicState musicState;
 
     private Dictionary<MusicState, InstanceLocker> activations;

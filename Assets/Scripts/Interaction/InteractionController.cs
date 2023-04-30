@@ -61,7 +61,6 @@ public class InteractionController : MonoSingleton<InteractionController>
     }
     void StopInteraction(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
-        Debug.Log("nice");
         if (activeInteraction != null)
         {
             activeInteraction.interactable.StopInteraction();

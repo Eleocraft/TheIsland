@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7072b28593a8349b9a7fb645cb8b67, type: 3}
+  m_Name: IceBiome
+  m_EditorClassIdentifier: 
+  clipTimer:
+    startValue: 74.61
+    endValue: 126.259995
+    sliderMin: 0
+    sliderMax: 500
+  music:
+  - {fileID: 8300000, guid: 35b37628f99713444ba76b49de11deb3, type: 3}
+  - {fileID: 8300000, guid: a60177ec9fbf35a41ada74804261f208, type: 3}

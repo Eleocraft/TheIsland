@@ -8,7 +8,7 @@ public class MusicManager : MonoSingleton<MusicManager>
     [SerializeField] private float fadeTime;
     [SerializeField] private float updateTime = 5f;
     private AudioSource audioSource;
-    [SerializeField] private MusicStateObject musicStateObj;
+    [SerializeField] private SoundStateObject musicStateObj;
 
     private float pauseTimer;
     private float updateTimer;

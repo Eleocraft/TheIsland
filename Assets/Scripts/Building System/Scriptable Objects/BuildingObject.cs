@@ -22,7 +22,7 @@ public abstract class BuildingObject : ScriptableObject
         if (string.IsNullOrEmpty(Id))    
             Id = Utility.CreateID(name);
     }
-    public virtual bool FreePlacingPossible(RaycastHit hitData) => FreePlacingLayer == (FreePlacingLayer | 1 << hitData.collider.gameObject.layer);
+    public virtual bool FreePlacingPossible(RaycastHit hitData) => FreePlacingLayer.Contains(hitData.collider.gameObject.layer);
     public virtual Vector3 GetNormal(RaycastHit hitData) => Vector3.up;
     public virtual List<TooltipAttributeData> GetTooltips()
     {
