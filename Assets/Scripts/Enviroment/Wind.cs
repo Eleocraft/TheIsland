@@ -16,6 +16,7 @@ public class Wind : MonoSingleton<Wind>
     private float timer;
     private bool outOfTutorialZone;
     public static Vector2 WindVelocity { get; private set; }
+    public static Vector2 WindPosition { get; private set; }
     void Start()
     {
         windAngle = StartAngle;
@@ -34,6 +35,9 @@ public class Wind : MonoSingleton<Wind>
     void Update()
     {
         WindParticleObject.transform.position = PlayerData.Position + Vector3.up * ParticleYOffset;
+        WindPosition += WindVelocity * Time.deltaTime;
+        Shader.SetGlobalVector("_WindPosition", WindPosition);
+
         if (Mathf.Abs(windAngle - targetAngle) > 0)
         {
             windAngle = Utility.RotateTowards(windAngle, targetAngle, turningSpeed * Time.deltaTime);

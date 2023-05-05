@@ -143,7 +143,7 @@ Material:
     - _RippleColor: {r: 0.49466005, g: 0.6603774, b: 0.6603774, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SurfaceColor: {r: 0.4627451, g: 0.8666667, b: 0.75894743, a: 0.5529412}
-    - _WaveDir: {r: -0.8947247, g: -0.44661805, b: 0, a: 0}
+    - _WaveDir: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8154865120874861751
 MonoBehaviour:
