@@ -801,6 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingObject: {fileID: 11400000, guid: f45e48d1ccea62d42893d0084843eeba, type: 2}
+  StabilityDisplayPrefab: {fileID: 5818934605898496380, guid: 0b91dbd1beba52244b8b7f7182195569, type: 3}
 --- !u!1 &8594020331790155753
 GameObject:
   m_ObjectHideFlags: 0

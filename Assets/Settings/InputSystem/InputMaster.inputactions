@@ -187,6 +187,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "CastMagic",
+                    "type": "Button",
+                    "id": "58486a53-464d-4dc9-a738-f8f8bcda11c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Running",
                     "type": "Button",
                     "id": "06b16ca3-f2c0-4943-978b-c9c81828e499",
@@ -475,6 +484,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hotbarslot7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66d80b09-99d0-42e8-8511-32257ce8e4ca",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "CastMagic",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

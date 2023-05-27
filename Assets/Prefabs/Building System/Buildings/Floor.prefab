@@ -60,7 +60,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 40
   type: 2
-  allowRotation: 0
 --- !u!1 &1230565895101160496
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 40
   type: 2
-  allowRotation: 0
 --- !u!1 &1737102039221338465
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 20
   type: 3
-  allowRotation: 1
 --- !u!1 &1964349951650356766
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingObject: {fileID: 11400000, guid: cb5e09c9d5f210d4d946d29e80dc0aa1, type: 2}
+  StabilityDisplayPrefab: {fileID: 5818934605898496380, guid: 0b91dbd1beba52244b8b7f7182195569, type: 3}
 --- !u!1 &2852063674408935967
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +379,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 20
   type: 3
-  allowRotation: 1
 --- !u!1 &5087995155207514048
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +439,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 2
   type: 1
-  allowRotation: 1
 --- !u!1 &5332499908694014184
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +499,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 20
   type: 3
-  allowRotation: 1
 --- !u!1 &5563871212299667435
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +559,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 40
   type: 2
-  allowRotation: 0
 --- !u!1 &7032276644313998792
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +619,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 20
   type: 3
-  allowRotation: 1
 --- !u!1 &9099723197819911836
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,4 +679,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stabilityReduction: 40
   type: 2
-  allowRotation: 0

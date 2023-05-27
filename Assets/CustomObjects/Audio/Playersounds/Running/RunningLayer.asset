@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
     values:
-    - name: 
+    - name: UnityEngine.LayerMask
       key:
         serializedVersion: 2
         m_Bits: 128
-      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}
-    - name: 
+      value: {fileID: 11400000, guid: 6e48c624e042ec34386b651ee893fb78, type: 2}
+    - name: UnityEngine.LayerMask
       key:
         serializedVersion: 2
         m_Bits: 230400

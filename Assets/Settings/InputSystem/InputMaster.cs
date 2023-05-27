@@ -209,6 +209,15 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""CastMagic"",
+                    ""type"": ""Button"",
+                    ""id"": ""58486a53-464d-4dc9-a738-f8f8bcda11c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Running"",
                     ""type"": ""Button"",
                     ""id"": ""06b16ca3-f2c0-4943-978b-c9c81828e499"",
@@ -497,6 +506,17 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hotbarslot7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66d80b09-99d0-42e8-8511-32257ce8e4ca"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""CastMagic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -924,6 +944,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_CastMagic = m_Player.FindAction("CastMagic", throwIfNotFound: true);
         m_Player_Running = m_Player.FindAction("Running", throwIfNotFound: true);
         m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
         m_Player_Hotbarslot1 = m_Player.FindAction("Hotbarslot1", throwIfNotFound: true);
@@ -1095,6 +1116,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_CastMagic;
     private readonly InputAction m_Player_Running;
     private readonly InputAction m_Player_Drop;
     private readonly InputAction m_Player_Hotbarslot1;
@@ -1110,6 +1132,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @CastMagic => m_Wrapper.m_Player_CastMagic;
         public InputAction @Running => m_Wrapper.m_Player_Running;
         public InputAction @Drop => m_Wrapper.m_Player_Drop;
         public InputAction @Hotbarslot1 => m_Wrapper.m_Player_Hotbarslot1;
@@ -1134,6 +1157,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @CastMagic.started += instance.OnCastMagic;
+            @CastMagic.performed += instance.OnCastMagic;
+            @CastMagic.canceled += instance.OnCastMagic;
             @Running.started += instance.OnRunning;
             @Running.performed += instance.OnRunning;
             @Running.canceled += instance.OnRunning;
@@ -1171,6 +1197,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @CastMagic.started -= instance.OnCastMagic;
+            @CastMagic.performed -= instance.OnCastMagic;
+            @CastMagic.canceled -= instance.OnCastMagic;
             @Running.started -= instance.OnRunning;
             @Running.performed -= instance.OnRunning;
             @Running.canceled -= instance.OnRunning;
@@ -1501,6 +1530,7 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnCastMagic(InputAction.CallbackContext context);
         void OnRunning(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnHotbarslot1(InputAction.CallbackContext context);

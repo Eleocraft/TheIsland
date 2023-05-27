@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingObject: {fileID: 11400000, guid: 9204578d66167a947aa748af8f70ecfd, type: 2}
+  StabilityDisplayPrefab: {fileID: 5818934605898496380, guid: 0b91dbd1beba52244b8b7f7182195569, type: 3}
   BottomSnappingPoint: {fileID: 6497754093134320183}
   FoundationBase: {fileID: 8213717018197533350, guid: 45ed218f52574214d8444c1ae80d2638, type: 3}
   CheckLayer:

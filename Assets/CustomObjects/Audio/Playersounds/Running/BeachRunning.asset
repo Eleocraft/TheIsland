@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e7072b28593a8349b9a7fb645cb8b67, type: 3}
-  m_Name: GroundWalking
+  m_Name: BeachRunning
   m_EditorClassIdentifier: 
   clipTimer:
     startValue: 0
@@ -18,8 +18,8 @@ MonoBehaviour:
     sliderMin: 0
     sliderMax: 500
   music:
-  - {fileID: 8300000, guid: 3a8e54fd09e69fa4591cdee84236f7c6, type: 3}
-  - {fileID: 8300000, guid: 5b79d51e0ed580f4fbbf925ae35a2ed4, type: 3}
-  - {fileID: 8300000, guid: 7ef6be950136d54409ce4e0623ec9c16, type: 3}
-  - {fileID: 8300000, guid: 478aa4d088c818240a4ab734015bbb37, type: 3}
-  - {fileID: 8300000, guid: 12cddf9fa27ded04289b463adb5f4384, type: 3}
+  - {fileID: 8300000, guid: e1c2ef251f1529249886ddc936e10576, type: 3}
+  - {fileID: 8300000, guid: 758182d87c432b94b8d9b9ae0968656b, type: 3}
+  - {fileID: 8300000, guid: 8412c26193aeec848b9cfc458063c86a, type: 3}
+  - {fileID: 8300000, guid: c7feb564464f4f841a1274c203e97ca3, type: 3}
+  - {fileID: 8300000, guid: 8bd1108248bb7cc4288c7720391fe2dc, type: 3}

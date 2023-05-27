@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46f9569fb578484e9228d03e78c1cb7, type: 3}
+  m_Name: GroundRunningAudioBiomeDependentList
+  m_EditorClassIdentifier: 
+  referenceTerrain: {fileID: 11400000, guid: 68083d49f9f20a444b36f1e61e702575, type: 2}
+  music:
+    values:
+    - name: Ocean
+      key: Ocean
+      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}
+    - name: Plains
+      key: Plains
+      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}
+    - name: Jungle
+      key: Jungle
+      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}
+    - name: Red Forest
+      key: Red Forest
+      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}
+    - name: Blue Forest
+      key: Blue Forest
+      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}
+    - name: Rocky Taiga
+      key: Rocky Taiga
+      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}
+    - name: Mountains
+      key: Mountains
+      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}
+    - name: Meadow
+      key: Meadow
+      value: {fileID: 11400000, guid: 331880a3f0e2a0946af86f9d89d1daaa, type: 2}

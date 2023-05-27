@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using System.Collections.Generic;
 
 public class GridBuilding : Building
@@ -15,9 +16,12 @@ public class GridBuilding : Building
         get => stabilities;
         set => stabilities = (Dictionary<int, int>)value;
     }
+    [SerializeField] private TextMeshPro StabilityDisplayPrefab;
+    private TextMeshPro stabilityDisplay;
     void Awake()
     {
         snappingPoints = GetComponentsInChildren<BuildingSnappingPoint>();
+        stabilityDisplay = Instantiate(StabilityDisplayPrefab, transform.position, Quaternion.identity, transform);
     }
     public override void Initialize()
     {
@@ -55,7 +59,7 @@ public class GridBuilding : Building
         int oldStability = stabilities[Id];
         stabilities[Id] = -1;
         stabilities[Id] = GetStability(recursive);
-        Debug.Log(Id + " --> " + stabilities[Id]);
+        stabilityDisplay.text = stabilities[Id].ToString();
         recalculatingStability = true;
         if (oldStability != stabilities[Id])
         {

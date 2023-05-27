@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class MapRuntimeHandler : MonoSingleton<MapRuntimeHandler>
 {
+    const float oceanHeightCheck = 44;
+
     [Space(3, order=0)]
     [Header("---TerrainSettings:", order=1)]
     [SerializeField] private TerrainSettings settings;
@@ -138,6 +140,10 @@ public class MapRuntimeHandler : MonoSingleton<MapRuntimeHandler>
     public static BiomeData GetViewerBiome()
     {
         if (MapLoadingScreen.Loading)
+            return Instance.settings.Biomes[0];
+        
+        // Low enough to be ocean
+        if (Instance.viewer.transform.position.y < oceanHeightCheck)
             return Instance.settings.Biomes[0];
         
         Vector2 viewerPosition = Instance.viewer.transform.position.XZ();
