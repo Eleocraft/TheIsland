@@ -57,7 +57,7 @@ public class SavedTransforms
             Vector3 pos = positions[i].getVec();
             Quaternion rot = rotations[i].getQuat();
 
-            GameObject.Instantiate(ObjectHolder.SavablePrefabs[prefabIDs[i]], pos, rot);
+            GameObject.Instantiate(SaveTransformPrefabs.SavablePrefabs[prefabIDs[i]], pos, rot);
         }
     }
 }

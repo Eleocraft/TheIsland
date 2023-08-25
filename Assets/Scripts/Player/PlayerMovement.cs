@@ -140,7 +140,8 @@ public class PlayerMovement : MonoSingleton<PlayerMovement>
         else if (!controls.Player.Running.ReadValue<float>().AsBool() && !controls.Player.Jump.ReadValue<float>().AsBool())
             currentYVelocity = 0;
         
-        mainRB.velocity = new Vector3(Movement.x, currentYVelocity, Movement.z);
+        if (!mainRB.isKinematic)
+            mainRB.velocity = new Vector3(Movement.x, currentYVelocity, Movement.z);
     }
     public void SetPosition(Vector3 newPosition)
     {

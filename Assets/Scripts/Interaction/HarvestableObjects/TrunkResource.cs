@@ -20,7 +20,7 @@ public class TrunkResource : MonoBehaviour, IInteractable, IHarvestable
         RB = gameObject.GetComponent<Rigidbody>();
         RB.AddForceAtPosition(direction * spawnForce, transform.position + Vector3.up * trunkHeight, ForceMode.Impulse);
         // Spawning Particle System
-        ParticleSystem destructionParticleSystem = Instantiate(ObjectHolder.TreeDestructionParticles, transform.position, Quaternion.identity);
+        ParticleSystem destructionParticleSystem = Instantiate(PrefabHolder.Prefabs[PrefabTypes.TreeDestructionParticles], transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
         ParticleSystem.ShapeModule shape = destructionParticleSystem.shape;
         shape.mesh = GetComponent<MeshFilter>().mesh;
     }
@@ -33,7 +33,7 @@ public class TrunkResource : MonoBehaviour, IInteractable, IHarvestable
         Life -= data.DamagePerHit;
         if (Life <= 0)
         {
-            ParticleSystem destructionParticleSystem = Instantiate(ObjectHolder.TrunkDestructionParticles, transform.position, transform.rotation);
+            ParticleSystem destructionParticleSystem = Instantiate(PrefabHolder.Prefabs[PrefabTypes.TrunkDestructionParticles], transform.position, transform.rotation).GetComponent<ParticleSystem>();
             ParticleSystem.ShapeModule shape = destructionParticleSystem.shape;
             shape.mesh = GetComponent<MeshFilter>().mesh;
             Destroy(gameObject);
