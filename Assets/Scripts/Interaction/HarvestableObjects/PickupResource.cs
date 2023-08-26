@@ -10,7 +10,7 @@ public class PickupResource : MapObject, IInteractable
     }
     public void Interact()
     {
-        PlayerInventory.AddItem(objectData.Item.CreateItem(), objectData.Amount);
+        PlayerInventory.AddItem(new (objectData.Item, objectData.Amount));
         UpdateState(Id, 0f);
         Destroy(gameObject);
     }

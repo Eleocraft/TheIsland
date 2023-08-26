@@ -37,8 +37,6 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     private event Action hotbarSlotChange;
     public static Action HotbarSlotChange { get => Instance.hotbarSlotChange; set { Instance.hotbarSlotChange = value; } }
     private GameObject ItemInHand;
-    private GameObject ActiveWeapon;
-
     private event Action closeCallback;
 
     public static int MaxStack => Instance.maxStack;
@@ -230,77 +228,6 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     {
         return (call != inventory) ? inventory : equipmentInventory;
     }
-    public static void AddItem(Item item, int amount) => Instance.addItem(item, amount);
-    public static void AddItem(ItemAmountInfo info) => Instance.addItem(info.itemObj.CreateItem(), info.amount);
-    public void addItem(Item item, int amount)
-    {
-        // First try adding to existing stacks (To prevent items from being added to the hotbar if it can stack in the inventory)
-        if (hotbar.AddItemToStack(item, amount, out int droppedAmount))
-        {
-            createNewItemDisplay(item, amount);
-            return;
-        }
-        if (inventory.AddItemToStack(item, droppedAmount, out droppedAmount))
-        {
-            createNewItemDisplay(item, amount);
-            return;
-        }
-        // Regular adding
-        if (hotbar.AddItem(item, droppedAmount, out droppedAmount))
-        {
-            createNewItemDisplay(item, amount);
-            return;
-        }
-        if (inventory.AddItem(item, droppedAmount, out droppedAmount))
-        {
-            createNewItemDisplay(item, amount);
-            return;
-        }
-        if (amount != droppedAmount)
-            createNewItemDisplay(item, amount - droppedAmount);
-        
-        ItemDropManager.DropItemAmount(item, droppedAmount);
-        return;
-    }
-    public static bool ContainsItems(Item item, int amount) => Instance.containsItems(item, amount);
-    public bool containsItems(Item item, int amount)
-    {
-        int amountInHotbar = hotbar.GetItemCount(item);
-        int amountInMain = inventory.GetItemCount(item);
-        return amountInHotbar + amountInMain >= amount;
-    }
-    public int getItemCount(Item item)
-    {
-        return hotbar.GetItemCount(item) + inventory.GetItemCount(item);
-    }
-    public bool removeItem(Item item, int amount)
-    {
-        if (hotbar.RemoveItem(item, ref amount))
-            return true;
-        if (inventory.RemoveItem(item, ref amount))
-            return true;
-        return false;
-    }
-    public static bool UseItems(List<ItemAmountInfo> items) => Instance.useItems(items);
-    public bool useItems(List<ItemAmountInfo> items)
-    {
-        foreach (ItemAmountInfo itemInfo in items)
-            if (!containsItems(itemInfo.itemObj.CreateItem(), itemInfo.amount))
-                return false;
-        foreach (ItemAmountInfo itemInfo in items)
-            removeItem(itemInfo.itemObj.CreateItem(), itemInfo.amount);
-        return true;
-    }
-    public static bool UseActiveItem(out Item item) => Instance.useActiveItem(out item);
-    public bool useActiveItem(out Item item)
-    {
-        item = null;
-        if (activeItem == null)
-            return false;
-        item = activeItem;
-        hotbar.Slots[activeSlot].RemoveAmount(1);
-        return true;
-    }
     private void createNewItemDisplay(Item item, int amount)
     {
         if (newItemDisplayObjects.ContainsKey(item.ItemObject))
@@ -320,6 +247,76 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         for (int i = 0; i < newItemDisplayObjects.Count; i++)
             newItemDisplayObjects.Values.ElementAt(i).transform.localPosition = new Vector2(0, -i * distanceBetweenDisplayObjects);
     }
+    /// <summary>
+    /// Public functions to interact with the playerinventory
+    /// </summary>
+    public static void AddItem(ItemAmountInfo itemInfo) => Instance.addItem(itemInfo);
+    public void addItem(ItemAmountInfo itemInfo)
+    {
+        // First try adding to existing stacks (To prevent items from being added to the hotbar if it can stack in the inventory)
+        if (hotbar.AddItemToStack(itemInfo.item, itemInfo.amount, out int droppedAmount))
+        {
+            createNewItemDisplay(itemInfo.item, itemInfo.amount);
+            return;
+        }
+        if (inventory.AddItemToStack(itemInfo.item, droppedAmount, out droppedAmount))
+        {
+            createNewItemDisplay(itemInfo.item, itemInfo.amount);
+            return;
+        }
+        // Regular adding
+        if (hotbar.AddItem(itemInfo.item, droppedAmount, out droppedAmount))
+        {
+            createNewItemDisplay(itemInfo.item, itemInfo.amount);
+            return;
+        }
+        if (inventory.AddItem(itemInfo.item, droppedAmount, out droppedAmount))
+        {
+            createNewItemDisplay(itemInfo.item, itemInfo.amount);
+            return;
+        }
+        if (itemInfo.amount != droppedAmount)
+            createNewItemDisplay(itemInfo.item, itemInfo.amount - droppedAmount);
+        
+        ItemDropManager.DropItemAmount(itemInfo.item, droppedAmount);
+        return;
+    }
+    public static bool ContainsItems(ItemAmountInfo itemInfo) => Instance.containsItems(itemInfo);
+    public bool containsItems(ItemAmountInfo itemInfo)
+    {
+        int amountInHotbar = hotbar.GetItemCount(itemInfo.item);
+        int amountInMain = inventory.GetItemCount(itemInfo.item);
+        return amountInHotbar + amountInMain >= itemInfo.amount;
+    }
+    public static bool UseItems(List<ItemAmountInfo> items) => Instance.useItems(items);
+    public bool useItems(List<ItemAmountInfo> items)
+    {
+        foreach (ItemAmountInfo itemInfo in items)
+            if (!containsItems(itemInfo))
+                return false;
+        foreach (ItemAmountInfo itemInfo in items)
+            removeItem(itemInfo);
+        return true;
+    }
+    public bool removeItem(ItemAmountInfo itemInfo)
+    {
+        int amount = itemInfo.amount;
+        if (hotbar.RemoveItem(itemInfo.item, ref amount))
+            return true;
+        if (inventory.RemoveItem(itemInfo.item, ref amount))
+            return true;
+        return false;
+    }
+    public static bool UseActiveItem(out Item item) => Instance.useActiveItem(out item);
+    public bool useActiveItem(out Item item)
+    {
+        item = null;
+        if (activeItem == null)
+            return false;
+        item = activeItem;
+        hotbar.Slots[activeSlot].RemoveAmount(1);
+        return true;
+    }
     
     [Command("give", description="give <ItemID> <Amount>")]
     public static void GiveCommand(List<string> Parameters)
@@ -327,9 +324,9 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         if (Parameters.Count < 1)
             Debug.LogError("Missing Item Id");
         if (Parameters.Count < 2)
-            Instance.addItem(ItemDatabase.ItemObjects[Parameters[0]].CreateItem(), 1);
+            Instance.addItem(new(ItemDatabase.ItemObjects[Parameters[0]], 1));
         else
-            Instance.addItem(ItemDatabase.ItemObjects[Parameters[0]].CreateItem(), int.Parse(Parameters[1]));
+            Instance.addItem(new(ItemDatabase.ItemObjects[Parameters[0]], int.Parse(Parameters[1])));
     }
 }
 [Serializable]
@@ -337,6 +334,7 @@ public struct ItemAmountInfo
 {
     public ItemObject itemObj;
     public int amount;
+    public Item item => itemObj.CreateItem();
     public ItemAmountInfo(ItemObject itemObj, int amount)
     {
         this.itemObj = itemObj;

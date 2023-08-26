@@ -161,55 +161,26 @@ public class CreateItemObjects : EditorWindow
             portableItem.portableItemPrefab = ObjPrefab;
         }
     }
-    private abstract class WeaponItemEditor : ItemObjectEditor
+    private class WeaponItemEditor : PortableItemEditor
     {
-        protected virtual string WeaponPrefabpath => "Assets/Prefabs/Inventory/WeaponItemPrefabs";
-        protected virtual string WeaponFileNameEnding => "WeaponItem";
-        private Mesh weaponObjectMesh;
-        private Material[] weaponObjectMaterials;
-        private MaterialAssigner materialAssigner;
-        private float damage;
-        private bool reuseGroundItem;
+        protected override string PortablePrefabpath => "Assets/Prefabs/Inventory/WeaponItemPrefabs";
+        protected override string PortableItemFileNameEnding => "WeaponItem";
 
-        private void SetMaterials(Material[] weaponObjectMaterials) => this.weaponObjectMaterials = weaponObjectMaterials;
+        public override ItemType Type => ItemType.MeleeWeapon;
+
+        private float damage;
+
         public override void CreateUI()
         {
             base.CreateUI();
-
-            reuseGroundItem = EditorGUILayout.Toggle("reuse ground item:", reuseGroundItem);
-            if (!reuseGroundItem)
-            { 
-                EditorGUILayout.LabelField("Weapon object:", EditorStyles.boldLabel);
-                EditorGUI.BeginChangeCheck();
-                weaponObjectMesh = (Mesh)EditorGUILayout.ObjectField(weaponObjectMesh, typeof(Mesh), false);
-                if (EditorGUI.EndChangeCheck() && materialAssigner != null)
-                    materialAssigner.Destroy();
-
-                if (materialAssigner == null && weaponObjectMesh != null && GUILayout.Button("Assign Materials"))
-                    materialAssigner = MaterialAssigner.OpenWindow(weaponObjectMesh, Materialpath, SetMaterials);
-            }
             damage = EditorGUILayout.FloatField("Damage:", damage);
         }
-        protected override void AddAssetInfo(ItemObject itemObject)
+        public override void CreateAsset()
         {
-            base.AddAssetInfo(itemObject);
-            MeleeWeaponItem weaponItem = itemObject as MeleeWeaponItem;
-            
-            GameObject Obj = new($"{weaponItem.Id}_{WeaponFileNameEnding}");
-            if (reuseGroundItem)
-                Obj = Instantiate(itemObject.GroundPrefab);
-            else
-            {
-                // Weapon Item Prefab creation
-                Obj.AddComponent<MeshFilter>().mesh = weaponObjectMesh;
-                Obj.AddComponent<MeshRenderer>().materials = weaponObjectMaterials;
-            }
-
-            GameObject ObjPrefab = PrefabUtility.SaveAsPrefabAsset(Obj, $"{WeaponPrefabpath}/{weaponItem.Id}_{WeaponFileNameEnding}.prefab");
-            DestroyImmediate(Obj);
-
-            weaponItem.weaponPrefab = ObjPrefab;
-            weaponItem.damage = damage;
+            MeleeWeaponItem itemObject = CreateInstance<MeleeWeaponItem>();
+            AddAssetInfo(itemObject);
+            itemObject.damage = damage;
+            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Weapons/{itemObject.name}.asset");
         }
     }
     private abstract class ArmorItemEditor : ItemObjectEditor
@@ -314,20 +285,29 @@ public class CreateItemObjects : EditorWindow
             AssetDatabase.CreateAsset(itemObject, $"{SOpath}/{itemObject.name}.asset");
         }
     }
-    private class BowItemEditor : ItemObjectEditor
+    private class BowItemEditor : PortableItemEditor
     {
         public override ItemType Type => ItemType.Bow;
-        private GameObject bowPrefab;
+        private ArrowItem arrowItem;
+        private float totalDrawTime;
+        private float minDrawTime;
+        private float maxVelocity;
         public override void CreateUI()
         {
             base.CreateUI();
-            bowPrefab = (GameObject)EditorGUILayout.ObjectField("bow prefab:", bowPrefab, typeof(GameObject), false);
+            arrowItem = (ArrowItem)EditorGUILayout.ObjectField("arrow item:", arrowItem, typeof(ArrowItem), false);
+            totalDrawTime = EditorGUILayout.FloatField("Total draw time: ", totalDrawTime);
+            minDrawTime = EditorGUILayout.FloatField("Min draw time: ", minDrawTime);
+            maxVelocity = EditorGUILayout.FloatField("Max velocity: ", maxVelocity);
         }
         public override void CreateAsset()
         {
             BowItem itemObject = CreateInstance<BowItem>();
             AddAssetInfo(itemObject);
-            itemObject.bowPrefab = bowPrefab;
+            itemObject.ArrowItem = arrowItem;
+            itemObject.TotalDrawTime = totalDrawTime;
+            itemObject.MinDrawTime = minDrawTime;
+            itemObject.MaxVelocity = maxVelocity;
             AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Weapons/{itemObject.name}.asset");
         }
     }
@@ -371,20 +351,6 @@ public class CreateItemObjects : EditorWindow
             LeggingsItem itemObject = CreateInstance<LeggingsItem>();
             AddAssetInfo(itemObject);
             AssetDatabase.CreateAsset(itemObject, $"{SOpath}/{itemObject.name}.asset");
-        }
-    }
-    private class SwordItemEditor : WeaponItemEditor
-    {
-        public override ItemType Type => ItemType.Sword;
-        public override void CreateUI()
-        {
-            base.CreateUI();
-        }
-        public override void CreateAsset()
-        {
-            SwordItem itemObject = CreateInstance<SwordItem>();
-            AddAssetInfo(itemObject);
-            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Weapons/{itemObject.name}.asset");
         }
     }
 }

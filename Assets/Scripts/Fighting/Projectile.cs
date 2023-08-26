@@ -9,17 +9,17 @@ public class Projectile : MonoBehaviour
     private float _sqrMaxDistance;
     private GameObject _displayObject;
 
-    public static void SpawnProjectile(ProjectileInfo info, Vector3 position, Vector3 direction)
+    public static void SpawnProjectile(ProjectileInfo info, Vector3 position, Vector3 velocity)
     {
         GameObject projectileObj = Instantiate(PrefabHolder.Prefabs[PrefabTypes.Projectile], position, Quaternion.identity);
-        projectileObj.GetComponent<Projectile>().Initialize(info, direction);
+        projectileObj.GetComponent<Projectile>().Initialize(info, velocity);
     }
-    private void Initialize(ProjectileInfo info, Vector3 direction)
+    private void Initialize(ProjectileInfo info, Vector3 velocity)
     {
         // Graphics
         _displayObject = Instantiate(info.Prefab, transform.position, Quaternion.identity);
         // Physics
-        _velocity = direction.normalized * info.InitialVelocity;
+        _velocity = velocity;
         _lastPosition = transform.position;
         _spawnPosition = transform.position;
         _info = info;

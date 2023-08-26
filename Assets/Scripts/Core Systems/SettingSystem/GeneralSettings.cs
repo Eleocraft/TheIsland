@@ -18,6 +18,6 @@ public static class GeneralSettings
     public static void ChangeResolution(string settingValue)
     {
         string[] resolution = settingValue.Split("x");
-        Screen.SetResolution(int.Parse(resolution[0]), int.Parse(resolution[1]), Screen.fullScreenMode, Application.targetFrameRate);
+        Screen.SetResolution(int.Parse(resolution[0]), int.Parse(resolution[1]), Screen.fullScreenMode);
     }
 }

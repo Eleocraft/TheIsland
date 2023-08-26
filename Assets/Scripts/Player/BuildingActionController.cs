@@ -11,34 +11,29 @@ public class BuildingActionController : MonoBehaviour
     [SerializeField] private Color BuildableColor;
 
     private LayerMask snappingPointLayer;
-    InputMaster controls;
     ActiveBuildingBlueprint activeBlueprint;
     float angleOffset;
     private void Start()
     {
         activeBlueprint = new(this);
+        
+        ItemActionController itemActionController = GetComponent<ItemActionController>();
 
-        controls = GlobalData.controls;
-        controls.Mouse.SecondaryAction.performed += OpenBuildMenu;
-        controls.Mouse.MainAction.performed += MainAction;
-        controls.Mouse.TertiaryAction.performed += Delete;
-        controls.Interaction.SecondaryInteraction.performed += Rotate;
+        itemActionController.AddAction(ItemActionController.ActionType.MainActionStarted, ItemType.Hammer, MainAction);
+        itemActionController.AddAction(ItemActionController.ActionType.SecondaryActionStarted, ItemType.Hammer, OpenBuildMenu);
+        itemActionController.AddAction(ItemActionController.ActionType.TertiaryActionStarted, ItemType.Hammer, Delete);
+
+        GlobalData.controls.Interaction.SecondaryInteraction.performed += Rotate;
         PlayerInventory.HotbarSlotChange += EndBuildMode;
     }
     void OnDestroy()
     {
-        controls.Mouse.SecondaryAction.performed -= OpenBuildMenu;
-        controls.Mouse.MainAction.performed -= MainAction;
-        controls.Mouse.TertiaryAction.performed -= Delete;
-        controls.Interaction.SecondaryInteraction.performed -= Rotate;
+        GlobalData.controls.Interaction.SecondaryInteraction.performed -= Rotate;
         PlayerInventory.HotbarSlotChange -= EndBuildMode;
     }
 
-    private void OpenBuildMenu(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    private void OpenBuildMenu(Item equippedItem)
     {
-        if (!PlayerInventory.TryGetActiveItem(out Item equippedItem) || equippedItem.ItemObject.Type != ItemType.Hammer)
-            return;
-
         if (CursorStateMachine.AlreadyLocked(this))
             return;
 
@@ -73,7 +68,7 @@ public class BuildingActionController : MonoBehaviour
         if (activeBlueprint.BuildMode)
             activeBlueprint.EndBlueprint();
     }
-    private void MainAction(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    private void MainAction(Item equippedItem)
     {
         if (activeBlueprint.BuildMode)
         {
@@ -81,18 +76,15 @@ public class BuildingActionController : MonoBehaviour
             if (activeBlueprint.PlacingPossible && PlayerInventory.UseItems(activeBlueprint.Object.Cost) && ((HammerItem)item.ItemObject).HammerLevel >= activeBlueprint.Object.BuildingLevel)
                 Instantiate(activeBlueprint.Object.buildingPrefab, activeBlueprint.BuildingPos, activeBlueprint.BuildingRot).Initialize();
         }
-        else if (PlayerInventory.TryGetActiveItem(out Item equippedItem) && equippedItem.ItemObject.Type == ItemType.Hammer)
+        else
         {
             //Debug.Log("WIP Build");
         }
     }
-    private void Delete(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    private void Delete(Item equippedItem)
     {
-        if (PlayerInventory.TryGetActiveItem(out Item equippedItem) && equippedItem.ItemObject.Type == ItemType.Hammer
-            && Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit hitData, HitRange, BuildingSortingLayers))
-        {
+        if (Physics.Raycast(CameraTransform.position, CameraTransform.TransformDirection(Vector3.forward), out RaycastHit hitData, HitRange, BuildingSortingLayers))
             Destroy(hitData.collider.gameObject);
-        }
     }
     private void Rotate(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {

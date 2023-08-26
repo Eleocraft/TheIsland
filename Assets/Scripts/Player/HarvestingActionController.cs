@@ -1,15 +1,12 @@
 using UnityEngine;
 
 public enum HarvestableType { None, Tree, Trunk, Ore }
-public class HarvestingActionController : MonoSingleton<HarvestingActionController>
+public class HarvestingActionController : MonoBehaviour
 {
     [Header("--Visuals")]
     [SerializeField] private GameObject Particles;
     [SerializeField] private Animator armAnimator;
     [SerializeField] private AnimationEventHandler armAnimationEventHandler;
-
-    private HarvestableType harvestableType;
-    private InputMaster controls;
     
     [SerializeField] [ReadOnly] private bool hitting;
     [SerializeField] [ReadOnly] private bool locked;
@@ -17,8 +14,7 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
     private bool startingCrit;
     void Start()
     {
-        controls = GlobalData.controls;
-        controls.Mouse.MainAction.started += StartAction;
+        GetComponent<ItemActionController>().AddAction(ItemActionController.ActionType.MainActionStarted, ItemType.Tool, StartAction);
         // If Hotbarslot is changed the current action should be stopped
         PlayerInventory.HotbarSlotChange += AbortAction;
         armAnimationEventHandler.Events["HitObject"] += HitObject;
@@ -26,16 +22,12 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
     }
     void OnDestroy()
     {
-        controls.Mouse.MainAction.started -= StartAction;
         PlayerInventory.HotbarSlotChange -= AbortAction;
         armAnimationEventHandler.Events["HitObject"] -= HitObject;
         armAnimationEventHandler.Events["CritChance"] -= CritChance;
     }
-    void StartAction(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    void StartAction(Item equippedItem)
     {
-        if (!PlayerInventory.TryGetActiveItem(out Item equippedItem) || equippedItem.ItemObject.Type != ItemType.Tool)
-            return;
-
         if (InteractionController.TryGetInteraction(out InteractionData interaction) && interaction.interactableObject.TryGetComponent(out IHarvestable harvestableObject))
         {
             // check if an animation is already playing
@@ -52,7 +44,6 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
                 return;
             }
             // no animation playing
-            harvestableType = harvestableObject.HarvestableType;
             armAnimator.Play("Hit");
         }
         else
@@ -87,15 +78,15 @@ public class HarvestingActionController : MonoSingleton<HarvestingActionControll
             armAnimator.speed = 1;
         }
     }
-    public static void EndPlaying()
+    public void EndPlaying()
     {
-        if (Instance.startingCrit)
+        if (startingCrit)
         {
-            Instance.startingCrit = false;
+            startingCrit = false;
             return;
         }
-        Instance.hitting = false;
-        Instance.armAnimator.speed = 1;
+        hitting = false;
+        armAnimator.speed = 1;
     }
     public void HitObject()
     {

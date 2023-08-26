@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7589f6c2d95ef7c49ba8581e125140c8, type: 3}
-  m_Name: Test Bow
+  m_Script: {fileID: 11500000, guid: 01667e1758b124746993efaac76bcf51, type: 3}
+  m_Name: Test Arrow
   m_EditorClassIdentifier: 
-  Name: 
-  Id: test_bow
+  Id: test_arrow
   Image: {fileID: 21300000, guid: b9e1e4abf9e9e614fb80dcc27d6485b1, type: 3}
-  GroundPrefab: {fileID: 8116115025552459266, guid: a118946061129bb4191aabb368ec1828, type: 3}
-  stackable: 0
-  manualPickUp: 1
-  description: This is a testbow
-  bowPrefab: {fileID: 0}
+  GroundPrefab: {fileID: 5301021878717787649, guid: 5a88a8d09eceaa2468f3814833beda15, type: 3}
+  stackable: 1
+  manualPickUp: 0
+  description: This is a test arrow
+  Projectile: {fileID: 11400000, guid: 7a68ea16c0aafd244af56522e28be6a9, type: 2}

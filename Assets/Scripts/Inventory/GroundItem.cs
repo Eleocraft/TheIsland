@@ -53,7 +53,7 @@ public class GroundItem : MonoBehaviour, IInteractable
             transform.position = Vector3.MoveTowards(transform.position, PlayerData.Position, Time.deltaTime * pickUpSpeed);
             if ((transform.position - PlayerData.Position).sqrMagnitude < SqrDestroyDist)
             {
-                PlayerInventory.AddItem(item, amount);
+                PlayerInventory.AddItem(new(item.ItemObject, amount));
                 Destroy(gameObject);
             }
             return;

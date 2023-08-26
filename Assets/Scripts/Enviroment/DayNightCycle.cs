@@ -32,6 +32,7 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
     [SerializeField] private Texture2D ViewZenithGrad;
     [SerializeField] private float fogBrightness;
     [SerializeField] private Material cloudMaterial;
+    [SerializeField] private Gradient cloudColor;
 
     private float moonTime;
     private float moonTimeRate;
@@ -93,6 +94,8 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
 
         RenderSettings.ambientIntensity = lightingIntensityMultiplier.Evaluate(time);
         RenderSettings.reflectionIntensity = reflectionsIntensityMultiplier.Evaluate(time);
+        
+        DynamicGI.UpdateEnvironment();
 
         // Fog
         float sunZenithDot01 = (-sun.transform.forward.y + 1.0f) * 0.5f;
@@ -102,7 +105,7 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
         RenderSettings.fogColor = skyColor * fogBrightness;
 
         // Clouds
-        cloudMaterial.SetColor("_DarkColor", sunZenithColor);
+        cloudMaterial.SetColor("_DarkColor", cloudColor.Evaluate(time));
     }
     void LateUpdate()
     {

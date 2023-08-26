@@ -21,7 +21,7 @@ public class SimpleResource : MapObject, IInteractable, IHarvestable
     {
         ToolEfficiencyData data = objectData.harvestingInfo[itemInfo];
         foreach (ResourceDropInfo itemAmount in data.droppedItems)
-            PlayerInventory.AddItem(itemAmount.resourceItem.CreateItem(), itemAmount.Amount);
+            PlayerInventory.AddItem(new(itemAmount.resourceItem, itemAmount.Amount));
         Life -= data.DamagePerHit;
         UpdateState(Id, Life);
         if (Life <= 0)

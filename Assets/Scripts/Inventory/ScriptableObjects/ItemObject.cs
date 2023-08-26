@@ -15,9 +15,8 @@ public enum ItemType
     Tool,
     Hammer,
     Bow,
-    Sword,
-    Spear,
-    Dagger
+    Arrow,
+    MeleeWeapon
 }
 public abstract class ItemObject : ScriptableObject
 {
