@@ -31,6 +31,7 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
     [SerializeField] private Texture2D SunZenithGrad;
     [SerializeField] private Texture2D ViewZenithGrad;
     [SerializeField] private float fogBrightness;
+    [SerializeField] private Material fogMaterial;
     [SerializeField] private Material cloudMaterial;
     [SerializeField] private Gradient cloudColor;
 
@@ -103,6 +104,8 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
         Color viewZenithColor = ViewZenithGrad.GetPixel(Mathf.RoundToInt(sunZenithDot01 * ViewZenithGrad.width), Mathf.RoundToInt(ViewZenithGrad.height*0.5f));
         Color skyColor = sunZenithColor + viewZenithColor;
         RenderSettings.fogColor = skyColor * fogBrightness;
+
+        fogMaterial.SetColor("_MainColor", cloudColor.Evaluate(time));
 
         // Clouds
         cloudMaterial.SetColor("_DarkColor", cloudColor.Evaluate(time));
