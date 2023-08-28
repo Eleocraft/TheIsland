@@ -6,6 +6,7 @@ public class BowActionController : MonoBehaviour
     private bool _drawing;
     private float _drawTime;
     private float _maxDraw;
+    private Animator _bowAnimator;
     private void Start()
     {
         ItemActionController itemActionController = GetComponent<ItemActionController>();
@@ -30,7 +31,11 @@ public class BowActionController : MonoBehaviour
 
         if (!PlayerInventory.UseItems(new() { new(bow.ArrowItem, 1) }))
             return;
-        
+
+        PlayerInventory.TryGetActiveItemGO(out GameObject go);
+        _bowAnimator = go.GetComponent<Animator>();
+
+        _bowAnimator.SetTrigger("StartDraw");
         _drawing = true;
         _drawTime = 0;
         _maxDraw = bow.TotalDrawTime;
@@ -42,16 +47,23 @@ public class BowActionController : MonoBehaviour
 
         BowItem bow = (BowItem)equippedItem.ItemObject;
         _drawing = false;
+        _bowAnimator.SetTrigger("Loose");
             
         if (_drawTime < bow.MinDrawTime)
+        {
             PlayerInventory.AddItem(new(bow.ArrowItem, 1));
-            
+            return;
+        }
+
         Vector3 velocity = CameraTransform.forward * bow.GetVelocity(_drawTime);
         Projectile.SpawnProjectile(bow.ArrowItem.Projectile, CameraTransform.position, velocity);
     }
     private void CancelDrawing()
     {
         if (_drawing)
+        {
             _drawing = false;
+            _bowAnimator.SetTrigger("Loose");
+        }
     }
 }

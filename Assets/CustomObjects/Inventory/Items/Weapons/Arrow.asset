@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01667e1758b124746993efaac76bcf51, type: 3}
-  m_Name: Test Arrow
+  m_Name: Arrow
   m_EditorClassIdentifier: 
-  Id: test_arrow
+  Id: arrow
   Image: {fileID: 21300000, guid: b9e1e4abf9e9e614fb80dcc27d6485b1, type: 3}
   GroundPrefab: {fileID: 5301021878717787649, guid: 5a88a8d09eceaa2468f3814833beda15, type: 3}
   stackable: 1

@@ -1,21 +1,18 @@
 using UnityEngine;
 
-public class IndicatorBar : MonoBehaviour
+public abstract class IndicatorBar : MonoBehaviour
 {
-    [SerializeField] private RectTransform progressBar;
-    [SerializeField] private RectTransform animationBar;
     [SerializeField] private float animationSpeed;
     [SerializeField] private float timeToUpdate;
-    private float maxProgress;
+    protected abstract float MaxProgress { get; }
     private float lastProgress;
     private float animationProgress;
     private float actualProgress;
     private float timer;
     private void Start()
     {
-        maxProgress = progressBar.sizeDelta.x;
-        actualProgress = maxProgress;
-        animationProgress = maxProgress;
+        actualProgress = MaxProgress;
+        animationProgress = MaxProgress;
     }
     private void Update()
     {
@@ -24,30 +21,32 @@ public class IndicatorBar : MonoBehaviour
         if (animationProgress > actualProgress && timer <= 0)
         {
             animationProgress = Mathf.MoveTowards(animationProgress, actualProgress, animationSpeed * Time.deltaTime * Mathf.Clamp01((animationProgress - actualProgress) / (lastProgress - actualProgress)));
-            animationBar.sizeDelta = new Vector2(animationProgress, animationBar.sizeDelta.y);
+            SetAnimatorBarSize(animationProgress);
         }
     }
+    protected abstract void SetAnimatorBarSize(float progress);
+    protected abstract void SetProgressBarSize(float progress);
     public void AnimateProgress(float relProgress)
     {
         relProgress = Mathf.Clamp01(relProgress);
-        if (relProgress * maxProgress > actualProgress)
+        if (relProgress * MaxProgress > actualProgress)
         {
             SetProgress(relProgress);
             return;
         }
         lastProgress = actualProgress;
-        actualProgress = relProgress * maxProgress;
-        progressBar.sizeDelta = new Vector2(actualProgress, progressBar.sizeDelta.y);
+        actualProgress = relProgress * MaxProgress;
+        SetProgressBarSize(actualProgress);
         timer = timeToUpdate;
     }
     public void SetProgress(float relProgress)
     {
         timer = 0;
         relProgress = Mathf.Clamp01(relProgress);
-        actualProgress = relProgress * maxProgress;
+        actualProgress = relProgress * MaxProgress;
         animationProgress = actualProgress;
         lastProgress = actualProgress;
-        progressBar.sizeDelta = new Vector2(actualProgress, progressBar.sizeDelta.y);
-        animationBar.sizeDelta = new Vector2(animationProgress, animationBar.sizeDelta.y);
+        SetProgressBarSize(actualProgress);
+        SetAnimatorBarSize(animationProgress);
     }
 }

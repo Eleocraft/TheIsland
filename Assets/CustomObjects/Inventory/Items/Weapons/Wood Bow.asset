@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7589f6c2d95ef7c49ba8581e125140c8, type: 3}
-  m_Name: Test Bow
+  m_Name: Wood Bow
   m_EditorClassIdentifier: 
-  Id: test_bow
-  Image: {fileID: 21300000, guid: b9e1e4abf9e9e614fb80dcc27d6485b1, type: 3}
+  Id: wood_bow
+  Image: {fileID: 21300000, guid: f40d1322da02f0b4b8534df33dfdbf8b, type: 3}
   GroundPrefab: {fileID: 8116115025552459266, guid: a118946061129bb4191aabb368ec1828, type: 3}
   stackable: 0
   manualPickUp: 1
   description: This is a testbow
-  portableItemPrefab: {fileID: 8116115025552459266, guid: a118946061129bb4191aabb368ec1828, type: 3}
+  portableItemPrefab: {fileID: 5259392853032514077, guid: 0bc3ea56f8c483645a75c677c375923f, type: 3}
   ArrowItem: {fileID: 11400000, guid: 85bb03e3025456044b7d32b12c0b2ec3, type: 2}
-  TotalDrawTime: 4
+  TotalDrawTime: 1.5
   MinDrawTime: 1
-  MaxVelocity: 80
+  MaxVelocity: 70
