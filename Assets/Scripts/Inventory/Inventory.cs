@@ -238,6 +238,7 @@ public class InventorySlot
 
     private int _amount;
     public int amount => _amount;
+    public ItemAmountInfo itemAmountInfo => new(_item, _amount);
 
     public InventorySlot(int maxStack)
     {
@@ -303,5 +304,21 @@ public class InventorySlot
                 return true;
         }
         return false;
+    }
+}
+public class ItemAmountInfo
+{
+    public int amount;
+    protected Item _item;
+    public virtual Item item => _item;
+    public ItemAmountInfo(ItemObject itemObj, int amount)
+    {
+        _item = itemObj.CreateItem();
+        this.amount = amount;
+    }
+    public ItemAmountInfo(Item item, int amount)
+    {
+        _item = item;
+        this.amount = amount;
     }
 }

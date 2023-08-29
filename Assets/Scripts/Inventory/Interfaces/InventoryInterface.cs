@@ -12,7 +12,7 @@ public abstract class InventoryInterface : MonoBehaviour
 
     public Dictionary<GameObject, InventorySlot> slotsOnInterface = new();
 
-    public event Action<Item, int> OnItemDropped;
+    public event Action<ItemAmountInfo> OnItemDropped;
     private bool active;
     protected InputMaster controls;
     protected virtual void Start()
@@ -180,12 +180,12 @@ public abstract class InventoryInterface : MonoBehaviour
         {
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                OnItemDropped(slotsOnInterface[obj].item, slotsOnInterface[obj].amount / 2);
+                OnItemDropped(new(slotsOnInterface[obj].item, slotsOnInterface[obj].amount / 2));
                 slotsOnInterface[obj].RemoveAmount(slotsOnInterface[obj].amount / 2);
             }
             else
             {
-                OnItemDropped(slotsOnInterface[obj].item, slotsOnInterface[obj].amount);
+                OnItemDropped(slotsOnInterface[obj].itemAmountInfo);
                 slotsOnInterface[obj].RemoveItem();
             }
             return;

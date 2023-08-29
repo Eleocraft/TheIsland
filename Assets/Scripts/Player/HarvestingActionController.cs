@@ -4,12 +4,11 @@ public enum HarvestableType { None, Tree, Trunk, Ore }
 public class HarvestingActionController : MonoBehaviour
 {
     [Header("--Visuals")]
-    [SerializeField] private GameObject Particles;
     [SerializeField] private Animator armAnimator;
     [SerializeField] private AnimationEventHandler armAnimationEventHandler;
     
-    [SerializeField] [ReadOnly] private bool hitting;
-    [SerializeField] [ReadOnly] private bool locked;
+    private bool hitting;
+    private bool locked;
     private float critTimer;
     private bool startingCrit;
     void Start()
@@ -44,10 +43,10 @@ public class HarvestingActionController : MonoBehaviour
                 return;
             }
             // no animation playing
-            armAnimator.Play("Hit");
+            armAnimator.SetTrigger("ToolHit");
         }
         else
-            armAnimator.Play("NoHit");
+            armAnimator.Play("SecondHit");
         
         armAnimator.speed = ((ToolItem)equippedItem.ItemObject).Speed;
         hitting = true;
@@ -92,14 +91,13 @@ public class HarvestingActionController : MonoBehaviour
     {
         if (PlayerInventory.TryGetActiveItem(out Item equippedItem) && InteractionController.TryGetInteraction(out InteractionData interaction) && interaction.interactableObject.TryGetComponent(out IHarvestable harvestableObject))
         {
-            harvestableObject.OnHit(equippedItem.ItemObject as ToolItem, (interaction.hitData.point - transform.position).XZ().AddHeight(0).normalized);
+            harvestableObject.OnHit(equippedItem.ItemObject as ToolItem, interaction.hitData.point, (interaction.hitData.point - transform.position).XZ().AddHeight(0).normalized);
             CameraShakeController.Singleton.Shake(1.5f, 0.4f);
-            Instantiate(Particles, interaction.hitData.point, Quaternion.identity);
         }
     }
 }
 public interface IHarvestable
 {
-    void OnHit(ToolItem information, Vector3 direction);
+    void OnHit(ToolItem information, Vector3 position, Vector3 direction);
     public HarvestableType HarvestableType { get; }
 }

@@ -17,7 +17,7 @@ public class SimpleResource : MapObject, IInteractable, IHarvestable
         if (Life <= 0)
             Destroy(gameObject);
     }
-    public void OnHit(ToolItem itemInfo, Vector3 direction)
+    public void OnHit(ToolItem itemInfo, Vector3 position, Vector3 direction)
     {
         ToolEfficiencyData data = objectData.harvestingInfo[itemInfo];
         foreach (ResourceDropInfo itemAmount in data.droppedItems)

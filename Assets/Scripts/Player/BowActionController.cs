@@ -29,7 +29,7 @@ public class BowActionController : MonoBehaviour
     {
         BowItem bow = (BowItem)equippedItem.ItemObject;
 
-        if (!PlayerInventory.UseItems(new() { new(bow.ArrowItem, 1) }))
+        if (!PlayerInventory.UseItems(new ItemAmountInfo[] { new(bow.ArrowItem, 1) }))
             return;
 
         PlayerInventory.TryGetActiveItemGO(out GameObject go);

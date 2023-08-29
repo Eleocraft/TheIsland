@@ -59,7 +59,7 @@ public abstract class ItemObject : ScriptableObject
 [Serializable]
 public class Item
 {
-    [HideInInspector] public string Id;
+    public string Id;
     [NonSerialized] private ItemObject _itemObject;
 
     public ItemObject ItemObject
@@ -79,16 +79,26 @@ public class Item
     // operator
     public static bool operator == (Item firstItem, Item secondItem)
     {
-        return firstItem?.Id == secondItem?.Id;
+        if (firstItem is null)
+            return secondItem is null;
+
+        return firstItem.Equals(secondItem);
     }
     public static bool operator != (Item firstItem, Item secondItem)
     {
-        return firstItem?.Id != secondItem?.Id;
+        if (firstItem is null)
+            return secondItem is not null;
+        
+        return !firstItem.Equals(secondItem);
     }
-    // To make the compiler happy
     public override bool Equals(object o)
     {
-        return base.Equals(o);
+        Item secondItem = (Item)o;
+
+        if (secondItem is null)
+            return false;
+
+        return secondItem.Id == Id;
     }
     public override int GetHashCode()
     {

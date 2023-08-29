@@ -161,28 +161,6 @@ public class CreateItemObjects : EditorWindow
             portableItem.portableItemPrefab = ObjPrefab;
         }
     }
-    private class WeaponItemEditor : PortableItemEditor
-    {
-        protected override string PortablePrefabpath => "Assets/Prefabs/Inventory/WeaponItemPrefabs";
-        protected override string PortableItemFileNameEnding => "WeaponItem";
-
-        public override ItemType Type => ItemType.MeleeWeapon;
-
-        private float damage;
-
-        public override void CreateUI()
-        {
-            base.CreateUI();
-            damage = EditorGUILayout.FloatField("Damage:", damage);
-        }
-        public override void CreateAsset()
-        {
-            MeleeWeaponItem itemObject = CreateInstance<MeleeWeaponItem>();
-            AddAssetInfo(itemObject);
-            itemObject.damage = damage;
-            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Weapons/{itemObject.name}.asset");
-        }
-    }
     private abstract class ArmorItemEditor : ItemObjectEditor
     {
         private float defenceBonus;
@@ -252,6 +230,28 @@ public class CreateItemObjects : EditorWindow
             AddAssetInfo(itemObject);
             itemObject.HammerLevel = hammerLevel;
             AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Tools/{itemObject.name}.asset");
+        }
+    }
+    private class WeaponItemEditor : PortableItemEditor
+    {
+        protected override string PortablePrefabpath => "Assets/Prefabs/Inventory/WeaponItemPrefabs";
+        protected override string PortableItemFileNameEnding => "WeaponItem";
+
+        public override ItemType Type => ItemType.MeleeWeapon;
+
+        private float damage;
+
+        public override void CreateUI()
+        {
+            base.CreateUI();
+            damage = EditorGUILayout.FloatField("Damage:", damage);
+        }
+        public override void CreateAsset()
+        {
+            MeleeWeaponItem itemObject = CreateInstance<MeleeWeaponItem>();
+            AddAssetInfo(itemObject);
+            itemObject.damage = damage;
+            AssetDatabase.CreateAsset(itemObject, $"{SOpath}/Weapons/{itemObject.name}.asset");
         }
     }
     private class FoodItemEditor : ItemObjectEditor

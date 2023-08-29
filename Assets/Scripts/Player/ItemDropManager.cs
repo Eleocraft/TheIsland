@@ -31,10 +31,10 @@ public class ItemDropManager : MonoSingleton<ItemDropManager>
     {
         controls.Player.Drop.performed -= DropActiveItem;
     }
-    public static void DropItemAmount(Item item, int amount) => Instance.dropItemAmount(item, amount);
-    private void dropItemAmount(Item item, int amount)
+    public static void DropItemAmount(ItemAmountInfo info) => Instance.dropItemFromPlayer(info);
+    private void dropItemFromPlayer(ItemAmountInfo info)
     {
-        GroundItem.Create(item, dropSpawnPos.position, Vector3.up * dropUpwardForce + transform.forward * dropForwardForce, amount, true);
+        GroundItem.Create(info.item, dropSpawnPos.position, Vector3.up * dropUpwardForce + transform.forward * dropForwardForce, info.amount, true);
     }
     private void DropActiveItem(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {

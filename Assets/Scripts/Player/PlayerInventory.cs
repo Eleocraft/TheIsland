@@ -28,7 +28,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     [SerializeField] private float fadeTime;
     [Header("--PlayerModel")]
     [SerializeField] private Transform ToolContainer;
-    [SerializeField] private SkinnedMeshRenderer[] ThirdPersonArms;
+    [SerializeField] private Transform BowContainer;
     [SerializeField] private Animator armAnimator;
     private Dictionary<ItemObject, GameObject> newItemDisplayObjects = new Dictionary<ItemObject, GameObject>();
     private bool active;
@@ -43,7 +43,6 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
 
     public static Item activeItem => Instance.hotbar.Slots[Instance.activeSlot].item;
 
-    private bool PortableItem => activeItem?.ItemObject as PortableItem;
     // Save data
     [Save(SaveType.player)]
     public static object PlayerInventorySaveData
@@ -158,18 +157,6 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
             foreach (Delegate d in closeCallback.GetInvocationList())
                 closeCallback -= d as Action;
     }
-    void ActivateThirdPersonArms()
-    {
-        foreach (SkinnedMeshRenderer obj in ThirdPersonArms)
-            obj.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-        armAnimator.gameObject.SetActive(false);
-    }
-    void ActivateFirstPersonArms()
-    {
-        foreach (SkinnedMeshRenderer obj in ThirdPersonArms)
-            obj.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-        armAnimator.gameObject.SetActive(true);
-    }
     void Scroll(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
     {
         Vector2 ScrollDirection = ctx.ReadValue<Vector2>();
@@ -190,14 +177,25 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     void UpdatePortableItem()
     {
         Destroy(ItemInHand);
-        if (PortableItem)
+        PortableItem portableItem = activeItem?.ItemObject as PortableItem;
+
+        if (portableItem == null)
         {
-            ActivateFirstPersonArms();
-            armAnimator.Play("TakeObj");
-            ItemInHand = Instantiate(((PortableItem)activeItem.ItemObject).portableItemPrefab, ToolContainer);
+            armAnimator.SetBool("HoldToolItem", false);
+            armAnimator.SetBool("HoldBowItem", false);
         }
-        else
-            ActivateThirdPersonArms();
+        else if (portableItem.portableItemAnimation == PortableItem.PortableItemAnimation.Tool)
+        {
+            armAnimator.SetBool("HoldToolItem", true);
+            armAnimator.SetBool("HoldBowItem", false);
+            ItemInHand = Instantiate(portableItem.portableItemPrefab, ToolContainer);
+        }
+        else if (portableItem.portableItemAnimation == PortableItem.PortableItemAnimation.Bow)
+        {
+            armAnimator.SetBool("HoldToolItem", false);
+            armAnimator.SetBool("HoldBowItem", true);
+            ItemInHand = Instantiate(portableItem.portableItemPrefab, BowContainer);
+        } 
     }
     public static void ToggleInventory(Action closeCallback)
     {
@@ -278,7 +276,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         if (itemInfo.amount != droppedAmount)
             createNewItemDisplay(itemInfo.item, itemInfo.amount - droppedAmount);
         
-        ItemDropManager.DropItemAmount(itemInfo.item, droppedAmount);
+        ItemDropManager.DropItemAmount(new(itemInfo.item, droppedAmount));
         return;
     }
     public static bool ContainsItems(ItemAmountInfo itemInfo) => Instance.containsItems(itemInfo);
@@ -288,8 +286,8 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         int amountInMain = inventory.GetItemCount(itemInfo.item);
         return amountInHotbar + amountInMain >= itemInfo.amount;
     }
-    public static bool UseItems(List<ItemAmountInfo> items) => Instance.useItems(items);
-    public bool useItems(List<ItemAmountInfo> items)
+    public static bool UseItems(ItemAmountInfo[] items) => Instance.useItems(items);
+    public bool useItems(ItemAmountInfo[] items)
     {
         foreach (ItemAmountInfo itemInfo in items)
             if (!containsItems(itemInfo))
@@ -330,14 +328,12 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
     }
 }
 [Serializable]
-public struct ItemAmountInfo
+public class DisplayItemAmountInfo : ItemAmountInfo
 {
     public ItemObject itemObj;
-    public int amount;
-    public Item item => itemObj.CreateItem();
-    public ItemAmountInfo(ItemObject itemObj, int amount)
-    {
-        this.itemObj = itemObj;
-        this.amount = amount;
-    }
+
+    public DisplayItemAmountInfo(Item item, int amount) : base(item, amount) { }
+
+    public override Item item => _item ?? itemObj.CreateItem();
+
 }

@@ -21,8 +21,10 @@ public class TreeResource : MapObject, IInteractable, IHarvestable
             Destroy(gameObject);
         }
     }
-    public void OnHit(ToolItem itemInfo, Vector3 direction)
+    public void OnHit(ToolItem itemInfo, Vector3 position, Vector3 direction)
     {
+        Instantiate(PrefabHolder.Prefabs[PrefabTypes.TreeHitParticles], position, Quaternion.identity);
+        
         Life -= objectData.toolDamageInfo[itemInfo];
         UpdateState(Id, Life);
         if (Life <= 0)

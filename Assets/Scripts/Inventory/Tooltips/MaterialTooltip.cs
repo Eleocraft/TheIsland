@@ -9,8 +9,8 @@ public class MaterialTooltip : MonoBehaviour, ITooltipObject
     {
         MaterialTooltipAttributeData data = (MaterialTooltipAttributeData)Information;
         Image image = GetComponentInChildren<Image>();
-        image.sprite = data.material.itemObj.Image;
-        image.color = PlayerInventory.ContainsItems(new(data.material.itemObj, data.material.amount)) ? Color.white : Color.red;
+        image.sprite = data.material.item.ItemObject.Image;
+        image.color = PlayerInventory.ContainsItems(new(data.material.item.ItemObject, data.material.amount)) ? Color.white : Color.red;
         TMP_Text textMesh = GetComponent<TMP_Text>();
         textMesh.text = data.material.amount.ToString();
         textMesh.ForceMeshUpdate();

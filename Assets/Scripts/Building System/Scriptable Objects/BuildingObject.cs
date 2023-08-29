@@ -10,7 +10,7 @@ public abstract class BuildingObject : ScriptableObject
     public Building buildingPrefab;
     public Blueprint blueprintPrefab;
     [Range(0, 5)] public int BuildingLevel;
-    public List<ItemAmountInfo> Cost;
+    public DisplayItemAmountInfo[] Cost;
     public LayerMask FreePlacingLayer;
     public bool allowRotation = true;
 

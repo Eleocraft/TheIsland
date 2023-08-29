@@ -6,7 +6,7 @@ public class BrokenRaftPart : MonoBehaviour, IInteractable
     public bool Repaired => _repaired;
     private bool _repaired;
 
-    [SerializeField] private ItemAmountInfo RequiredItem;
+    [SerializeField] private DisplayItemAmountInfo RequiredItem;
     [SerializeField] private Material bluePrintMaterial;
     private Material[] materials;
     private MeshRenderer meshRenderer;
@@ -37,7 +37,7 @@ public class BrokenRaftPart : MonoBehaviour, IInteractable
     {
         if (Repaired)
             controller.Interact();
-        else if (PlayerInventory.UseItems(new(){ RequiredItem }))
+        else if (PlayerInventory.UseItems(new ItemAmountInfo[]{ RequiredItem }))
             Repair();
     }
     public void Repair()

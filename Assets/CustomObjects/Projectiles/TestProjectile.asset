@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ae5a20f808674abffe3c42bf3fe34, type: 3}
   m_Name: TestProjectile
   m_EditorClassIdentifier: 
-  Damage: 20
+  Damage: 100
   Drag: 0.3
   Dropoff: 6
   MaxDistance: 200

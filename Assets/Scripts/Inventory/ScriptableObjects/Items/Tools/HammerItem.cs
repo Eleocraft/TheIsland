@@ -6,7 +6,7 @@ public class HammerItem : PortableItem
 {
     [Range(0, 5)] public int HammerLevel;
     public override ItemType Type => ItemType.Hammer;
-
+    public override PortableItemAnimation portableItemAnimation => PortableItemAnimation.Tool;
     public override List<TooltipAttributeData> GetTooltips()
     {
         List<TooltipAttributeData> tooltips = base.GetTooltips();

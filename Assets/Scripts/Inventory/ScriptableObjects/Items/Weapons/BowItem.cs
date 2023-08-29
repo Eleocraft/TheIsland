@@ -4,6 +4,7 @@ using UnityEngine;
 public class BowItem : PortableItem
 {
     public override ItemType Type => ItemType.Bow;
+    public override PortableItemAnimation portableItemAnimation => PortableItemAnimation.Bow;
     public ArrowItem ArrowItem;
     public float TotalDrawTime;
     public float MinDrawTime;

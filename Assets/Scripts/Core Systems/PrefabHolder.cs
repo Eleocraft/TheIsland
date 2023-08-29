@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public enum PrefabTypes { Projectile, TreeDestructionParticles, TrunkDestructionParticles }
+public enum PrefabTypes { Projectile, TreeDestructionParticles, TrunkDestructionParticles, TreeHitParticles }
 public class PrefabHolder : MonoSingleton<PrefabHolder>
 {
     [SerializeField] private EnumDictionary<PrefabTypes, GameObject> prefabs = new();

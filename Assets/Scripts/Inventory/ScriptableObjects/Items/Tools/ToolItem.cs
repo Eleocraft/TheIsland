@@ -9,6 +9,7 @@ public class ToolItem : PortableItem
     public float CritTime = 0.2f;
     public float Speed = 1;
     public override ItemType Type => ItemType.Tool;
+    public override PortableItemAnimation portableItemAnimation => PortableItemAnimation.Tool;
 
     public override List<TooltipAttributeData> GetTooltips()
     {
