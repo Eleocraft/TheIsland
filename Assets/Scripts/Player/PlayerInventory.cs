@@ -85,11 +85,7 @@ public class PlayerInventory : MonoSingleton<PlayerInventory>
         item = Instance.hotbar.Slots[Instance.activeSlot].item;
         return item != null;
     }
-    public static bool TryGetActiveItemGO(out GameObject GO)
-    {
-        GO = Instance.ItemInHand;
-        return GO != null;
-    }
+    public static GameObject GetActiveItemGO() => Instance.ItemInHand;
     protected override void SingletonAwake()
     {
         if (GlobalData.loadMode == LoadMode.Load)

@@ -5,4 +5,5 @@ public class ArrowItem : ItemObject
 {
     public override ItemType Type => ItemType.Arrow;
     public ProjectileInfo Projectile;
+    public GameObject ArrowObject;
 }

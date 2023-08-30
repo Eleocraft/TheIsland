@@ -60,12 +60,10 @@ public class HarvestingActionController : MonoBehaviour
     }
     void CritChance()
     {
-        if (PlayerInventory.TryGetActiveItemGO(out GameObject GO))
-        {
-            float critTime = ((ToolItem)PlayerInventory.activeItem.ItemObject).CritTime;
-            GO.GetComponentInChildren<ToolCriticalHitIndicator>().CritChance(critTime);
-            critTimer = critTime;
-        }
+        if (!hitting) return;
+        float critTime = ((ToolItem)PlayerInventory.activeItem.ItemObject).CritTime;
+        PlayerInventory.GetActiveItemGO().GetComponentInChildren<ToolCriticalHitIndicator>().CritChance(critTime);
+        critTimer = critTime;
     }
     void AbortAction()
     {

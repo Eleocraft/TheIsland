@@ -7,7 +7,7 @@ public class InteractionController : MonoSingleton<InteractionController>
     private InteractionData currentInteraction;
     private InteractionData activeInteraction;
     [Header("--Raycast")]
-    [Range(0.1f, 3)] [SerializeField] private float HitRange;
+    [Range(0.1f, 5)] [SerializeField] private float HitRange;
     [SerializeField] private Transform CameraTransform;
     [SerializeField] private LayerMask InteractableLayers;
     [Header("--Interaction")]

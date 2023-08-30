@@ -20,6 +20,6 @@ MonoBehaviour:
   description: This is a testbow
   portableItemPrefab: {fileID: 5259392853032514077, guid: 0bc3ea56f8c483645a75c677c375923f, type: 3}
   ArrowItem: {fileID: 11400000, guid: 85bb03e3025456044b7d32b12c0b2ec3, type: 2}
-  TotalDrawTime: 1.5
+  TotalDrawTime: 1
   MinDrawTime: 1
   MaxVelocity: 70

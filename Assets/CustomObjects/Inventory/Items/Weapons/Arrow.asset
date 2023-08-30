@@ -19,3 +19,4 @@ MonoBehaviour:
   manualPickUp: 0
   description: This is a test arrow
   Projectile: {fileID: 11400000, guid: 7a68ea16c0aafd244af56522e28be6a9, type: 2}
+  ArrowObject: {fileID: 5301021878717787649, guid: f877b32df6bf9ee458545e9c541ef409, type: 3}

@@ -4225,6 +4225,7 @@ MonoBehaviour:
   eventNames:
   - HitObject
   - CritChance
+  - LooseBow
 --- !u!1 &355403896
 GameObject:
   m_ObjectHideFlags: 0
@@ -7020,7 +7021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e22f8a77ce1ec4bb87cb00a2afa218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitRange: 2.5
+  HitRange: 4
   CameraTransform: {fileID: 1687258585}
   InteractableLayers:
     serializedVersion: 2
@@ -7186,6 +7187,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraTransform: {fileID: 1422938593}
+  ArmAnimator: {fileID: 335648908}
+  armAnimationEventHandler: {fileID: 335648913}
+  MaxLockonRange: 80
+  MinLockonRange: 2
 --- !u!114 &639821041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10226,7 +10231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912c82e16315f8f4283775d2f8595624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadMode: 2
+  loadMode: 1
   Seed: 231123
   currentSaveName: MainScene
 --- !u!114 &1072857773
@@ -11306,7 +11311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251134740}
   m_Layer: 12
-  m_Name: ToolContainer
+  m_Name: RightHandItemContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14970,7 +14975,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 5
-  field of view: 55
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -15029,7 +15034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1573338754}
   m_Layer: 12
-  m_Name: BowContainer
+  m_Name: LeftHandItemContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15043,13 +15048,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573338753}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.68907547, y: -0.5476433, z: -0.4139574, w: 0.23216619}
+  m_LocalRotation: {x: -0.58652496, y: -0.5641119, z: -0.381715, w: 0.43824637}
   m_LocalPosition: {x: 0.0005, y: 0.0102, z: 0.0031}
   m_LocalScale: {x: 0.07999999, y: 0.07999996, z: 0.08}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 335648909}
-  m_LocalEulerAnglesHint: {x: -129.343, y: -29.919006, z: -62.536987}
+  m_LocalEulerAnglesHint: {x: -109.136, y: 8.184998, z: -93.596985}
 --- !u!1 &1603912053
 GameObject:
   m_ObjectHideFlags: 0
@@ -16331,7 +16336,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 5000
-  field of view: 55
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -18050,7 +18055,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1422938593}
   m_Lens:
-    FieldOfView: 55
+    FieldOfView: 70
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 5000
