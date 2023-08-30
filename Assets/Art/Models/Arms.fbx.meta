@@ -64,7 +64,8 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: Event Event has a time (1.166667) outside the clip's
+      valid range (0.000000..0.366667). It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -299,7 +300,7 @@ ModelImporter:
       takeName: Armature|BowLoose
       internalID: 7232991622614017024
       firstFrame: 0
-      lastFrame: 35
+      lastFrame: 11
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

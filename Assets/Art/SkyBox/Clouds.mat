@@ -103,7 +103,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _DarkColor: {r: 0.34235358, g: 0.36886823, b: 0.377244, a: 1}
+    - _DarkColor: {r: 0.39129746, g: 0.43242222, b: 0.43860644, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _LightColor: {r: 0.7018868, g: 0.93808424, b: 1, a: 1}
