@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [CommandGroup("dayNightCycle")]
 public class DayNightCycle : MonoSingleton<DayNightCycle>
@@ -35,6 +36,11 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
     [SerializeField] private Material cloudMaterial;
     [SerializeField] private Gradient cloudColor;
 
+    [Header("Post processing")]
+    [SerializeField] private Volume globalVolume;
+    private Bloom bloom;
+    [SerializeField] private AnimationCurve bloomCurve;
+
     private float moonTime;
     private float moonTimeRate;
 
@@ -62,6 +68,8 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
         timeRate = 1.0f / fullDayLength;
         time = startTime;
         moonTimeRate = 1.0f / moonOrbitDuration;
+
+        globalVolume.profile.TryGet(out bloom);
     }
 
     void Update()
@@ -109,6 +117,14 @@ public class DayNightCycle : MonoSingleton<DayNightCycle>
 
         // Clouds
         cloudMaterial.SetColor("_DarkColor", cloudColor.Evaluate(time));
+
+        // Post processing
+        float bloomAmount = bloomCurve.Evaluate(time);
+        if (bloomAmount > 0)
+        {
+            bloom.intensity.value = bloomAmount;
+            PostProcessingManager.UpdateVolumeStack();
+        }
     }
     void LateUpdate()
     {
